@@ -1,0 +1,25 @@
+server:
+  port: 9000
+
+#服务名称，网关服务
+spring:
+  application:
+    name: api-gateway
+
+#指定注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#自定义路由转发,统一入口
+#/order-service/api/v1/order/save?user_id=2&product_id=1
+# |
+#/apigateway-order/api/v1/order/save?user_id=2&product_id=1
+zuul:
+  routes:
+    user-service: /apigateway-user/**   #路径要唯一，不同的服务不要冲突，因为是以map的方式存储的
+  ignored-patterns: /*-service/api/**      #正则匹配，此时只能通过apigateway-开头进行访问
+  #  ignored-services: order-service #按照服务忽略
+  #处理http请求头为空的问题，将sensitive-headers设置为空
+  sensitive-headers:
