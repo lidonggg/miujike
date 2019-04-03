@@ -8,4 +8,6 @@ import com.miujike.userservice.domain.User;
  * @date 2019/3/30 12:57 PM
  */
 public interface UserMapper extends BaseMapper<User> {
+
+
 }
