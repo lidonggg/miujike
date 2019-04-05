@@ -1,4 +1,4 @@
-package com.miujike.userservice;
+package com.miujike.worksservice;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -15,11 +15,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //hystrix
 @EnableCircuitBreaker
 @EnableHystrixDashboard
-@MapperScan("com.miujike.userservice.mapper")
-public class UserServiceApplication {
+@MapperScan("com.miujike.worksservice.mapper")
+public class WorksServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
+        SpringApplication.run(WorksServiceApplication.class, args);
     }
 
 }
