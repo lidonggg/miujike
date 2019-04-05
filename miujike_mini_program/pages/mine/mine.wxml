@@ -1,0 +1,30 @@
+<!--pages/mine/mine.wxml-->
+<view class="my-info-card global-border-radius flex-center-layout-row">
+  <image class="avatar-url" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132"></image>
+  <view class="infos-block">
+    <view class="top-info-part">
+      dongdongdongdong
+    </view>
+    <view class="bottom-info-part flex-center-layout-row" style='justify-content: flex-start'>
+      <view class="flex-center-layout-col" style="border-right:1rpx solid #979797">
+        <view>关注</view>
+        <view class="yellow-color-text">100</view>
+      </view>
+      <view class="flex-center-layout-col" style="border-right:1rpx solid #979797">
+        <view>粉丝</view>
+        <view class="yellow-color-text">100</view>
+      </view>
+      <view class="flex-center-layout-col">
+        <view>鸡蛋数</view>
+        <view class="yellow-color-text">100</view>
+      </view>
+    </view>
+  </view>
+  <view class="get-eggs-view yellow-color-bg" bindtap='getEggs'>点击领取鸡蛋</view>
+</view>
+
+<block wx:for="{{menuList}}" wx:key="*this" wx:for-index="idx">
+  <view class="one-menu-item" data-path='{{item.path}}' bindtap='getIn'>
+    {{idx}}.{{item.name}}
+  </view>
+</block>

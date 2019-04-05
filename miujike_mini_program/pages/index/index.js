@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const api = require("../../utils/httpRequest.js")
 
 Page({
   data: {
@@ -42,6 +43,14 @@ Page({
         }
       })
     }
+
+    console.log(app.globalData.userInfo)
+
+    api.fetch({
+      url: "/apigateway-user/api/v1/user/sayhello"
+    }).then((res)=>{
+      console.log(res.data);
+    })
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -50,5 +59,44 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  doLogin: function () {
+    var that = this;
+    wx.login({
+      success: res => {
+        console.log(res.code);
+        var code = res.code;
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          wx.getUserInfo({
+            success: function (result) {
+              console.log(result.encryptedData);
+              console.log(result.iv);
+              wx.request({
+                url: app.globalData.requestUrl + '/api/login/getLogin',
+                method: 'post',
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                  encryptedData: result.encryptedData,
+                  iv: result.iv,
+                  code: code,
+                  tapp: app.globalData.myApp
+                },
+                success: function (dataBack) {
+                }
+              })
+              if (app.userInfoReadyCallback) {
+                app.userInfoReadyCallback(result)
+              }
+            },
+            fail: function (failData) {
+              console.info("用户拒绝登录");
+            }
+          })
+        }
+      }
+    })
+  },
 })
