@@ -40,6 +40,10 @@ public class User extends Model<User> {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    @TableField("last_login_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastLoginTime;
+
     @TableField("avatar_url")
     private String avatarUrl;
 
@@ -101,6 +105,14 @@ public class User extends Model<User> {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
     public String getAvatarUrl() {

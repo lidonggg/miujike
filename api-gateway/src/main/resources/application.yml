@@ -13,12 +13,13 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 #自定义路由转发,统一入口
-#/order-service/api/v1/order/save?user_id=2&product_id=1
+#/user-service/api/v1/user/...
 # |
-#/apigateway-order/api/v1/order/save?user_id=2&product_id=1
+#/apigateway-user/api/v1/user/...
 zuul:
   routes:
     user-service: /apigateway-user/**   #路径要唯一，不同的服务不要冲突，因为是以map的方式存储的
+    works-service: /apigateway-works/**
   ignored-patterns: /*-service/api/**      #正则匹配，此时只能通过apigateway-开头进行访问
   #  ignored-services: order-service #按照服务忽略
   #处理http请求头为空的问题，将sensitive-headers设置为空

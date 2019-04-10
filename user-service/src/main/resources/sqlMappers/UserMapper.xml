@@ -7,6 +7,7 @@
         <result column="nick_name" property="nickName"/>
         <result column="avatar_url" property="avatarUrl"/>
         <result column="create_time" property="createTime"/>
+        <result column="last_login_time" property="lastLoginTime"/>
         <result column="country" property="country"/>
         <result column="province" property="province"/>
         <result column="city" property="city"/>
@@ -14,6 +15,6 @@
         <result column="my_open_id" property="myOpenId"/>
     </resultMap>
     <sql id="Base_Column_List">
-        user_id as userId,nick_name as nickName,avatar_url as avatarUrl,create_time as createTime,country,province,city,gender,my_open_id as myOpenId
+        user_id as userId,nick_name as nickName,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,my_open_id as myOpenId
     </sql>
 </mapper>

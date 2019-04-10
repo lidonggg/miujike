@@ -2,8 +2,8 @@ package com.miujike.userservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.miujike.common.dto.ResponseData;
 import com.miujike.userservice.domain.User;
-import com.miujike.userservice.dto.ResponseData;
 import com.miujike.userservice.service.IUserService;
 import com.miujike.userservice.util.WxUtil;
 import org.springframework.beans.factory.annotation.Autowired;

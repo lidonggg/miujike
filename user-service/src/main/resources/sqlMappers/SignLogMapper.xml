@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miujike.userservice.mapper.SignLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.miujike.userservice.domain.SignLog">
+        <id column="sign_id" property="signId"/>
+        <result column="user_id" property="userId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="eggs_get" property="eggsGet"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        sign_id as signId,user_id as userId,create_time as createTime,eggs_get as eggsGet
+    </sql>
+</mapper>
