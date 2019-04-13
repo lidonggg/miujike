@@ -89,14 +89,19 @@
   align-items: center
 }
 
-.one-menu-item >image{
-  width: 100rpx;
-  height: 100rpx;
+.one-menu-item >.my-item-img{
+  width: 90rpx;
+  height: 90rpx;
   margin-right: 30rpx;
 }
 
+.one-menu-item >.my-item-arrow{
+  width: 56rpx;
+  height: 56rpx;
+}
+
 .one-menu-item >text{
-  width: 400rpx;
+  width: 460rpx;
   font-weight: 500;
   font-size: 36rpx;
   font-family: "Ping Fang SC";

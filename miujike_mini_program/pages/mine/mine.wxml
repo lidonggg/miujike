@@ -27,5 +27,6 @@
   <view class="one-menu-item" data-path='{{item.path}}' bindtap='getIn'>
     <image class="my-item-img" src='../../{{item.img}}'></image>
     <text>{{item.name}}</text>
+    <image class="my-item-arrow" src='../../resources/imgs/mine/right_arrow.png'></image>
   </view>
 </block>
