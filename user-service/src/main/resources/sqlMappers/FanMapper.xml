@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miujike.userservice.mapper.FanMapper">
+
+    <resultMap id="BaseResultMap" type="com.miujike.userservice.domain.Fan">
+        <id column="fan_id" property="fanId"/>
+        <result column="from_user_id" property="fromUserId"/>
+        <result column="to_usr_id" property="toUserId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        fan_id as fanId,from_user_id as fromUserId,to_usr_id as toUserId,create_time as createTime
+    </sql>
+</mapper>

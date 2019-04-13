@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miujike.behavior.mapper.ThumbMapper">
+
+    <resultMap id="BaseResultMap" type="com.miujike.behavior.domain.Thumb">
+        <id column="thumb_id" property="thumbId"/>
+        <result column="from_user_id" property="from_user_Id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="target_type" property="targetType"/>
+        <result column="target_id" property="targetId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        thumb_id as thumbId,from_user_id as from_user_Id,create_time as createTime,target_type as targetType,
+        target_id as targetId
+    </sql>
+</mapper>

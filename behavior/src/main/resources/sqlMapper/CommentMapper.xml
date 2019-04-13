@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miujike.behavior.mapper.CommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.miujike.behavior.domain.Comment">
+        <id column="comment_id" property="commentId"/>
+        <result column="from_user_id" property="from_user_Id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="target_type" property="targetType"/>
+        <result column="target_id" property="targetId"/>
+        <result column="content" property="content"/>
+        <result column="thumbs" property="thumbs"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        comment_id as commentId,from_user_id as from_user_Id,create_time as createTime,target_type as targetType,
+        target_id as targetId,content,thumbs
+    </sql>
+</mapper>

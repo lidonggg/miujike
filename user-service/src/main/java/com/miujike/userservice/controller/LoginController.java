@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 登陆
  */
 @Controller
-@RequestMapping("/api/v1/login")
+@RequestMapping("/api/v1/user/login")
 public class LoginController {
 
     @Autowired
