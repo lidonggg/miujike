@@ -10,20 +10,21 @@ Page({
     menuList:[
       {
         name: "获取鸡蛋",
-        path: "pages/getEggs/getEggs"
+        path: "pages/getEggs/getEggs",
+        img:"resources/imgs/mine/get_eggs.png"
       },
       {
         name: "我的作品",
-        path: "pages/myWorks/myWorks"
+        path: "pages/myWorks/myWorks",
+        img: "resources/imgs/mine/my_works.png"
       }, {
         name: "我的消息",
-        path: "pages/myNotifications/myNotifications"
+        path: "pages/myNotifications/myNotifications",
+        img: "resources/imgs/mine/my_notifications.png"
       }, {
         name: "我的喜欢",
-        path: "pages/myLikes/myLikes"
-      }, {
-        name: "我的评论",
-        path: "pages/myComments/myComments"
+        path: "pages/myLikes/myLikes",
+        img: "resources/imgs/mine/my_likes.png"
       }
     ]
   },

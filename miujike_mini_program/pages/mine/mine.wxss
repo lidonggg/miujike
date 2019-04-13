@@ -82,6 +82,23 @@
   height: 120rpx;
   width: 690rpx;
   margin-left: 30rpx;
-  border-bottom: 1rpx solid #979797;
+  border-bottom: 1rpx solid #D8D8D8;
   line-height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.one-menu-item >image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 30rpx;
+}
+
+.one-menu-item >text{
+  width: 400rpx;
+  font-weight: 500;
+  font-size: 36rpx;
+  font-family: "Ping Fang SC";
+  color: rgb(65, 65, 65)
 }

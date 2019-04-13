@@ -25,6 +25,7 @@
 
 <block wx:for="{{menuList}}" wx:key="*this" wx:for-index="idx">
   <view class="one-menu-item" data-path='{{item.path}}' bindtap='getIn'>
-    {{idx}}.{{item.name}}
+    <image class="my-item-img" src='../../{{item.img}}'></image>
+    <text>{{item.name}}</text>
   </view>
 </block>

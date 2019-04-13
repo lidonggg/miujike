@@ -26,21 +26,29 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "学习"
+        "text": "首页",
+        "iconPath":"resources/imgs/tabBars/index.png",
+        "selectedIconPath":"resources/imgs/tabBars/index_active.png"
       },
       {
         
         "pagePath": "pages/music/music",
-        "text": "学习"
+        "text": "音乐",
+        "iconPath": "resources/imgs/tabBars/music.png",
+        "selectedIconPath": "resources/imgs/tabBars/music_active.png"
       },
       {
         
         "pagePath": "pages/allComing/allComing",
-        "text": "全民来稿"
+        "text": "全民来稿",
+        "iconPath": "resources/imgs/tabBars/all_coming.png",
+        "selectedIconPath": "resources/imgs/tabBars/all_coming_active.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "resources/imgs/tabBars/mine.png",
+        "selectedIconPath": "resources/imgs/tabBars/mine_active.png"
       }
     ]
   }
