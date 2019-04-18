@@ -63,5 +63,18 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  /**
+   * 切换tab
+   */
+  switchNav(e) {
+    this.setData({
+      curTab: e.currentTarget.dataset.idx
+    })
+  },
+  switchTab(e){
+    this.setData({
+      curTab: e.detail.current
+    });
   }
 })

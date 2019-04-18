@@ -43,3 +43,13 @@ page{
   right: 0;
   height: 4rpx;
 }
+
+.works-swiper{
+  height: calc(100vh - 110rpx);
+}
+
+.works-swiper swiper-item{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
