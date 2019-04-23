@@ -26,6 +26,7 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("insert")
+    @ResponseBody
     public String insert(){
         User user = new User();
         user.setAvatarUrl("1111");

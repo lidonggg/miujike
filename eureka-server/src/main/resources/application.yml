@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: 8751
 eureka:
   client:
     #以下两条声明自己是个服务端

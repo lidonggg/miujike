@@ -1,2 +1,3 @@
 <!--pages/allComing/allComing.wxml-->
 <text>pages/allComing/allComing.wxml</text>
+<button bindtap='chooseImg'>选择文件</button>

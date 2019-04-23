@@ -5,7 +5,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8751/eureka/
 
 spring:
   #本服务的名称
@@ -23,7 +23,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
-  type-aliases-package: com.miujike.userservice.domain
+  type-aliases-package: com.miujike.worksservice.domain
   mapper-locations: classpath:/sqlMappers/*.xml
 
   #指定从哪个配置中心读取
