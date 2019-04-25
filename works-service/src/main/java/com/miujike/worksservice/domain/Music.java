@@ -24,6 +24,11 @@ public class Music extends Model<Music> {
     @TableField("user_id")
     private long userId;
 
+    /**
+     * 演唱者
+     */
+    private String singer;
+
     @TableField("music_url")
     private String musicUrl;
 
@@ -60,6 +65,11 @@ public class Music extends Model<Music> {
      */
     private int comments;
 
+    /**
+     * 原唱
+     */
+    private String originalSinger;
+
     public long getMusicId() {
         return musicId;
     }
@@ -74,6 +84,14 @@ public class Music extends Model<Music> {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getSinger() {
+        return singer;
+    }
+
+    public void setSinger(String singer) {
+        this.singer = singer;
     }
 
     public String getMusicUrl() {
@@ -140,11 +158,20 @@ public class Music extends Model<Music> {
         this.comments = comments;
     }
 
+    public String getOriginalSinger() {
+        return originalSinger;
+    }
+
+    public void setOriginalSinger(String originalSinger) {
+        this.originalSinger = originalSinger;
+    }
+
     @Override
     public String toString() {
         return "Music{" +
                 "musicId=" + musicId +
                 ", userId=" + userId +
+                ", singer='" + singer + '\'' +
                 ", musicUrl='" + musicUrl + '\'' +
                 ", duration=" + duration +
                 ", status=" + status +
@@ -153,6 +180,7 @@ public class Music extends Model<Music> {
                 ", eggs=" + eggs +
                 ", thumbs=" + thumbs +
                 ", comments=" + comments +
+                ", originalSinger='" + originalSinger + '\'' +
                 '}';
     }
 }

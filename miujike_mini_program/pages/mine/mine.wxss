@@ -90,8 +90,8 @@
 }
 
 .one-menu-item >.my-item-img{
-  width: 90rpx;
-  height: 90rpx;
+  width: 80rpx;
+  height: 80rpx;
   margin-right: 30rpx;
 }
 

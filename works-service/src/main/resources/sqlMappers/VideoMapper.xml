@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.miujike.worksservice.mapper.VideoMapper">
         <id column="video_id" property="videoId"/>
         <result column="user_id" property="userId"/>
+        <result column="singer" property="singer"/>
         <result column="video_url" property="videoUrl"/>
         <result column="duration" property="duration"/>
         <result column="status" property="status"/>
@@ -13,8 +14,9 @@
         <result column="eggs" property="eggs"/>
         <result column="thumbs" property="thumbs"/>
         <result column="comments" property="comments"/>
+        <result column="original_singer" property="originalSinger"/>
     </resultMap>
     <sql id="Base_Column_List">
-        video_id as videoId,user_id as userId,video_url as videoUrl,duration,status,create_time as createTime,release_time as releaseTime,eggs,thumbs,comments
+        video_id as videoId,user_id as userId,singer,video_url as videoUrl,duration,status,create_time as createTime,release_time as releaseTime,eggs,thumbs,comments,original_singer as originalSinger
     </sql>
 </mapper>

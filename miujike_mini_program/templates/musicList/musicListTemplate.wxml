@@ -1,3 +1,38 @@
 <template name="musicList">
-  
+  <scroll-view wx:if="{{musicList.length!=0}}" scroll-y style='width:100%;height:100%'>
+    <view style='height:20rpx'></view>
+    <block wx:for="{{musicList}}" wx:key="musciId">
+      <view class="one-music-item">
+        <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon"></image>
+        <view class="left-part" style='width:340rpx;float:left;margin-left:20rpx;'>
+          <view>
+            <view class="title-container">
+              <text>{{item.title}}</text>
+            </view>
+            <image class="listen-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
+            <text class="gray-color-text" style='font-size:24rpx'>{{item.listenTimes}}</text>
+          </view>
+          <view class="gray-color-text singer-container">
+            {{item.singer}} (原唱：{{item.originalSinger}})
+          </view>
+        </view>
+        <view class="right-part flex-center-layout-row" style='float:left'>
+          <view class="option-container add-eggs-container flex-center-layout-col">
+            <image src='../../resources/imgs/mine/myLikes/add_eggs_icon.png'></image>
+            <text class="gray-color-text">加鸡蛋</text>
+          </view>
+          <view class="option-container share-container flex-center-layout-col">
+            <image src='../../resources/imgs/mine/myLikes/share_icon.png'></image>
+            <text class="gray-color-text">分享</text>
+          </view>
+          <view class="duration-container">
+            {{item.duration}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="gray-color-text" style='font-size:30rpx;text-align:center'>
+      {{musicTip}}
+    </view>
+  </scroll-view>
 </template>

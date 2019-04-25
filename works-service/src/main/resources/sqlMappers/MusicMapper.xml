@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.miujike.worksservice.mapper.MusicMapper">
         <id column="music_id" property="musicId"/>
         <result column="user_id" property="userId"/>
+        <result column="singer" property="singer"/>
         <result column="music_url" property="musicUrl"/>
         <result column="duration" property="duration"/>
         <result column="status" property="status"/>
@@ -13,8 +14,9 @@
         <result column="eggs" property="eggs"/>
         <result column="thumbs" property="thumbs"/>
         <result column="comments" property="comments"/>
+        <result column="original_singer" property="originalSinger"/>
     </resultMap>
     <sql id="Base_Column_List">
-        music_id as musicId,user_id as userId,music_url as musicUrl,duration,status,create_time as createTime,release_time as releaseTime,eggs,thumbs,comments
+        music_id as musicId,user_id as userId,singer,music_url as musicUrl,duration,status,create_time as createTime,release_time as releaseTime,eggs,thumbs,comments,original_singer as original_singer
     </sql>
 </mapper>

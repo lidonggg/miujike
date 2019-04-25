@@ -6,7 +6,47 @@ Page({
    */
   data: {
     curTab: 0,
-    navtabs: ["视频", "音乐"]
+    navtabs: ["视频", "音乐"],
+    loaded:true,
+    musicTip:"去为更多优秀的作品加鸡蛋吧～",
+    musicList:[
+      {
+        musicId:1,
+        title:"圣诞结圣诞结圣诞结圣诞结",
+        originalSinger:"陈奕迅",
+        singer:"聂家成ccccccccccc",
+        listenTimes:100,
+        duration:"03:00"
+      }, {
+        musicId:2,
+        title: "圣诞结",
+        originalSinger: "陈奕迅",
+        singer: "聂家成",
+        listenTimes: 100,
+        duration: "03:00"
+      }, {
+        musicId:3,
+        title: "圣诞结",
+        originalSinger: "陈奕迅",
+        singer: "聂家成",
+        listenTimes: 100,
+        duration: "03:00"
+      }, {
+        musicId:4,
+        title: "圣诞结",
+        originalSinger: "陈奕迅",
+        singer: "聂家成",
+        listenTimes: 100,
+        duration: "03:00"
+      }, {
+        musicId:5,
+        title: "圣诞结",
+        originalSinger: "陈奕迅",
+        singer: "聂家成",
+        listenTimes: 100,
+        duration: "03:00"
+      }
+    ]
   },
 
   /**
