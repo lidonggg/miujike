@@ -1,48 +1,10 @@
 /* pages/myLikes/myLikes.wxss */
 @import "../../templates/musicList/musicListTemplate.wxss";
+@import "../../templates/videoMusicBar/videoMusicBarTemplate.wxss";
+
 page {
   height: 100vh;
   width: 100vw;
-}
-
-.navtab-container {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  flex: none;
-  display: flex;
-  text-align: center;
-  background: #fff;
-  height: 110rpx;
-  background-size: 100% 100%;
-}
-
-.navtab-container .item {
-  font-size: 32rpx;
-  font-weight: 500;
-  position: relative;
-  flex: auto;
-  width: auto;
-  text-align: center;
-  line-height: 100rpx;
-  /* color: #c2c2c2; */
-}
-
-.nav-container .item.active {
-  color: #f9e351;
-  font-weight: 600;
-}
-
-.nav-container .item.active:after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4rpx;
 }
 
 .works-swiper {
@@ -68,20 +30,20 @@ page {
   margin-top: 10rpx;
   width: 80rpx;
   height: 80rpx;
-  float: left
+  float: left;
 }
 
 .left-part .music-detail-container {
   width: 420rpx;
 }
 
-.title-container{
-  width:190rpx;
-  display:inline-block;
+.title-container {
+  width: 190rpx;
+  display: inline-block;
   /* max-height: 36rpx; */
 }
 
-.title-container text{
+.title-container text {
   font-size: 36rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
@@ -92,7 +54,7 @@ page {
   align-content: center;
 }
 
-.singer-container{
+.singer-container {
   font-size: 24rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
@@ -103,30 +65,30 @@ page {
   align-content: center;
 }
 
-.left-part .listen-times-icon{
+.left-part .listen-times-icon {
   width: 60rpx;
   height: 56rpx;
   margin-right: 10rpx;
 }
 
-.option-container image{
+.option-container image {
   width: 64rpx;
   height: 72rpx;
 }
 
-.option-container text{
+.option-container text {
   font-size: 24rpx;
 }
 
-.share-container{
+.share-container {
   margin-left: 20rpx;
   margin-right: 20rpx;
 }
 
-.duration-container{
+.duration-container {
   color: white;
-  background-color: #cccccc;
-  font-size:30rpx;
+  background-color: #ccc;
+  font-size: 30rpx;
   border-radius: 6rpx;
   font-family: Arial, Helvetica, sans-serif;
 }
