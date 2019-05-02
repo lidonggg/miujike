@@ -94,3 +94,13 @@
 .global-border-radius{
   border-radius: 12rpx;
 }
+
+.works-swiper {
+  height: calc(100vh - 110rpx);
+}
+
+.works-swiper swiper-item {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}

@@ -6,49 +6,10 @@
 
   </swiper-item>
   <swiper-item class="music-swiper-item">
-    <template wx:if="{{musicList.length!=0}}" is="musicList" data="{{musicList,musicTip}}" />
-    <!-- <scroll-view wx:if="{{musicList.length!=0}}" scroll-y style='width:100%;height:100%'>
-      <view style='height:20rpx'></view>
-      <block wx:for="{{musicList}}" wx:key="musciId">
-        <view class="one-music-item">
-          <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon"></image>
-          <view class="left-part" style='width:340rpx;float:left;margin-left:20rpx;'>
-            <view>
-              <view class="title-container">
-                <text>{{item.title}}</text>
-              </view>
-              <image class="listen-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
-              <text class="gray-color-text" style='font-size:24rpx'>{{item.listenTimes}}</text>
-            </view>
-            <view class="gray-color-text singer-container">
-              {{item.singer}} (原唱：{{item.originalSinger}})
-            </view>
-          </view>
-          <view class="right-part flex-center-layout-row" style='float:left'>
-            <view class="option-container add-eggs-container flex-center-layout-col">
-              <image src='../../resources/imgs/mine/myLikes/add_eggs_icon.png'></image>
-              <text class="gray-color-text">加鸡蛋</text>
-            </view>
-            <view class="option-container share-container flex-center-layout-col">
-              <image src='../../resources/imgs/mine/myLikes/share_icon.png'></image>
-              <text class="gray-color-text">分享</text>
-            </view>
-            <view class="duration-container">
-              {{item.duration}}
-            </view>
-          </view>
-        </view>
-      </block>
-      <view class="gray-color-text" style='font-size:30rpx;text-align:center'>
-        {{musicTip}}
-      </view>
-    </scroll-view> -->
+    <scroll-view wx:if="{{musicList.length!=0}}" scroll-y style='width:100%;height:100%'>
+      <template wx:if="{{musicList.length!=0}}" is="music-list" data="{{musicList,musicTip}}" />
+    </scroll-view>
     <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
   </swiper-item>
 </swiper>
-<!-- <view class="navtab-container">
-  <image style='position:absolute;width:100%;height:100%' src='../../resources/imgs/mine/myLikes/navbar_bg.png'></image>
-  <view wx:for="{{navtabs}}" data-idx="{{index}}" class="item flex-center-layout-row {{curTab == index ? 'active yellow-color-text' : 'gray-color-text'}}" id="item{{index}}" wx:key="*this" bindtap='switchNav'>{{item}}
-  </view>
-</view> -->
-<template is="videoMusicBar" data="{{navtabs,curTab}}"></template>
+<template is="video-music-bar" data="{{navtabs,curTab}}"></template>

@@ -11,6 +11,7 @@ Page({
     musicTip:"去为更多优秀的作品加鸡蛋吧～",
     musicList:[
       {
+        uploadBtnShow:false,
         musicId:1,
         title:"圣诞结圣诞结圣诞结圣诞结",
         originalSinger:"陈奕迅",
