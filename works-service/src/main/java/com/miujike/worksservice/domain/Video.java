@@ -29,6 +29,16 @@ public class Video extends Model<Video> {
      */
     private String singer;
 
+    /**
+     * 标题
+     */
+    private String title;
+
+    /**
+     * 描述
+     */
+    private String detail;
+
     @TableField("music_url")
     private String musicUrl;
 
@@ -92,6 +102,22 @@ public class Video extends Model<Video> {
 
     public void setSinger(String singer) {
         this.singer = singer;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getMusicUrl() {
@@ -172,6 +198,8 @@ public class Video extends Model<Video> {
                 "videoId=" + videoId +
                 ", userId=" + userId +
                 ", singer='" + singer + '\'' +
+                ", title='" + title + '\'' +
+                ", detail='" + detail + '\'' +
                 ", musicUrl='" + musicUrl + '\'' +
                 ", duration=" + duration +
                 ", status=" + status +

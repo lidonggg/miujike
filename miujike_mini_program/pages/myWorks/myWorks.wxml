@@ -5,7 +5,10 @@
 
 <swiper class="works-swiper" bindchange='switchTab' current="{{curTab}}" duration="300">
   <swiper-item class="video-swiper-item">
-
+    <view class="upload-container flex-center-layout-row">
+      <image src='../../resources/imgs/mine/myWorks/upload_btn.png'></image>
+    </view>
+    <template is="uploaded-tip"></template>
   </swiper-item>
   <swiper-item class="music-swiper-item">
     <view class="upload-container flex-center-layout-row">
