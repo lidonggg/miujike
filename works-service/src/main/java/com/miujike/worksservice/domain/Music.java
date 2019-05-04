@@ -80,6 +80,12 @@ public class Music extends Model<Music> {
      */
     private String originalSinger;
 
+    /**
+     * 播放次数
+     */
+    @TableField("play_times")
+    private int playTimes;
+
     public long getMusicId() {
         return musicId;
     }
@@ -192,6 +198,14 @@ public class Music extends Model<Music> {
         this.originalSinger = originalSinger;
     }
 
+    public int getPlayTimes() {
+        return playTimes;
+    }
+
+    public void setPlayTimes(int playTimes) {
+        this.playTimes = playTimes;
+    }
+
     @Override
     public String toString() {
         return "Music{" +
@@ -209,6 +223,7 @@ public class Music extends Model<Music> {
                 ", thumbs=" + thumbs +
                 ", comments=" + comments +
                 ", originalSinger='" + originalSinger + '\'' +
+                ", playTimes=" + playTimes +
                 '}';
     }
 }

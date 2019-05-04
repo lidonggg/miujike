@@ -80,6 +80,12 @@ public class Video extends Model<Video> {
      */
     private String originalSinger;
 
+    /**
+     * 播放次数
+     */
+    @TableField("play_times")
+    private int playTimes;
+
     public long getVideoId() {
         return videoId;
     }
@@ -192,6 +198,14 @@ public class Video extends Model<Video> {
         this.originalSinger = originalSinger;
     }
 
+    public int getPlayTimes() {
+        return playTimes;
+    }
+
+    public void setPlayTimes(int playTimes) {
+        this.playTimes = playTimes;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -209,6 +223,7 @@ public class Video extends Model<Video> {
                 ", thumbs=" + thumbs +
                 ", comments=" + comments +
                 ", originalSinger='" + originalSinger + '\'' +
+                ", playTimes=" + playTimes +
                 '}';
     }
 }

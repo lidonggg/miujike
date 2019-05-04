@@ -1,6 +1,6 @@
 <template name="music-list">
   <view style='height:20rpx'></view>
-  <block wx:for="{{musicList}}" wx:key="musciId">
+  <block wx:for="{{musicList}}" wx:key="musicId">
     <view class="one-music-item">
       <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon"></image>
       <view class="left-part" style='width:340rpx;float:left;margin-left:20rpx;'>
@@ -9,7 +9,7 @@
             <text>{{item.title}}</text>
           </view>
           <image class="listen-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
-          <text class="gray-color-text" style='font-size:24rpx'>{{item.listenTimes}}</text>
+          <text class="gray-color-text" style='font-size:24rpx'>{{item.playTimes}}</text>
         </view>
         <view class="gray-color-text singer-container">
           {{item.singer}} (原唱：{{item.originalSinger}})
@@ -31,6 +31,6 @@
     </view>
   </block>
   <view class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
-    {{musicTip}}
+    {{worksTip}}
   </view>
 </template>

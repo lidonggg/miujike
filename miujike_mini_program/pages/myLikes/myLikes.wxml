@@ -1,13 +1,18 @@
 <!--pages/myLikes/myLikes.wxml-->
 <import src="../../templates/musicList/musicListTemplate.wxml" />
+<import src="../../templates/videoList/videoListTemplate.wxml" />
 <import src="../../templates/videoMusicBar/videoMusicBarTemplate.wxml" />
+
 <swiper class="works-swiper" bindchange='switchTab' current="{{curTab}}" duration="300">
   <swiper-item class="video-swiper-item">
-
+    <scroll-view wx:if="{{videoList.length!=0}}" scroll-y>
+      <template wx:if="{{videoList.length!=0}}" is="video-list" data="{{videoList,worksTip}}" />
+    </scroll-view>
+    <view wx:if="{{videoList.length==0 && loaded}}" class="no-video-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
   </swiper-item>
   <swiper-item class="music-swiper-item">
-    <scroll-view wx:if="{{musicList.length!=0}}" scroll-y style='width:100%;height:100%'>
-      <template wx:if="{{musicList.length!=0}}" is="music-list" data="{{musicList,musicTip}}" />
+    <scroll-view wx:if="{{musicList.length!=0}}" scroll-y>
+      <template wx:if="{{musicList.length!=0}}" is="music-list" data="{{musicList,worksTip}}" />
     </scroll-view>
     <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
   </swiper-item>

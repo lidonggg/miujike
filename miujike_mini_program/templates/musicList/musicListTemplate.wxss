@@ -1,5 +1,5 @@
 .one-music-item {
-  margin-left: 25rpx;
+  /* margin-left: 25rpx; */
   width: 700rpx;
   height: 120rpx;
   margin-bottom: 20rpx;
