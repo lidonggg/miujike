@@ -1,6 +1,6 @@
 .one-video-item{
   width: 700rpx;
-  height: 390rpx;
+  height: 400rpx;
   margin-bottom: 20rpx;
   border-radius: 12rpx;
   position: relative
