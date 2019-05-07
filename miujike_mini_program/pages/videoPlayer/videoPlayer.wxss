@@ -1,4 +1,6 @@
 /* pages/videoPlayer/videoPlayer.wxss */
+@import "../../templates/comment/commentTemplate.wxss";
+
 .video-container{
   width: 750rpx;
   height: 520rpx;
@@ -48,6 +50,10 @@
   font-size: 36rpx;
 }
 
+.others-scroll-container{
+  height: calc(100vh - 630rpx);
+}
+
 .recommend-videos-container{
   height: 370rpx;
   width: 750rpx;
@@ -87,7 +93,8 @@
 }
 
 .comment-container{
-
+  width: 710rpx;
+  margin-left: 20rpx;
 }
 
 .comment-container .comment-tip{
@@ -97,6 +104,5 @@
   height: 50rpx;
   width: 110rpx;
   margin-top: 20rpx;
-  margin-left: 20rpx;
   margin-bottom: 20rpx;
 }

@@ -1,4 +1,6 @@
 <!--pages/videoPlayer/videoPlayer.wxml-->
+<import src="../../templates/comment/commentTemplate.wxml" />
+
 <view class="video-container">
   <video class="the-video" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
     controls poster="http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"></video>
@@ -13,18 +15,23 @@
     </view>
   </view>
 </view>
-<view class="recommend-videos-container">
-  <view class="recommend-tip flex-center-layout-row gray-color-bg">推荐视频</view>
-  <scroll-view scroll-x class="recommend-scroll-container">
-    <block wx:for="{{videoRecommended}}" wx:key="videoId">
-      <view class="one-video">
-        <image src='{{item.cover}}'>
+<scroll-view scroll-y class="others-scroll-container">
+  <view class="recommend-videos-container">
+    <view class="recommend-tip flex-center-layout-row gray-color-bg">推荐视频</view>
+    <scroll-view scroll-x class="recommend-scroll-container">
+      <block wx:for="{{videoRecommended}}" wx:key="videoId">
+        <view class="one-video">
+          <image src='{{item.cover}}'>
 
-        </image>
-      </view>
+          </image>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="comment-container">
+    <view class="comment-tip flex-center-layout-row gray-color-bg">评论</view>
+    <block wx:for="{{commentList}}" wx:key="commentId">
+      <template is="comment-item" data="{{item}}"/>
     </block>
-  </scroll-view>
-</view>
-<view class="comment-container">
-  <view class="comment-tip flex-center-layout-row gray-color-bg">评论</view>
-</view>
+  </view>
+</scroll-view>
