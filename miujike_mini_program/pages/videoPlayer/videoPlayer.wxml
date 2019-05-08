@@ -21,9 +21,7 @@
     <scroll-view scroll-x class="recommend-scroll-container">
       <block wx:for="{{videoRecommended}}" wx:key="videoId">
         <view class="one-video">
-          <image src='{{item.cover}}'>
-
-          </image>
+          <image src='{{item.cover}}'></image>
         </view>
       </block>
     </scroll-view>

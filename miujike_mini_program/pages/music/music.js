@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-
+    searchValue:""
   },
 
   /**
@@ -62,5 +62,22 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 输入
+   */
+  doInput(e){
+    this.setData({
+      searchValue:e.detail.value
+    })
+  },
+  /**
+   * 搜索
+   */
+  doSearch(e){
+    let that = this;
+    wx.showToast({
+      title: that.data.searchValue
+    })
   }
 })

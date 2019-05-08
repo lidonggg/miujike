@@ -1,1 +1,2 @@
 /* pages/music/music.wxss */
+@import "../../templates/searchInput/searchInputTemplate.wxss";

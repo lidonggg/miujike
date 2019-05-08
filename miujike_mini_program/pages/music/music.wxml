@@ -1,2 +1,3 @@
 <!--pages/music/music.wxml-->
-<text>pages/music/music.wxml</text>
+<import src="../../templates/searchInput/searchInputTemplate.wxml" />
+<template is="search-input" data="{{searchValue}}" />
