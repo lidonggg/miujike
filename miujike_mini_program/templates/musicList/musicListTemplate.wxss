@@ -5,17 +5,25 @@
   margin-bottom: 20rpx;
   border-radius: 0;
   border-bottom: 1rpx solid #d8d8d8;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap
 }
 
 .music-icon {
   margin-top: 10rpx;
   width: 80rpx;
   height: 80rpx;
-  float: left
 }
 
 .left-part .music-detail-container {
   width: 420rpx;
+}
+
+.left-part .top-part{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap
 }
 
 .title-container{
@@ -24,19 +32,15 @@
   /* max-height: 36rpx; */
 }
 
-.title-container text{
+.title-container {
   font-size: 36rpx;
-  text-overflow: -o-ellipsis-lastline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  align-content: center;
 }
 
 .singer-container{
   font-size: 24rpx;
+}
+
+.title-container ,.singer-container{
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;

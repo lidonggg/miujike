@@ -12,9 +12,9 @@ Page({
     musicList: [{
       uploadBtnShow: false,
       musicId: 1,
-      title: "圣诞结圣诞结圣诞结圣诞结",
+      title: "圣诞结圣诞jiejiejiejie",
       originalSinger: "陈奕迅",
-      singer: "聂家成ccccccccccc",
+      singer: "聂家成ccccccccccccc",
       playTimes: 100,
       duration: "03:00"
     }, {
