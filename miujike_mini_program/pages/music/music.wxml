@@ -39,5 +39,5 @@
     </block>
   </scroll-view>
   <view class="popular-tip">Popular</view>
-  <template wx:if="{{musicList.length!=0}}" is="music-list" data="{{musicList,worksTip}}" />
+  <music-list-component music-list="{{popularMusicList}}" works-tip="{{worksTip}}"/>
 </scroll-view>

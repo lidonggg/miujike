@@ -12,4 +12,7 @@
   </view>
 </view> -->
 <import src="../../templates/searchInput/searchInputTemplate.wxml" />
+
 <template is="search-input" data="{{searchValue}}" />
+<swiper>
+</swiper>

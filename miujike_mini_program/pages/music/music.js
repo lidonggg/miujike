@@ -34,7 +34,7 @@ Page({
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       }
     ],
-    musicList: [{
+    popularMusicList: [{
         musicId: 1,
         title: "圣诞节,,,........",
         singer: "ld",

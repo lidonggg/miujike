@@ -1,0 +1,36 @@
+<music-list-component>
+  <view style='height:20rpx'></view>
+  <block wx:for="{{musicList}}" wx:key="musicId">
+    <view class="one-music-item">
+      <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon"></image>
+      <view class="left-part" style='width:340rpx;margin-left:20rpx;'>
+        <view class="top-part">
+          <view class="title-container">
+            {{item.title}}
+          </view>
+          <image class="play-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
+          <text class="gray-color-text" style='font-size:24rpx;margin-top:10rpx'>{{item.playTimes}}</text>
+        </view>
+        <view class="gray-color-text singer-container">
+          {{item.singer}} (原唱：{{item.originalSinger}})
+        </view>
+      </view>
+      <view class="right-part flex-center-layout-row">
+        <view class="option-container add-eggs-container flex-center-layout-col" style='width:80rpx'>
+          <image src='../../resources/imgs/mine/myLikes/add_eggs_icon.png'></image>
+          <text class="gray-color-text">加鸡蛋</text>
+        </view>
+        <view class="option-container share-container flex-center-layout-col" bindtap='onShare'>
+          <image src='../../resources/imgs/mine/myLikes/share_icon.png'></image>
+          <text class="gray-color-text">分享</text>
+        </view>
+        <view class="duration-container">
+          {{item.duration}}
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
+    {{worksTip}}
+  </view>
+</music-list-component>

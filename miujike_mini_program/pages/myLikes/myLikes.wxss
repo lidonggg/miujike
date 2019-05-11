@@ -1,6 +1,4 @@
 /* pages/myLikes/myLikes.wxss */
-@import "../../templates/musicList/musicListTemplate.wxss";
-@import "../../templates/videoList/videoListTemplate.wxss";
 @import "../../templates/videoMusicBar/videoMusicBarTemplate.wxss";
 
 page {

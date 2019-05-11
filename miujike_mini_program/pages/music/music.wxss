@@ -1,6 +1,6 @@
 /* pages/music/music.wxss */
 @import "../../templates/searchInput/searchInputTemplate.wxss";
-@import "../../templates/musicList/musicListTemplate.wxss";
+/* @import "../../templates/musicList/musicListTemplate.wxss"; */
 
 page {
   overflow-y: hidden;

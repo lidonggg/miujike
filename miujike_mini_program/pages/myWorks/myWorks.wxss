@@ -1,6 +1,4 @@
 /* pages/myWorks/myWorks.wxss */
-@import "../../templates/musicList/musicListTemplate.wxss";
-@import "../../templates/videoList/videoListTemplate.wxss";
 @import "../../templates/videoMusicBar/videoMusicBarTemplate.wxss";
 @import "../../templates/uploadedTip/uploadedTipTemplate.wxss";
 

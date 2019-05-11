@@ -20,3 +20,8 @@
   margin-top: 200px;
 } */
 @import "../../templates/searchInput/searchInputTemplate.wxss";
+
+page {
+  overflow-y: hidden;
+  height: 100vh;
+}
