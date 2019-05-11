@@ -64,6 +64,13 @@
   align-items: center;
 }
 
+.inline-flex-center-layout-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .font-size-80rpx{
   font-size: 80rpx;
 }

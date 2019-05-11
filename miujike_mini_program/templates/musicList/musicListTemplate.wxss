@@ -1,5 +1,5 @@
 .one-music-item {
-  /* margin-left: 25rpx; */
+  margin-left: 25rpx;
   width: 700rpx;
   height: 120rpx;
   margin-bottom: 20rpx;
@@ -50,7 +50,7 @@
   align-content: center;
 }
 
-.left-part .listen-times-icon{
+.left-part .play-times-icon{
   width: 60rpx;
   height: 56rpx;
   margin-right: 10rpx;

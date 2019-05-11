@@ -1,3 +1,43 @@
 <!--pages/music/music.wxml-->
 <import src="../../templates/searchInput/searchInputTemplate.wxml" />
+<import src="../../templates/musicList/musicListTemplate.wxml" />
+
 <template is="search-input" data="{{searchValue}}" />
+<scroll-view class="main-scroll-container" scroll-y>
+  <scroll-view class="new-scroll-container" scroll-x>
+    <block wx:for="{{newMusicList}}" wx:key="musicId">
+      <view class="one-new-item inline-flex-center-layout-col">
+        <view class="palyer-container">
+          <image src="{{item.cover}}" class="cover-img"></image>
+          <view class="new-tip light-gray-color-text">NEW</view>
+          <view class="play-info-container">
+            <view class="title-progress-container">
+              <view class="title-singer-info"><text style='font-size:26rpx'>{{item.title}}-{{item.singer}}</text><text style='font-size:22rpx'>(原唱：{{item.originalSinger}})</text></view>
+            </view>
+            <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-start-icon"></image>
+          </view>
+        </view>
+        <view class="info-container flex-center-layout-row">
+          <view class="left-part">
+            <view style="height:50%" class="flex-center-layout-row">
+              <view class="duration-container">
+                {{item.duration}}
+              </view>
+              <view class="top-part flex-center-layout-row">
+                <image class="play-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
+                <text class="gray-color-text" style='font-size:24rpx'>{{item.playTimes}}</text>
+              </view>
+            </view>
+            <view class="light-gray-color-text" style="font-size:30rpx">Music only</view>
+          </view>
+          <view class="right-part">
+            <image src='../../resources/imgs/music/add_eggs_group.png'></image>
+            <image src='../../resources/imgs/music/share_group.png'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="popular-tip">Popular</view>
+  <template wx:if="{{musicList.length!=0}}" is="music-list" data="{{musicList,worksTip}}" />
+</scroll-view>
