@@ -3,12 +3,11 @@
 /* @import "../../templates/musicList/musicListTemplate.wxss"; */
 
 page {
-  overflow-y: hidden;
   height: 100vh;
 }
 
 .main-scroll-container {
-  height: calc(100vh - 70rpx);
+  height: calc(100vh - 80rpx);
 }
 
 .new-scroll-container {

@@ -5,7 +5,8 @@
   height: 400rpx;
   margin-bottom: 20rpx;
   border-radius: 12rpx;
-  position: relative
+  position: relative;
+  margin-left: 25rpx;
 }
 
 .one-video-item .cover-img{

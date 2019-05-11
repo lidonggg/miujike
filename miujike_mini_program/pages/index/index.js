@@ -93,8 +93,10 @@ Page({
         cover: "http://file.yfjiaoyu.com/group1.jpg"
     }]
   },
-
-  swiper(e){
+  onPullDownRefresh(){
+    wx.stopPullDownRefresh()
+  },
+  onSwiper(e){
     let curIndex = e.detail.current;
     console.log(curIndex);
     this.setData({
@@ -122,6 +124,11 @@ Page({
           wx.hideLoading()
         }
       }
+    })
+  },
+  onReachBottom(){
+    wx.showToast({
+      title: '到底了',
     })
   },
   doLogin: function () {

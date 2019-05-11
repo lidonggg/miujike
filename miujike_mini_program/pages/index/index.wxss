@@ -23,8 +23,18 @@
 @import "../../templates/searchInput/searchInputTemplate.wxss";
 
 page {
-  overflow-y: hidden;
   height: 100vh;
+  position: relative
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.main-scroll-container {
+  height: calc(100vh - 80rpx);
 }
 
 .new-video-swiper {
@@ -37,13 +47,28 @@ page {
   position: relative;
 }
 
-.new-video-swiper swiper-item .new-video-cover {
+.new-video-swiper swiper-item .one-new-item {
   width: 420rpx;
   height: 244rpx;
   transition: transform 1s;
+  position: relative;
 }
 
 .new-video-swiper swiper-item .cur-show {
   transform: scale(1.2, 1.2);
   -webkit-transform: scale(1.2, 1.2);
+}
+
+.new-video-swiper swiper-item .one-new-item image{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1
+}
+
+.new-video-swiper swiper-item .one-new-item .info-container{
+  position: absolute;
+  font-size: 30rpx;
+  left:20rpx;
+  bottom:10rpx;
 }

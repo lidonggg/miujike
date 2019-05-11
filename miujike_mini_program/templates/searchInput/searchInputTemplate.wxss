@@ -17,7 +17,7 @@
 .search-btn {
   margin-left: 15rpx;
   width: 15%;
-  line-height: 150%;
+  height: 60rpx;
   text-align: center;
   border: 1px solid #d0d0d0;
   border-radius: 10rpx;
@@ -26,6 +26,13 @@
 .search-row {
   display: flex;
   flex-direction: row;
+  height: 80rpx;
+  /* position: absolute;
+  z-index: 999;
+  top: 0;
+  width: 100vw;
+  left: 0; */
+  background-color: white
 }
 
 .search-icon {

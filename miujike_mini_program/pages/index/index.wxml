@@ -14,7 +14,7 @@
 <import src="../../templates/searchInput/searchInputTemplate.wxml" />
 
 <template is="search-input" data="{{searchValue}}" />
-<scroll-view class="main-scroll-container">
+<scroll-view scroll-y class="main-scroll-container">
   <swiper class="new-video-swiper" 
           indicator-dots="true" 
           autoplay="true" 
@@ -24,12 +24,18 @@
           previous-margin="100rpx" 
           next-margin="100rpx" 
           indicator-active-color="#F9E351"
-          bindchange='swiper'
-          easing-function="easeInOutCubic">
+          bindchange='onSwiper'>
     <block wx:for="{{newVideoList}}" wx:key="videoId">
       <swiper-item class="flex-center-layout-row">
-        <image class="new-video-cover {{index == curSwiperItemIndex ? 'cur-show':''}}" src="{{item.cover}}" />
+        <view class="one-new-item {{index == curSwiperItemIndex ? 'cur-show':''}}">
+          <image class="new-video-cover" src="{{item.cover}}" />
+          <view class="info-container">
+            <view class="title-singer-info" style='font-size:28rpx;color:#929291'>{{item.title}}--{{item.singer}}</view>
+            <view class="original-singer-info" style='font-size:24rpx;color:#929291'>原唱：{{item.originalSinger}}</view>
+          </view>
+        </view>
       </swiper-item>
     </block>
   </swiper>
+  <video-list-component video-list="{{popularVideoList}}" works-tip="{{worksTip}}"/>
 </scroll-view>
