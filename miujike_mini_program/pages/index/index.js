@@ -9,6 +9,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    curSwiperItemIndex:0,
     newVideoList: [{
       videoId: 1,
       title: "圣诞节",
@@ -16,7 +17,7 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+      cover: "http://file.yfjiaoyu.com/group1.jpg"
     }, {
         videoId: 2,
         title: "圣诞节",
@@ -24,7 +25,7 @@ Page({
         singer: "聂家成",
         listenTimes: 100,
         duration: "03:00",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
       }, {
         videoId: 3,
         title: "圣诞节",
@@ -32,7 +33,7 @@ Page({
         singer: "聂家成",
         listenTimes: 100,
         duration: "03:00",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
       }, {
         videoId: 4,
         title: "圣诞节",
@@ -40,7 +41,7 @@ Page({
         singer: "聂家成",
         listenTimes: 100,
         duration: "03:00",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
       }, {
         videoId: 5,
         title: "圣诞节",
@@ -48,16 +49,16 @@ Page({
         singer: "聂家成",
         listenTimes: 100,
         duration: "03:00",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
       }],
-    videoList: [{
+    popularVideoList: [{
       videoId: 1,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+      cover: "http://file.yfjiaoyu.com/group1.jpg"
     }, {
       videoId: 2,
       title: "圣诞节",
@@ -65,7 +66,7 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
     }, {
       videoId: 3,
       title: "圣诞节",
@@ -73,7 +74,7 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
     }, {
       videoId: 4,
       title: "圣诞节",
@@ -81,7 +82,7 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
     }, {
       videoId: 5,
       title: "圣诞节",
@@ -89,13 +90,15 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
+        cover: "http://file.yfjiaoyu.com/group1.jpg"
     }]
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+
+  swiper(e){
+    let curIndex = e.detail.current;
+    console.log(curIndex);
+    this.setData({
+      curSwiperItemIndex : curIndex
     })
   },
   onLoad: function () {

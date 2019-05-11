@@ -14,5 +14,22 @@
 <import src="../../templates/searchInput/searchInputTemplate.wxml" />
 
 <template is="search-input" data="{{searchValue}}" />
-<swiper>
-</swiper>
+<scroll-view class="main-scroll-container">
+  <swiper class="new-video-swiper" 
+          indicator-dots="true" 
+          autoplay="true" 
+          interval="3000" 
+          duration="1000" 
+          circular="true" 
+          previous-margin="100rpx" 
+          next-margin="100rpx" 
+          indicator-active-color="#F9E351"
+          bindchange='swiper'
+          easing-function="easeInOutCubic">
+    <block wx:for="{{newVideoList}}" wx:key="videoId">
+      <swiper-item class="flex-center-layout-row">
+        <image class="new-video-cover {{index == curSwiperItemIndex ? 'cur-show':''}}" src="{{item.cover}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+</scroll-view>

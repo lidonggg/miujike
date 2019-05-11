@@ -2,7 +2,7 @@
   <view style='height:20rpx'></view>
   <block wx:for="{{videoList}}" wx:key="{{videoId}}">
     <view class="one-video-item">
-      <image src='{{item.cover}}' class="cover-img"></image>
+      <image src='{{item.cover}}' lazy-load class="cover-img"></image>
     </view>
   </block>
   <view class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
