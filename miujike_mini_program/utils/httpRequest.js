@@ -12,6 +12,7 @@ const http = ({
 } = {}) => {
 
   var requestUrl = baseUrl + url
+  console.log(requestUrl)
   if (showLoading){
     // 添加请求加载等待
     wx.showLoading({

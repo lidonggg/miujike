@@ -20,7 +20,6 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              console.log(res.userInfo)
               this.globalData.userInfo = res.userInfo
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -36,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    requestUrl:"http://localhost:9000"
+    requestUrl:"http://192.168.1.5:9000",
+    tapp:"miujike-app"
   }
 })

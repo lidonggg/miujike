@@ -12,9 +12,9 @@
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="gender" property="gender"/>
-        <result column="my_open_id" property="myOpenId"/>
+        <result column="open_id" property="openId"/>
     </resultMap>
     <sql id="Base_Column_List">
-        user_id as userId,nick_name as nickName,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,my_open_id as myOpenId
+        user_id as userId,nick_name as nickName,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,open_id as openId
     </sql>
 </mapper>

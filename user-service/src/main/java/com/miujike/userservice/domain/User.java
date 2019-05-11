@@ -33,8 +33,8 @@ public class User extends Model<User> {
 
     private String city;
 
-    @TableField("my_open_id")
-    private String myOpenId;
+    @TableField("open_id")
+    private String openId;
 
     @TableField("create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -91,12 +91,12 @@ public class User extends Model<User> {
         this.city = city;
     }
 
-    public String getMyOpenId() {
-        return myOpenId;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setMyOpenId(String xyOpenId) {
-        this.myOpenId = myOpenId;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
     public Date getCreateTime() {
@@ -132,8 +132,9 @@ public class User extends Model<User> {
                 ", country='" + country + '\'' +
                 ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
-                ", myOpenId='" + myOpenId + '\'' +
+                ", openId='" + openId + '\'' +
                 ", createTime=" + createTime +
+                ", lastLoginTime=" + lastLoginTime +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }

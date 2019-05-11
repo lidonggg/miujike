@@ -29,10 +29,10 @@ public class WxUtil {
 
     static {
         APP_ID_MAP = new HashMap<>();
-        APP_ID_MAP.put("carpenter-app", "wxa71eb2257a0ef099");
+        APP_ID_MAP.put("miujike-app", "wxa71eb2257a0ef099");
 
         APP_SECRET_MAP = new HashMap<>();
-        APP_SECRET_MAP.put("carpenter-app", "29109ca5d1400d92db856fe0ea975e4b");
+        APP_SECRET_MAP.put("miujike-app", "29109ca5d1400d92db856fe0ea975e4b");
     }
 
     public static String getSessionKey(String jsCode, String tapp) {

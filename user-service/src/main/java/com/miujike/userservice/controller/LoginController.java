@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author Ls J
  * @date 2019/4/3 1:04 PM
- * 登陆
+ * 登录
  */
 @Controller
 @RequestMapping("/api/v1/user/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Autowired
     private IUserService userService;
@@ -26,15 +26,15 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/doLogin")
     public ResponseData login(String encryptedData, String iv, String code, String tapp) {
-        System.out.println(tapp);
+        log.info("=======>{}", tapp);
         JSONObject userInfoJSON = WxUtil.decodeUserInfo(encryptedData, iv, code, tapp);
         System.out.println(userInfoJSON);
         if (null != userInfoJSON) {
             QueryWrapper<User> userWrapper = new QueryWrapper<>();
-            userWrapper.lambda().eq(User::getMyOpenId,userInfoJSON.getString("openId"));
+            userWrapper.lambda().eq(User::getOpenId, userInfoJSON.getString("openId"));
             User user = userService.getOne(userWrapper);
-            if(null == user){
-                user = userService.addNewUser(userInfoJSON,tapp);
+            if (null == user) {
+                user = userService.addNewUser(userInfoJSON, tapp);
             }
             return new ResponseData<>(user);
         }
