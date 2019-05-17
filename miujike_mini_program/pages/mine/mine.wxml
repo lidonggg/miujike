@@ -20,7 +20,7 @@
       </view>
     </view>
   </view>
-  <view class="get-eggs-view yellow-color-bg" bindtap='getEggs'>点击领取鸡蛋</view>
+  <view class="get-eggs-view {{havaSigned?'yellow-color-bg':'light-yellow-color-bg'}}" bindtap='getEggs'>{{haveSigned?'点击领取鸡蛋':'已领取鸡蛋'}}</view>
 </view>
 
 <block wx:for="{{menuList}}" wx:key="*this" wx:for-index="idx">

@@ -13,6 +13,10 @@
   background-color: #F9E351;
 }
 
+.light-yellow-color-bg{
+  background-color: #F3F0DF;
+}
+
 .gray-color-bg{
   background-color: #D8D8D8
 }
@@ -114,4 +118,13 @@
   height: 100%;
   width: 100%;
   position: relative;
+}
+
+.text-overflow-hidden{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  align-content: center;
 }

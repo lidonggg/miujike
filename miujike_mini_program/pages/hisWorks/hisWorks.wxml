@@ -1,0 +1,18 @@
+<!--pages/hisWorks/hisWorks.wxml-->
+<import src="../../templates/videoMusicBar/videoMusicBarTemplate.wxml" />
+
+<swiper class="works-swiper" bindchange='switchTab' current="{{curTab}}" duration="300">
+  <swiper-item class="video-swiper-item">
+    <scroll-view wx:if="{{videoList.length!=0}}" scroll-y>
+      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}"/>
+    </scroll-view>
+    <view wx:if="{{videoList.length==0 && loaded}}" class="no-video-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
+  </swiper-item>
+  <swiper-item class="music-swiper-item">
+    <scroll-view wx:if="{{musicList.length!=0}}" scroll-y>
+      <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}"/>
+    </scroll-view>
+    <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
+  </swiper-item>
+</swiper>
+<template is="video-music-bar" data="{{navtabs,curTab}}"></template>

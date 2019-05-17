@@ -1,0 +1,2 @@
+<!--pages/myFans/myFans.wxml-->
+<user-list-component user-list="{{userList}}" the-tip="{{theTip}}"></user-list-component>

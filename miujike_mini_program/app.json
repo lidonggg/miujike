@@ -1,5 +1,12 @@
 {
   "pages":[
+    "pages/myFollows/myFollows",
+    "pages/myFans/myFans",
+    
+    "pages/hisWorks/hisWorks",
+    
+    
+    
     "pages/index/index",
     "pages/music/music",
     "pages/videoPlayer/videoPlayer",

@@ -7,6 +7,7 @@ Page({
    * Page initial data
    */
   data: {
+    haveSigned:false,
     menuList:[
       {
         name: "获取鸡蛋",
