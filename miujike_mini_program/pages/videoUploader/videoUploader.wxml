@@ -1,0 +1,5 @@
+<!--pages/videoUploader/videoUploader.wxml-->
+<view class="video-uploader-container"></view>
+<view class="flex-center-layout-row">
+  <image bindtap='doUpload' class="add-cover-img" src='{{coverImg}}'></image>
+</view>

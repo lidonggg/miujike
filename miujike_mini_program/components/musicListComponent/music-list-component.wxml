@@ -2,7 +2,7 @@
   <view style='height:20rpx'></view>
   <block wx:for="{{musicList}}" wx:key="musicId">
     <view class="one-music-item">
-      <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon"></image>
+      <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-icon" data-id="{{item.musicId}}" bindtap='goPlayPage'></image>
       <view class="left-part" style='width:340rpx;margin-left:20rpx;'>
         <view class="top-part">
           <view class="title-container">

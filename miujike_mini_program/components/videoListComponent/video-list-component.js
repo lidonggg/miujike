@@ -35,6 +35,13 @@ Component({
         title: '分享',
       })
     },
+    goPlayPage(e){
+      let id = e.currentTarget.dataset.videoid;
+      console.log(id);
+      wx.navigateTo({
+        url: '../../pages/videoPlayer/videoPlayer?videoId='+id,
+      })
+    }
   }
 
 })

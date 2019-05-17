@@ -1,0 +1,12 @@
+/* pages/videoUploader/videoUploader.wxss */
+.video-uploader-container{
+  width: 100vw;
+  height: 200rpx;
+  border-bottom: 1rpx solid #D8D8D8;
+}
+
+.add-cover-img{
+  width: 310rpx;
+  height: 310rpx;
+  margin-top: 30rpx;
+}

@@ -1,7 +1,7 @@
 <video-list-component>
   <view style='height:20rpx'></view>
   <block wx:for="{{videoList}}" wx:key="{{videoId}}">
-    <view class="one-video-item">
+    <view class="one-video-item" data-videoid="{{item.videoId}}" bindtap='goPlayPage'>
       <image src='{{item.cover}}' lazy-load class="cover-img"></image>
     </view>
   </block>

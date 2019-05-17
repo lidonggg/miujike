@@ -101,5 +101,15 @@ Page({
     wx.navigateTo({
       url: '../../' + e.currentTarget.dataset.path,
     })
+  },
+  goMyFollowsPage(){
+    wx.navigateTo({
+      url: '../../pages/myFollows/myFollows',
+    })
+  },
+  goMyFollowPage() {
+    wx.navigateTo({
+      url: '../../pages/myFollows/myFollows',
+    })
   }
 })

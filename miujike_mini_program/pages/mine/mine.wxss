@@ -65,16 +65,16 @@
   margin-top: 20rpx;
 }
 
-.my-info-card .infos-block .bottom-info-part>view{
+.my-info-card .infos-block .bottom-info-part>view,navigator{
   flex-grow: 1;
   font-size: 25rpx;
 }
 
-.my-info-card .infos-block .bottom-info-part>view>view:first-child{
+.my-info-card .infos-block .bottom-info-part>view>view:first-child,.bottom-info-part navigator>view:first-child{
   margin-bottom: 10rpx;
 }
 
-.my-info-card .infos-block .bottom-info-part>view>view:last-child{
+.my-info-card .infos-block .bottom-info-part>view>view:last-child,bottom-info-part>navigator>view:last-child{
   font-weight: 500
 }
 

@@ -12,7 +12,7 @@ Page({
         avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
         nickname: "李东dddddddddddddddddddddddddddddd",
         fans: 100,
-        myFollow: false
+        myFollow: true
       },
       {
         userId: 2,

@@ -98,7 +98,6 @@ Page({
   },
   onSwiper(e){
     let curIndex = e.detail.current;
-    console.log(curIndex);
     this.setData({
       curSwiperItemIndex : curIndex
     })

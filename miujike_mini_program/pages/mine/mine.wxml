@@ -6,21 +6,21 @@
       dongdongdongdong
     </view>
     <view class="bottom-info-part flex-center-layout-row" style='justify-content: flex-start'>
-      <view class="flex-center-layout-col" style="border-right:1rpx solid #979797">
+      <navigator url="../../pages/myFollows/myFollows" class="flex-center-layout-col" style="border-right:1rpx solid #979797" bindtap='goNextPage'>
         <view>关注</view>
         <view class="yellow-color-text">100</view>
-      </view>
-      <view class="flex-center-layout-col" style="border-right:1rpx solid #979797">
+      </navigator>
+      <navigator url="../../pages/myFans/myFans" class="flex-center-layout-col" style="border-right:1rpx solid #979797">
         <view>粉丝</view>
         <view class="yellow-color-text">100</view>
-      </view>
+      </navigator>
       <view class="flex-center-layout-col">
         <view>鸡蛋数</view>
         <view class="yellow-color-text">100</view>
       </view>
     </view>
   </view>
-  <view class="get-eggs-view {{havaSigned?'yellow-color-bg':'light-yellow-color-bg'}}" bindtap='getEggs'>{{haveSigned?'点击领取鸡蛋':'已领取鸡蛋'}}</view>
+  <view class="get-eggs-view {{havaSigned?'light-yellow-color-bg':'yellow-color-bg'}}" bindtap='getEggs'>{{haveSigned?'已领取鸡蛋':'点击领取鸡蛋'}}</view>
 </view>
 
 <block wx:for="{{menuList}}" wx:key="*this" wx:for-index="idx">
