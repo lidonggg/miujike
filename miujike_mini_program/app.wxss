@@ -42,6 +42,10 @@
   color: #D26282;
 }
 
+.deep-red-color-text{
+  color: #D0021B
+}
+
 .yellow-color-border{
   border: 2rpx solid #F9E351;
 }
@@ -73,6 +77,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.flex-left-layout-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap
 }
 
 .font-size-80rpx{

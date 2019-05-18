@@ -9,6 +9,7 @@
         <result column="title" property="title"/>
         <result column="detail" property="detail"/>
         <result column="music_url" property="musicUrl"/>
+        <result column="cover" property="cover"/>
         <result column="duration" property="duration"/>
         <result column="status" property="status"/>
         <result column="create_time" property="createTime"/>

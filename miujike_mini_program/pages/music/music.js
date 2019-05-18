@@ -11,8 +11,9 @@ Page({
         title: "圣诞节,,,........",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 1000,
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -20,8 +21,9 @@ Page({
         title: "圣诞节,,,,,",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 1000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -29,8 +31,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 1000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       }
     ],
@@ -39,8 +42,9 @@ Page({
         title: "圣诞节,,,........",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 1000,
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -48,8 +52,9 @@ Page({
         title: "圣诞节,,,,,",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 1000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -57,8 +62,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 10000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       }
       ,
@@ -67,8 +73,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 10000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       }
       ,
@@ -77,8 +84,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 10000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -86,8 +94,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 10000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -95,8 +104,9 @@ Page({
         title: "圣诞节",
         singer: "ld",
         originalSinger: "dongdong",
-        duration: "03:00",
-        playTimes: 10000,
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       }
     ]
@@ -106,7 +116,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
-
+    
   },
 
   /**

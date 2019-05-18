@@ -21,7 +21,7 @@
           <view class="left-part">
             <view style="height:50%" class="flex-center-layout-row">
               <view class="duration-container">
-                {{item.duration}}
+                {{item.durationShow}}
               </view>
               <view class="top-part flex-center-layout-row">
                 <image class="play-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>

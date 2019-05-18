@@ -16,75 +16,85 @@ Page({
       originalSinger: "陈奕迅",
       singer: "聂家成ccccccccccccc",
       playTimes: 100,
-      duration: "03:00"
+      duration: 235,
+      durationShow: "03:55"
     }, {
       musicId: 2,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
       playTimes: 100,
-      duration: "03:00"
+      duration: 235,
+      durationShow: "03:55"
     }, {
       musicId: 3,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
       playTimes: 100,
-      duration: "03:00"
+      duration: 235,
+      durationShow: "03:55"
     }, {
       musicId: 4,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
       playTimes: 100,
-      duration: "03:00"
+      duration: 235,
+      durationShow: "03:55"
     }, {
       musicId: 5,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
       playTimes: 100,
-      duration: "03:00"
+      duration: 235,
+      durationShow: "03:55"
     }],
     videoList: [{
       videoId: 1,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
       cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
     }, {
       videoId: 2,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
       cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
     }, {
       videoId: 3,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
       cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
     }, {
       videoId: 4,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
       cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
     }, {
       videoId: 5,
       title: "圣诞节",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
       cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
     }]
   },

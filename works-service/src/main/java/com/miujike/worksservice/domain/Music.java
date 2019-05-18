@@ -42,6 +42,8 @@ public class Music extends Model<Music> {
     @TableField("music_url")
     private String musicUrl;
 
+    private String cover;
+
     private int duration;
 
     private short status;
@@ -134,6 +136,14 @@ public class Music extends Model<Music> {
         this.musicUrl = musicUrl;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     public int getDuration() {
         return duration;
     }
@@ -215,6 +225,7 @@ public class Music extends Model<Music> {
                 ", title='" + title + '\'' +
                 ", detail='" + detail + '\'' +
                 ", musicUrl='" + musicUrl + '\'' +
+                ", cover='" + cover + '\'' +
                 ", duration=" + duration +
                 ", status=" + status +
                 ", createTime=" + createTime +

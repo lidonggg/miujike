@@ -26,6 +26,8 @@ mybatis-plus:
   type-aliases-package: com.miujike.worksservice.domain
   mapper-locations: classpath:/sqlMappers/*.xml
 
+fetchNum: 15
+
   #指定从哪个配置中心读取
 #  cloud:
 #    config:

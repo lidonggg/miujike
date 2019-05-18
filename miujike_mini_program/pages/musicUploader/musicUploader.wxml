@@ -1,2 +1,26 @@
 <!--pages/musicUploader/musicUploader.wxml-->
-<text>pages/musicUploader/musicUploader.wxml</text>
+<view class="music-uploader-container"></view>
+<view class="flex-center-layout-row">
+  <image bindtap='doUpload' class="add-cover-img" src='{{coverImgPath}}'></image>
+</view>
+<form>
+  <view style='display:none'>
+    <input placeholder='请输入标题' value="{{coverImgUrl}}" maxlength="10" />
+  </view>
+  <view class="one-input-item flex-left-layout-row">
+    <label class="the-laber">标题
+      <text class="deep-red-color-text">*</text>：</label>
+    <input class="the-input" placeholder='请输入标题' maxlength="10"></input>
+  </view>
+  <view class="one-input-item flex-left-layout-row">
+    <label class="the-laber">演唱者
+      <text class="deep-red-color-text">*</text>：</label>
+    <input class="the-input" placeholder='请输入演唱者' maxlength="10"></input>
+  </view>
+  <view class="one-input-item flex-left-layout-row">
+    <label class="the-laber">原唱
+      <text class="deep-red-color-text">*</text>：</label>
+    <input class="the-input" placeholder='请输入原唱' maxlength="10"></input>
+  </view>
+  <button class="submit-buttom yellow-color-bg" form-type='submit'>发布</button>
+</form>

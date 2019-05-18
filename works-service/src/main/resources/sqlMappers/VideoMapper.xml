@@ -9,6 +9,7 @@
         <result column="title" property="title"/>
         <result column="detail" property="detail"/>
         <result column="video_url" property="videoUrl"/>
+        <result column="cover" property="cover"/>
         <result column="duration" property="duration"/>
         <result column="status" property="status"/>
         <result column="create_time" property="createTime"/>
@@ -25,4 +26,19 @@
         release_time as releaseTime,eggs,thumbs,comments,original_singer as originalSinger,
         play_times as playTimes
     </sql>
+
+    <select id="getUserVideoList" parameterType="map" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_video
+        where user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and video_id < #{lastId}
+            ]]>
+        </if>
+        order by video_id desc
+        limit #{fetchNum}
+    </select>
 </mapper>

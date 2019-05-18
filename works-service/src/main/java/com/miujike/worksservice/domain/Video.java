@@ -39,8 +39,10 @@ public class Video extends Model<Video> {
      */
     private String detail;
 
-    @TableField("music_url")
-    private String musicUrl;
+    @TableField("video_url")
+    private String videoUrl;
+
+    private String cover;
 
     private int duration;
 
@@ -126,12 +128,20 @@ public class Video extends Model<Video> {
         this.detail = detail;
     }
 
-    public String getMusicUrl() {
-        return musicUrl;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public void setMusicUrl(String musicUrl) {
-        this.musicUrl = musicUrl;
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public int getDuration() {
@@ -214,7 +224,8 @@ public class Video extends Model<Video> {
                 ", singer='" + singer + '\'' +
                 ", title='" + title + '\'' +
                 ", detail='" + detail + '\'' +
-                ", musicUrl='" + musicUrl + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                ", cover='" + cover + '\'' +
                 ", duration=" + duration +
                 ", status=" + status +
                 ", createTime=" + createTime +

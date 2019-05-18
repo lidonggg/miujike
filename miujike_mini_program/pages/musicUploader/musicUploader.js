@@ -5,7 +5,8 @@ Page({
    * Page initial data
    */
   data: {
-
+    coverImgPath: "../../resources/imgs/worksUploader/add_cover.png",
+    coverImgUrl:"",
   },
 
   /**

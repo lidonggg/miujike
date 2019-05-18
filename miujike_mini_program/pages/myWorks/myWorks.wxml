@@ -8,8 +8,8 @@
       <image bindtap='uploadVideo' src='../../resources/imgs/mine/myWorks/upload_btn.png'></image>
     </view>
     <template is="uploaded-tip"></template>
-    <scroll-view class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
-      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}"/>
+    <scroll-view id="the-scroll" bindscrolltolower="onVideoReachBottom" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
+      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
     </scroll-view>
   </swiper-item>
   <swiper-item class="music-swiper-item">

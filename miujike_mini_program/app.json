@@ -1,8 +1,9 @@
 {
   "pages":[
+    "pages/index/index",
     "pages/videoUploader/videoUploader",
     "pages/musicUploader/musicUploader",
-    "pages/index/index",
+    
     "pages/myFollows/myFollows",
     "pages/myFans/myFans",
     

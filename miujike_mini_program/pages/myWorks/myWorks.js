@@ -1,3 +1,6 @@
+const app = getApp()
+const api = require("../../utils/httpRequest.js")
+
 // pages/myWorks/myWorks.js
 Page({
 
@@ -5,95 +8,134 @@ Page({
    * Page initial data
    */
   data: {
+    scrollTop: 0,  //滚动到的位置
+    startScroll: 0, // 滚动前的位置
+    touchDown: 0,   // 触摸时候的 Y 的位置
+    innerHeight: 0,
+    loading : false,
     curTab: 0,
     navtabs: ["视频", "音乐"],
     loaded: true,
     worksTip: "去上传更多优秀的作品吧～",
+    tipShow:false,
     musicList: [{
       uploadBtnShow: true,
       musicId: 1,
       title: "圣诞结圣诞结圣诞结圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成ccccccccccc",
-      listenTimes: 100,
-      duration: "03:00"
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
     }, {
       musicId: 2,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00"
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
     }, {
       musicId: 3,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00"
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
     }, {
       musicId: 4,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00"
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
     }, {
       musicId: 5,
       title: "圣诞结",
       originalSinger: "陈奕迅",
       singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00"
+      playTimes: 100,
+      duration: 235,
+      durationShow: "03:55",
     }],
-    videoList: [{
-      videoId: 1,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-    }, {
-      videoId: 2,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-    }, {
-      videoId: 3,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-    }, {
-      videoId: 4,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-    }, {
-      videoId: 5,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-    }]
+    videoList: []
+  },
+
+  // start: 触摸开始
+  startFn: function (e) {
+    let that = this;
+    let touchDown = e.touches[0].clientY;
+    this.data.touchDown = touchDown;
+    // 获取 inner-wrap 的高度
+    wx.createSelectorQuery().select('#the-scroll').boundingClientRect(function (rect) {
+      that.data.inneHeight = rect.height;
+    }).exec();
+
+    // 获取 scroll-wrap 的高度和当前的 scrollTop 位置
+    wx.createSelectorQuery().select('#the-scroll').fields({
+      scrollOffset: true,
+      size: true
+    }, function (rect) {
+      that.data.startScroll = rect.scrollTop;
+      that.data.height = rect.height;
+    }).exec();
+  },
+  endFn: function (e) {
+    let current_y = e.changedTouches[0].clientY;
+    let that = this;
+    let { startScroll, innerHeight, height, touchDown } = this.data;
+
+    if (current_y > touchDown && current_y - touchDown > 20 && startScroll == 0) {
+      console.log("下拉刷新")
+      wx.showLoading({
+        title: '加载中',
+      })
+      this.fetchVideoList(0);
+    }
+  },
+  /**
+   * 触底加载
+   */
+  onVideoReachBottom: function () {
+    
+    if (!this.data.loading && !this.data.tipShow) {
+      console.log("到底了");
+      this.fetchVideoList(this.data.videoList[this.data.videoList.length - 1].videoId);
+    }
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
+    this.fetchVideoList(0);
+  },
 
+  /**
+   * 加载视频
+   */
+  fetchVideoList(lastId){
+    let that = this;
+    this.data.loading = true;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/video/list/" + app.globalData.userInfo.userId + "?",
+      data: {
+        lastId:lastId
+      },
+      showLoading: false
+    }).then(res => {
+      console.log(res.data);
+      that.setData({
+        videoList: res.data.data
+      })
+      if(res.data.data.length < app.globalData.fetchNum){
+        that.setData({
+          tipShow:true
+        })
+      }
+    })
   },
 
   /**
@@ -132,13 +174,6 @@ Page({
   },
 
   /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function() {
@@ -161,12 +196,16 @@ Page({
    * 上传视频文件
    */
   uploadVideo() {
-
+    wx.navigateTo({
+      url: '../../pages/videoUploader/videoUploader',
+    })
   },
   /**
    * 上传音频文件
    */
   uploadMusic() {
-
+    wx.navigateTo({
+      url: '../../pages/musicUploader/musciUploader',
+    })
   }
 })

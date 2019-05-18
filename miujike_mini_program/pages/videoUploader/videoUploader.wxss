@@ -1,12 +1,56 @@
 /* pages/videoUploader/videoUploader.wxss */
-.video-uploader-container{
+
+.video-uploader-container {
   width: 100vw;
   height: 200rpx;
-  border-bottom: 1rpx solid #D8D8D8;
+  border-bottom: 1rpx solid #d8d8d8;
 }
 
-.add-cover-img{
+.add-cover-img {
   width: 310rpx;
   height: 310rpx;
   margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.one-input-item {
+  height: 100rpx;
+}
+
+label {
+  font-size: 30rpx;
+  width: 160rpx;
+  text-align: right
+}
+
+input {
+  height: 54rpx;
+  width: 560rpx;
+  border: 1rpx solid #979797;
+  font-size: 28rpx;
+}
+
+.one-textarea-item{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 23rpx;
+}
+
+textarea{
+  width: 560rpx;
+  height: 240rpx;
+  border: 1rpx solid #979797;
+  font-size: 28rpx;
+  margin-bottom: 110rpx;
+}
+
+.submit-buttom{
+  height: 100rpx;
+  font-size: 40rpx;
+  width: 100vw;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  border-radius: 0;
 }

@@ -5,8 +5,8 @@ Page({
    * Page initial data
    */
   data: {
-    coverImg:"../../resources/imgs/worksUploader/add_cover.png",
-
+    coverImgPath:"../../resources/imgs/worksUploader/add_cover.png",
+    coverImgUrl:"",
   },
 
   /**
@@ -65,8 +65,12 @@ Page({
 
   },
   doUpload(){
+    let that = this;
     wx.chooseImage({
       success: function(res) {
+        that.setData({
+          coverImg:res.tempFilePaths
+        })
         wx.uploadFile({
           url: '',
           filePath: res.tempFilePaths,

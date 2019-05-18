@@ -25,7 +25,7 @@
           <text class="gray-color-text">分享</text>
         </view>
         <view class="duration-container">
-          {{item.duration}}
+          {{item.durationShow}}
         </view>
       </view>
     </view>
