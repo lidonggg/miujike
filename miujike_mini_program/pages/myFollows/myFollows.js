@@ -1,3 +1,6 @@
+const app = getApp()
+const api = require("../../utils/httpRequest.js")
+
 // pages/myFollows/myFollows.js
 Page({
 
@@ -5,44 +8,40 @@ Page({
    * Page initial data
    */
   data: {
-    theTip: "去发布更多作品让小伙伴关注你吧~",
-    userList: [
-      {
-        userId: 1,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东dddddddddddddddddddddddddddddd",
-        fans: 100,
-        myFollow: true
-      },
-      {
-        userId: 2,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: true
-      },
-      {
-        userId: 3,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: true
-      },
-      {
-        userId: 4,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: true
-      }
-    ]
+    theTip: "去关注更多感兴趣的小伙伴吧~",
+    tipShow:false,
+    userList: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.fetchFollows(0,true);
+  },
+  /**
+   * 拉取用户列表
+   */
+  fetchFollows:function(lastId,showLoading){
+    let that = this;
+    api.fetch({
+      url:"apigateway-user/api/v1/user/follow/list/" + app.globalData.userInfo.userId,
+      data:{
+        lastId:lastId, 
+      }, 
+      showLoading: showLoading
+    }).then(res => {
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+      that.setData({
+        userList: that.data.userList.concat(res.data.data)
+      })
+      if(res.data.data.length < app.globalData.fetchNum){
+        that.setData({
+          tipShow: true
+        })
+      }
+    })
   },
 
   /**
@@ -77,14 +76,16 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    this.fetchFollows(0,true);
   },
 
   /**
    * Called when page reach bottom
    */
   onReachBottom: function () {
-
+    wx.showToast({
+      title: '到底了',
+    })
   },
 
   /**

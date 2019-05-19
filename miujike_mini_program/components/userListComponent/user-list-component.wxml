@@ -9,4 +9,4 @@
     <image data-index="{{index}}" bindtap='changeRelationship' class="unsubmit-icon" src="{{item.myFollow?'../../resources/imgs/mine/myFans/unsubmit.png':'../../resources/imgs/mine/myFans/submit.png'}}"></image>
   </view>
 </block>
-<view class="the-tip gray-color-text {{userList.length==0?'no-user':''}}">{{theTip}}</view>
+<view wx:if="{{tipShow}}" class="the-tip gray-color-text {{userList.length==0?'no-user':''}}">{{theTip}}</view>

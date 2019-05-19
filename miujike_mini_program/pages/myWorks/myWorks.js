@@ -4,14 +4,17 @@ const api = require("../../utils/httpRequest.js")
 // pages/myWorks/myWorks.js
 Page({
 
-  /**
-   * Page initial data
-   */
-  data: {
+  dataScroll:{
     scrollTop: 0,  //滚动到的位置
     startScroll: 0, // 滚动前的位置
     touchDown: 0,   // 触摸时候的 Y 的位置
     innerHeight: 0,
+  },
+
+  /**
+   * Page initial data
+   */
+  data: {
     loading : false,
     curTab: 0,
     navtabs: ["视频", "音乐"],
@@ -67,10 +70,10 @@ Page({
   startFn: function (e) {
     let that = this;
     let touchDown = e.touches[0].clientY;
-    this.data.touchDown = touchDown;
+    this.dataScroll.touchDown = touchDown;
     // 获取 inner-wrap 的高度
     wx.createSelectorQuery().select('#the-scroll').boundingClientRect(function (rect) {
-      that.data.inneHeight = rect.height;
+      that.dataScroll.inneHeight = rect.height;
     }).exec();
 
     // 获取 scroll-wrap 的高度和当前的 scrollTop 位置
@@ -78,14 +81,14 @@ Page({
       scrollOffset: true,
       size: true
     }, function (rect) {
-      that.data.startScroll = rect.scrollTop;
-      that.data.height = rect.height;
+      that.dataScroll.startScroll = rect.scrollTop;
+      that.dataScroll.height = rect.height;
     }).exec();
   },
   endFn: function (e) {
     let current_y = e.changedTouches[0].clientY;
     let that = this;
-    let { startScroll, innerHeight, height, touchDown } = this.data;
+    let { startScroll, innerHeight, height, touchDown } = this.dataScroll;
 
     if (current_y > touchDown && current_y - touchDown > 20 && startScroll == 0) {
       console.log("下拉刷新")
@@ -128,7 +131,7 @@ Page({
     }).then(res => {
       console.log(res.data);
       that.setData({
-        videoList: res.data.data
+        videoList: that.data.videoList.concat(res.data.data)
       })
       if(res.data.data.length < app.globalData.fetchNum){
         that.setData({

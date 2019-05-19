@@ -1,10 +1,11 @@
 {
   "pages":[
+    
     "pages/index/index",
     "pages/videoUploader/videoUploader",
     "pages/musicUploader/musicUploader",
-    
     "pages/myFollows/myFollows",
+    
     "pages/myFans/myFans",
     
     "pages/hisWorks/hisWorks",

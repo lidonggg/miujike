@@ -2,16 +2,16 @@
 <import src="../../templates/comment/commentTemplate.wxml" />
 
 <view class="video-container">
-  <video id="the-video" class="the-video" src="{{videoInfo.videoUrl}}"
-    controls poster="{{videoInfo.cover}}"></video>
+  <video id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}"
+    controls poster="{{curVideoInfo.cover}}"></video>
   <view class="video-detail-container">
     <view class="first-line">
-      <view class="duration gray-color-bg">{{videoInfo.duration}}</view>
+      <view class="duration gray-color-bg">{{curVideoInfo.duration}}</view>
       <view class="play-times">
-        <text class="gray-color-text">{{videoInfo.playTimes}}</text> 次播放</view>
+        <text class="gray-color-text">{{curVideoInfo.playTimes}}</text> 次播放</view>
     </view>
     <view class="second-line">
-      <text>{{videoInfo.title}}-{{videoInfo.singer}}</text> (原唱：{{videoInfo.originalSinger}})
+      <text>{{curVideoInfo.title}}-{{curVideoInfo.singer}}</text> (原唱：{{curVideoInfo.originalSinger}})
     </view>
   </view>
 </view>

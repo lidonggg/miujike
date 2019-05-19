@@ -4,17 +4,23 @@
 
     <resultMap id="BaseResultMap" type="com.miujike.userservice.domain.User">
         <id column="user_id" property="userId"/>
-        <result column="nick_name" property="nickName"/>
+        <result column="nickname" property="nickname"/>
         <result column="avatar_url" property="avatarUrl"/>
         <result column="create_time" property="createTime"/>
         <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_sign_time" property="lastSignTime"/>
         <result column="country" property="country"/>
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="gender" property="gender"/>
         <result column="open_id" property="openId"/>
+        <result column="fans" property="fans"/>
+        <result column="follows" property="follows"/>
+        <result column="thumbs" property="thumbs"/>
+        <result column="eggs" property="eggs"/>
     </resultMap>
     <sql id="Base_Column_List">
-        user_id as userId,nick_name as nickName,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,open_id as openId
+        user_id as userId,nickname,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,open_id as openId,
+        fans,follows,thumbs,eggs
     </sql>
 </mapper>

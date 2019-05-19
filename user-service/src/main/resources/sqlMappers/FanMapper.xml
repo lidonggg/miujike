@@ -11,4 +11,32 @@
     <sql id="Base_Column_List">
         fan_id as fanId,from_user_id as fromUserId,to_usr_id as toUserId,create_time as createTime
     </sql>
+    <!--获取关注列表-->
+    <select id="getUserFollowList" parameterType="map" resultType="map">
+        select f.fan_id as fanId,f.from_user_id as fromUserId,f.to_user_id as toUserId,
+        u.nickname,u.fans,u.avatar_url as avatarUrl
+        from miu_fan f left join miu_user u on f.to_user_id = u.user_id
+        where f.from_user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and f.fan_id < #{lastId}
+            ]]>
+        </if>
+        order by f.fan_id desc
+        limit #{fetchNum}
+    </select>
+    <!--获取粉丝列表-->
+    <select id="getUserFanList" parameterType="map" resultType="map">
+        select f.fan_id as fanId,f.from_user_id as fromUserId,f.to_user_id as toUserId,
+        u.nickname,u.fans,u.avatar_url as avatarUrl
+        from miu_fan f left join miu_user u on f.from_user_id = u.user_id
+        where f.to_user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and f.fan_id < #{lastId}
+            ]]>
+        </if>
+        order by f.fan_id desc
+        limit #{fetchNum}
+    </select>
 </mapper>

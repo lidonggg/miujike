@@ -22,8 +22,8 @@ public class User extends Model<User> {
     @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
-    @TableField("nick_name")
-    private String nickName;
+    @TableField("nickname")
+    private String nickname;
 
     private int gender;
 
@@ -44,19 +44,31 @@ public class User extends Model<User> {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
 
+    @TableField("last_sign_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastSignTime;
+
     @TableField("avatar_url")
     private String avatarUrl;
+
+    private int fans;
+
+    private int follows;
+
+    private int thumbs;
+
+    private int eggs;
 
     public Long getUserId() {
         return userId;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public int getGender() {
@@ -115,6 +127,14 @@ public class User extends Model<User> {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public Date getLastSignTime() {
+        return lastSignTime;
+    }
+
+    public void setLastSignTime(Date lastSignTime) {
+        this.lastSignTime = lastSignTime;
+    }
+
     public String getAvatarUrl() {
         return avatarUrl;
     }
@@ -123,11 +143,43 @@ public class User extends Model<User> {
         this.avatarUrl = avatarUrl;
     }
 
+    public int getFans() {
+        return fans;
+    }
+
+    public void setFans(int fans) {
+        this.fans = fans;
+    }
+
+    public int getFollows() {
+        return follows;
+    }
+
+    public void setFollows(int follows) {
+        this.follows = follows;
+    }
+
+    public int getThumbs() {
+        return thumbs;
+    }
+
+    public void setThumbs(int thumbs) {
+        this.thumbs = thumbs;
+    }
+
+    public int getEggs() {
+        return eggs;
+    }
+
+    public void setEggs(int eggs) {
+        this.eggs = eggs;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", gender=" + gender +
                 ", country='" + country + '\'' +
                 ", province='" + province + '\'' +
@@ -135,7 +187,12 @@ public class User extends Model<User> {
                 ", openId='" + openId + '\'' +
                 ", createTime=" + createTime +
                 ", lastLoginTime=" + lastLoginTime +
+                ", lastSignTime=" + lastSignTime +
                 ", avatarUrl='" + avatarUrl + '\'' +
+                ", fans=" + fans +
+                ", follows=" + follows +
+                ", thumbs=" + thumbs +
+                ", eggs=" + eggs +
                 '}';
     }
 

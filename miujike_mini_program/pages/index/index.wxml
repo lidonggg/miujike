@@ -26,7 +26,7 @@
           indicator-active-color="#F9E351"
           bindchange='onSwiper'>
     <block wx:for="{{newVideoList}}" wx:key="videoId">
-      <swiper-item class="flex-center-layout-row">
+      <swiper-item class="flex-center-layout-row" data-index="{{index}}" bindtap='goPlayPage'>
         <view class="one-new-item {{index == curSwiperItemIndex ? 'cur-show':''}}">
           <image class="new-video-cover" src="{{item.cover}}" />
           <view class="info-container">

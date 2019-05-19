@@ -1,26 +1,26 @@
 <!--pages/mine/mine.wxml-->
 <view class="my-info-card global-border-radius flex-center-layout-row">
-  <image class="avatar-url" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132"></image>
+  <image class="avatar-url" src="{{userInfo.avatarUrl}}"></image>
   <view class="infos-block">
     <view class="top-info-part">
-      dongdongdongdong
+      {{userInfo.nickname}}
     </view>
     <view class="bottom-info-part flex-center-layout-row" style='justify-content: flex-start'>
-      <navigator url="../../pages/myFollows/myFollows" class="flex-center-layout-col" style="border-right:1rpx solid #979797" bindtap='goNextPage'>
+      <navigator url="../../pages/myFollows/myFollows" class="flex-center-layout-col" style="border-right:1rpx solid #979797" >
         <view>关注</view>
-        <view class="yellow-color-text">100</view>
+        <view class="yellow-color-text">{{userInfo.follows || 0}}</view>
       </navigator>
       <navigator url="../../pages/myFans/myFans" class="flex-center-layout-col" style="border-right:1rpx solid #979797">
         <view>粉丝</view>
-        <view class="yellow-color-text">100</view>
+        <view class="yellow-color-text">{{userInfo.fans || 0}}</view>
       </navigator>
       <view class="flex-center-layout-col">
         <view>鸡蛋数</view>
-        <view class="yellow-color-text">100</view>
+        <view class="yellow-color-text">{{userInfo.eggs || 0}}</view>
       </view>
     </view>
   </view>
-  <view class="get-eggs-view {{havaSigned?'light-yellow-color-bg':'yellow-color-bg'}}" bindtap='getEggs'>{{haveSigned?'已领取鸡蛋':'点击领取鸡蛋'}}</view>
+  <view wx:if="{{signShow}}" class="get-eggs-view {{haveSigned?'light-yellow-color-bg':'yellow-color-bg'}}" bindtap="{{haveSigned?'':'getEggs'}}">{{haveSigned?'已领取鸡蛋':'点击领取鸡蛋'}}</view>
 </view>
 
 <block wx:for="{{menuList}}" wx:key="*this" wx:for-index="idx">

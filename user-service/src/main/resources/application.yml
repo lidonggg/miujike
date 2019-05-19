@@ -35,3 +35,4 @@ mybatis-plus:
 #      profile: dev
 #      label: master
 
+fetchNum: 15

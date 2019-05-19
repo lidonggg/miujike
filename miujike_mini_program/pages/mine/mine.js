@@ -1,4 +1,6 @@
+const app = getApp()
 const api = require("../../utils/httpRequest.js")
+const util = require("../../utils/util.js")
 
 // pages/mine/mine.js
 Page({
@@ -7,12 +9,14 @@ Page({
    * Page initial data
    */
   data: {
-    haveSigned:false,
-    menuList:[
-      {
+    signShow: false,
+    haveSigned: false,
+    userInfo: {},
+    signing: false,
+    menuList: [{
         name: "获取鸡蛋",
         path: "pages/getEggs/getEggs",
-        img:"resources/imgs/mine/get_eggs.png"
+        img: "resources/imgs/mine/get_eggs.png"
       },
       {
         name: "我的作品",
@@ -33,76 +37,129 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    this.init();
+  },
+
+  init(showLoading) {
+    let that = this;
+    api.fetch({
+      url: "apigateway-user/api/v1/user/info/" + app.globalData.userInfo.userId,
+      showLoading: showLoading
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      let resInfo = res.data.data;
+      if (res.data.code == 200 && resInfo.userId) {
+        that.setData({
+          userInfo: resInfo
+        })
+        let haveSigned = false;
+        if (resInfo.lastSignTime) {
+          if (util.judgeTime(resInfo.lastSignTime.replace(/-|T|:/g, '')) == 0) {
+            haveSigned = true
+          }
+        }
+        that.setData({
+          signShow: true,
+          haveSigned: haveSigned
+        });
+      }
+    })
   },
 
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * Lifecycle function--Called when page show
    */
-  onShow: function () {
-
+  onShow: function() {
+    this.init();
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * Lifecycle function--Called when page unload
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: function() {
+    this.init();
   },
 
   /**
    * Called when page reach bottom
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
   /**
    * 点击领取鸡蛋
    */
-  getEggs(){
-
+  getEggs() {
+    console.log("签到");
+    if (!this.data.signing) {
+      let that = this;
+      this.data.signing = true;
+      api.fetch({
+        url: "apigateway-user/api/v1/user/sign/" + that.data.userInfo.userId
+      }).then(res => {
+        console.log(res.data);
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: "鸡蛋 +" + res.data.data.toString()
+          });
+          let cKey = 'userInfo.eggs';
+          that.setData({
+            haveSigned: true,
+            signing: false,
+            ['userInfo.eggs']: parseInt(that.data.userInfo.eggs) + res.data.data
+          })
+        } else if (res.data.code == -1) {
+          wx.showToast({
+            title: "请不要重复签到",
+          });
+        }
+      })
+    }
   },
 
   /**
    * 选项条
    */
-  getIn(e){
+  getIn(e) {
     console.log(e.currentTarget.dataset.path);
     wx.navigateTo({
       url: '../../' + e.currentTarget.dataset.path,
     })
   },
-  goMyFollowsPage(){
+  goMyFollowsPage() {
     wx.navigateTo({
       url: '../../pages/myFollows/myFollows',
     })

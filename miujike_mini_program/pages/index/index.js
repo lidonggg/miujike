@@ -9,7 +9,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    curSwiperItemIndex:0,
+    curSwiperItemIndex: 0,
     newVideoList: [{
       videoId: 1,
       title: "圣诞节",
@@ -17,48 +17,9 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg"
-    }, {
-        videoId: 2,
-        title: "圣诞节",
-        originalSinger: "陈奕迅",
-        singer: "聂家成",
-        listenTimes: 100,
-        duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
-      }, {
-        videoId: 3,
-        title: "圣诞节",
-        originalSinger: "陈奕迅",
-        singer: "聂家成",
-        listenTimes: 100,
-        duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
-      }, {
-        videoId: 4,
-        title: "圣诞节",
-        originalSinger: "陈奕迅",
-        singer: "聂家成",
-        listenTimes: 100,
-        duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
-      }, {
-        videoId: 5,
-        title: "圣诞节",
-        originalSinger: "陈奕迅",
-        singer: "聂家成",
-        listenTimes: 100,
-        duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
-      }],
-    popularVideoList: [{
-      videoId: 1,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg"
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+
     }, {
       videoId: 2,
       title: "圣诞节",
@@ -66,7 +27,8 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
     }, {
       videoId: 3,
       title: "圣诞节",
@@ -74,7 +36,8 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
     }, {
       videoId: 4,
       title: "圣诞节",
@@ -82,7 +45,8 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
     }, {
       videoId: 5,
       title: "圣诞节",
@@ -90,22 +54,69 @@ Page({
       singer: "聂家成",
       listenTimes: 100,
       duration: "03:00",
-        cover: "http://file.yfjiaoyu.com/group1.jpg"
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+    }],
+    popularVideoList: [{
+      videoId: 1,
+      title: "圣诞节",
+      originalSinger: "陈奕迅",
+      singer: "聂家成",
+      listenTimes: 100,
+      duration: "03:00",
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+    }, {
+      videoId: 2,
+      title: "圣诞节",
+      originalSinger: "陈奕迅",
+      singer: "聂家成",
+      listenTimes: 100,
+      duration: "03:00",
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+    }, {
+      videoId: 3,
+      title: "圣诞节",
+      originalSinger: "陈奕迅",
+      singer: "聂家成",
+      listenTimes: 100,
+      duration: "03:00",
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+    }, {
+      videoId: 4,
+      title: "圣诞节",
+      originalSinger: "陈奕迅",
+      singer: "聂家成",
+      listenTimes: 100,
+      duration: "03:00",
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
+    }, {
+      videoId: 5,
+      title: "圣诞节",
+      originalSinger: "陈奕迅",
+      singer: "聂家成",
+      listenTimes: 100,
+      duration: "03:00",
+      cover: "http://file.yfjiaoyu.com/group1.jpg",
+      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
     }]
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
   },
-  onSwiper(e){
+  onSwiper(e) {
     let curIndex = e.detail.current;
     this.setData({
-      curSwiperItemIndex : curIndex
+      curSwiperItemIndex: curIndex
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     this.getInfo()
   },
-  getInfo: function () {
+  getInfo: function() {
     var that = this;
     wx.getSetting({
       success: res => {
@@ -125,12 +136,12 @@ Page({
       }
     })
   },
-  onReachBottom(){
+  onReachBottom() {
     wx.showToast({
       title: '到底了',
     })
   },
-  doLogin: function () {
+  doLogin: function() {
     var that = this;
     wx.login({
       success: res => {
@@ -138,7 +149,7 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
           wx.getUserInfo({
-            success: function (result) {
+            success: function(result) {
               console.log(result)
               api.fetch({
                 url: '/apigateway-user/api/v1/user/login/doLogin',
@@ -149,8 +160,8 @@ Page({
                   code: code,
                   tapp: app.globalData.tapp
                 },
-                showLoading:false
-              }).then((res)=>{
+                showLoading: false
+              }).then((res) => {
                 console.log(res.data.data)
                 app.globalData.userInfo = res.data.data;
                 wx: wx.setStorageSync(app.globalData.tapp, res.data.data)
@@ -159,7 +170,7 @@ Page({
                 app.userInfoReadyCallback(result)
               }
             },
-            fail: function (failData) {
+            fail: function(failData) {
               console.info("用户拒绝登录");
             }
           })
@@ -167,4 +178,15 @@ Page({
       }
     })
   },
+  goPlayPage(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    app.globalData.mediaPlay = this.data.newVideoList[index];
+    wx.navigateTo({
+      url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId
+    })
+  },
+  doSearch(){
+    this.getInfo();
+  }
 })

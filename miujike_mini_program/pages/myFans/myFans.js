@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-    theTip:"去关注更多感兴趣的小伙伴吧~",
+    theTip:"去发布更多作品让小伙伴关注你吧~",
     userList:[
       {
         userId:1,

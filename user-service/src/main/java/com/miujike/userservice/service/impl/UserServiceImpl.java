@@ -30,7 +30,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements IUs
         user.setAvatarUrl(userInfoJSON.containsKey("avatarUrl")?userInfoJSON.getString("avatarUrl"):"");
         user.setCreateTime(new Date());
         user.setLastLoginTime(new Date());
-        user.setNickName(userInfoJSON.containsKey("nickName")?userInfoJSON.getString("nickName"):"");
+        user.setNickname(userInfoJSON.containsKey("nickName")?userInfoJSON.getString("nickName"):"");
         user.setOpenId(userInfoJSON.getString("openId"));
         userMapper.insert(user);
         return user;

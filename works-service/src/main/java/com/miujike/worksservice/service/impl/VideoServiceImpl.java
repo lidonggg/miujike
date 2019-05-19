@@ -39,7 +39,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public List<Map<String, Object>> getUserVideoList(long userId, int fetchNum, Long lastId) {
-        Map<String, Object> map = new HashMap<>(6);
+        Map<String, Object> map = new HashMap<>(4);
         map.put("userId", userId);
         map.put("fetchNum", fetchNum);
         map.put("lastId", lastId);

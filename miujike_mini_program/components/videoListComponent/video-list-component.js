@@ -1,3 +1,5 @@
+const app = getApp()
+
 Component({
   behaviors: [],
 
@@ -37,12 +39,13 @@ Component({
       })
     },
     goPlayPage(e){
-      let id = e.currentTarget.dataset.videoid;
-      console.log(id);
+      let index = e.currentTarget.dataset.index;
+      console.log(index);
+      app.globalData.mediaPlay = this.properties.videoList[index];
+      console.log(app.globalData.mediaPlay)
       wx.navigateTo({
-        url: '../../pages/videoPlayer/videoPlayer?videoId='+id,
+        url: '../../pages/videoPlayer/videoPlayer?videoId='+index,
       })
     }
   }
-
 })

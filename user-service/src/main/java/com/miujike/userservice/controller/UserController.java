@@ -1,12 +1,12 @@
 package com.miujike.userservice.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.miujike.common.dto.ResponseData;
 import com.miujike.userservice.domain.User;
 import com.miujike.userservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Ls J
@@ -26,8 +26,7 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping("insert")
-    @ResponseBody
-    public String insert(){
+    public String insert() {
         User user = new User();
         user.setAvatarUrl("1111");
         user.setCity("111");
@@ -37,8 +36,18 @@ public class UserController {
     }
 
     @RequestMapping("sayhello")
-    @ResponseBody
-    public String sayHello(){
+    public String sayHello() {
         return "hello";
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param userId userId
+     * @return ResponseData
+     */
+    @GetMapping("/info/{userId}")
+    public ResponseData getInfo(@PathVariable Long userId) {
+        return new ResponseData<>(userService.getById(userId));
     }
 }

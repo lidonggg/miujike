@@ -14,6 +14,22 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const judgeTime = data =>{
+  let date = data.toString();
+  let year = date.substring(0, 4);
+  let month = date.substring(4, 6);
+  let day = date.substring(6, 8);
+  let d1 = new Date(year + '/' + month + '/' + day);
+  let dd = new Date();
+  let y = dd.getFullYear();
+  let m = dd.getMonth() + 1;
+  let d = dd.getDate();
+  let d2 = new Date(y + '/' + m + '/' + d);
+  let iday = parseInt(d2 - d1) / 1000 / 60 / 60 / 24;
+  return iday;
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  judgeTime: judgeTime
 }
