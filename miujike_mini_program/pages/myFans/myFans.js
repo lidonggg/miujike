@@ -1,3 +1,6 @@
+const app = getApp()
+const api = require("../../utils/httpRequest.js")
+
 // pages/myFans/myFans.js
 Page({
 
@@ -5,44 +8,46 @@ Page({
    * Page initial data
    */
   data: {
-    theTip:"去发布更多作品让小伙伴关注你吧~",
-    userList:[
-      {
-        userId:1,
-        avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname:"李东dddddddddddddddddddddddddddddd",
-        fans:100,
-        myFollow:true
-      },
-      {
-        userId:2,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: true
-      },
-      {
-        userId:3,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: true
-      },
-      {
-        userId:4,
-        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL5ym66XicGOK5BmFvhhD8Bey8fF8tFyI6OD97XiczNNTm7z1rquXlW3G6Dk2JQxHvfrTF24atVN2w/132",
-        nickname: "李东",
-        fans: 100,
-        myFollow: false
-      }
-    ]
+    theTip: "去发布更多作品让小伙伴关注你吧~", 
+    tipShow: false,
+    userList:[]
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.fetchFans(0, true);
+  },
+  /**
+   * 拉取用户列表
+   */
+  fetchFans: function (lastId, showLoading, pullDown) {
+    let that = this;
+    api.fetch({
+      url: "apigateway-user/api/v1/user/fan/list/" + app.globalData.userInfo.userId,
+      data: {
+        lastId: lastId,
+      },
+      showLoading: showLoading
+    }).then(res => {
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+      if (pullDown) {
+        that.setData({
+          userList: res.data.data
+        })
+      } else {
+        that.setData({
+          userList: that.data.userList.concat(res.data.data)
+        })
+      }
+      if (res.data.data.length < app.globalData.fetchNum) {
+        that.setData({
+          tipShow: true
+        })
+      }
+    })
   },
 
   /**
@@ -77,14 +82,20 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    this.fetchFans(0, true, true);
   },
 
   /**
    * Called when page reach bottom
    */
   onReachBottom: function () {
-
+    wx.showToast({
+      title: '到底了',
+    })
+    if (!tipShow) {
+      let taht = this;
+      this.fetchFans(that.data.userList[that.data.userList.length - 1].fanId, true, true);
+    }
   },
 
   /**

@@ -3,5 +3,7 @@
     "user-list-component": "/components/userListComponent/user-list-component"
   },
   "navigationBarTitleText": "我的粉丝",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
 }

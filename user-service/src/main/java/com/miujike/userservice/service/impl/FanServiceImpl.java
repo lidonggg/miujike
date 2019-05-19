@@ -2,6 +2,7 @@ package com.miujike.userservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.miujike.userservice.domain.Fan;
+import com.miujike.userservice.dto.MapCreator;
 import com.miujike.userservice.mapper.FanMapper;
 import com.miujike.userservice.service.IFanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,11 @@ public class FanServiceImpl extends ServiceImpl<FanMapper, Fan> implements IFanS
 
     @Override
     public List<Map<String, Object>> getUserFollowList(Long userId, int fetchNum, Long lastId) {
-        Map<String, Object> map = new HashMap<>(6);
-        map.put("userId", userId);
-        map.put("lastId", lastId);
-        map.put("fetchNum", fetchNum);
-        return fanMapper.getUserFanList(map);
+        return fanMapper.getUserFollowList(MapCreator.createParamMap(userId,fetchNum,lastId));
     }
 
     @Override
     public List<Map<String, Object>> getUserFanList(Long userId, int fetchNum, Long lastId) {
-        Map<String, Object> map = new HashMap<>(6);
-        map.put("userId", userId);
-        map.put("lastId", lastId);
-        map.put("fetchNum", fetchNum);
-        return fanMapper.getUserFollowList(map);
+        return fanMapper.getUserFanList(MapCreator.createParamMap(userId,fetchNum,lastId));
     }
 }
