@@ -8,6 +8,7 @@ Page({
    * Page initial data
    */
   data: {
+    fromWhere: "follows",
     theTip: "去关注更多感兴趣的小伙伴吧~",
     tipShow: false,
     userList: []

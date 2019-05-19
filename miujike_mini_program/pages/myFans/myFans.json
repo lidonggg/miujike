@@ -4,6 +4,5 @@
   },
   "navigationBarTitleText": "我的粉丝",
   "backgroundTextStyle": "dark",
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "enablePullDownRefresh": true
 }

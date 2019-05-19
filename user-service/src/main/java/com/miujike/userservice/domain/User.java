@@ -51,10 +51,6 @@ public class User extends Model<User> {
     @TableField("avatar_url")
     private String avatarUrl;
 
-    private int fans;
-
-    private int follows;
-
     private int thumbs;
 
     private int eggs;
@@ -143,22 +139,6 @@ public class User extends Model<User> {
         this.avatarUrl = avatarUrl;
     }
 
-    public int getFans() {
-        return fans;
-    }
-
-    public void setFans(int fans) {
-        this.fans = fans;
-    }
-
-    public int getFollows() {
-        return follows;
-    }
-
-    public void setFollows(int follows) {
-        this.follows = follows;
-    }
-
     public int getThumbs() {
         return thumbs;
     }
@@ -189,8 +169,6 @@ public class User extends Model<User> {
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastSignTime=" + lastSignTime +
                 ", avatarUrl='" + avatarUrl + '\'' +
-                ", fans=" + fans +
-                ", follows=" + follows +
                 ", thumbs=" + thumbs +
                 ", eggs=" + eggs +
                 '}';

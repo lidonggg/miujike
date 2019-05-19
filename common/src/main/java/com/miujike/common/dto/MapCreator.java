@@ -1,4 +1,4 @@
-package com.miujike.userservice.dto;
+package com.miujike.common.dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class MapCreator {
 
-    public static Map<String,Object> createParamMap(Long userId,int fetchNum,Long lastId){
+    public static Map<String,Object> createParamMap(Long userId, int fetchNum, Long lastId){
         Map<String,Object> map = new HashMap<>(6);
         map.put("userId", userId);
         map.put("lastId", lastId);

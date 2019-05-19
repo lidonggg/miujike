@@ -1,3 +1,6 @@
+const app = getApp()
+const api = require("../../utils/httpRequest.js")
+
 Component({
   behaviors: [],
 
@@ -8,7 +11,8 @@ Component({
       observer: function(newVal, oldVal) {} // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
     },
     theTip: String, // 简化的定义方式
-    tipShow:Boolean
+    tipShow: Boolean,
+    fromWhere: String
   },
   data: {
 
@@ -32,16 +36,46 @@ Component({
 
   methods: {
     changeRelationship(e) {
+      let that = this;
       let index = e.currentTarget.dataset.index;
-      let myFollow = !this.data.userList[index].myFollow;
-      let theKey = "userList[" + index + "].myFollow";
-      this.setData({
-        [theKey]: myFollow
-      });
-      let toast = myFollow ? "已关注" : "已取消关注";
-      wx.showToast({
-        title: toast,
+      let myFollow = this.data.userList[index].myFollow;
+      let url = "apigateway-user/api/v1/user/fan/" + (myFollow ? 'unfollow' : 'follow');
+      api.fetch({
+        url: url,
+        data: {
+          fromUserId: app.globalData.userInfo.userId,
+          toUserId: that.data.userList[index].userId
+        }
+      }).then(res => {
+        if (res.data.data) {
+          let theKey = "userList[" + index + "].myFollow";
+          that.setData({
+            [theKey]: !myFollow
+          });
+          let toast = !myFollow ? "已关注" : "已取消关注";
+          wx.showToast({
+            title: toast,
+          })
+          if (that.data.fromWhere == "follows" && myFollow){
+            let userList = that.data.userList;
+            userList.splice(index, 1);
+            that.setData({
+              userList: userList
+            });
+          } else if (that.data.fromWhere == "fans"){
+            let theKey = "userList[" + index + "].fans";
+            let newFans = that.data.userList[index].fans + 1;
+            if(myFollow){
+              newFans = that.data.userList[index].fans - 1
+            }
+            console.log(newFans)
+            that.setData({
+              [theKey]: newFans
+            });
+          }
+        }
       })
+
       console.log(this.data.userList)
     }
   }

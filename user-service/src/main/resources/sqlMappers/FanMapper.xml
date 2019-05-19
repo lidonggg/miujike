@@ -13,8 +13,8 @@
     </sql>
     <!--获取关注列表-->
     <select id="getUserFollowList" parameterType="map" resultType="map">
-        select f.fan_id as fanId,f.from_user_id as fromUserId,f.to_user_id as toUserId,
-        u.nickname,u.fans,u.avatar_url as avatarUrl
+        select f.fan_id as fanId,f.from_user_id as fromUserId,(select count(*) from miu_fan where to_user_id = f.to_user_id) as fans,
+        u.nickname,u.avatar_url as avatarUrl,u.user_id as userId,'true' as myFollow
         from miu_fan f left join miu_user u on f.to_user_id = u.user_id
         where f.from_user_id = #{userId}
         <if test='lastId != 0'>
@@ -27,8 +27,8 @@
     </select>
     <!--获取粉丝列表-->
     <select id="getUserFanList" parameterType="map" resultType="map">
-        select f.fan_id as fanId,f.from_user_id as fromUserId,f.to_user_id as toUserId,
-        u.nickname,u.fans,u.avatar_url as avatarUrl
+        select f.fan_id as fanId,f.to_user_id as toUserId,(select count(*) from miu_fan where to_user_id = f.from_user_id) as fans,
+        u.nickname,u.avatar_url as avatarUrl,u.user_id as userId,(select 'true' from miu_fan where to_user_id = f.from_user_id and from_user_id = #{userId}) as myFollow
         from miu_fan f left join miu_user u on f.from_user_id = u.user_id
         where f.to_user_id = #{userId}
         <if test='lastId != 0'>

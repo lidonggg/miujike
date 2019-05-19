@@ -8,6 +8,7 @@ Page({
    * Page initial data
    */
   data: {
+    fromWhere:"fans",
     theTip: "去发布更多作品让小伙伴关注你吧~", 
     tipShow: false,
     userList:[]

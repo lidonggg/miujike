@@ -8,11 +8,11 @@
     <view class="bottom-info-part flex-center-layout-row" style='justify-content: flex-start'>
       <navigator url="../../pages/myFollows/myFollows" class="flex-center-layout-col" style="border-right:1rpx solid #979797" >
         <view>关注</view>
-        <view class="yellow-color-text">{{userInfo.follows || 0}}</view>
+        <view class="yellow-color-text">{{follows || 0}}</view>
       </navigator>
       <navigator url="../../pages/myFans/myFans" class="flex-center-layout-col" style="border-right:1rpx solid #979797">
         <view>粉丝</view>
-        <view class="yellow-color-text">{{userInfo.fans || 0}}</view>
+        <view class="yellow-color-text">{{fans || 0}}</view>
       </navigator>
       <view class="flex-center-layout-col">
         <view>鸡蛋数</view>

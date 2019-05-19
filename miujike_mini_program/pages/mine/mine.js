@@ -13,6 +13,8 @@ Page({
     haveSigned: false,
     userInfo: {},
     signing: false,
+    fans:0,
+    follows:0,
     menuList: [{
         name: "获取鸡蛋",
         path: "pages/getEggs/getEggs",
@@ -41,10 +43,10 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
-    this.init();
+    this.getUserInfo(true);
   },
 
-  init(showLoading) {
+  getUserInfo(showLoading){
     let that = this;
     api.fetch({
       url: "apigateway-user/api/v1/user/info/" + app.globalData.userInfo.userId,
@@ -67,7 +69,28 @@ Page({
           haveSigned: haveSigned
         });
       }
-    })
+    });
+  },
+
+  init(showLoading) {
+    let that = this;
+    
+    api.fetch({
+      url: "apigateway-user/api/v1/user/fan/number/" + app.globalData.userInfo.userId
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      that.setData({
+        fans: res.data.data
+      })
+    });
+    api.fetch({
+      url: "apigateway-user/api/v1/user/follow/number/" + app.globalData.userInfo.userId
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      that.setData({
+        follows: res.data.data
+      })
+    });
   },
 
   /**
@@ -81,6 +104,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function() {
+    this.getUserInfo(false);
     this.init();
   },
 

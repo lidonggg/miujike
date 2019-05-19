@@ -14,13 +14,11 @@
         <result column="city" property="city"/>
         <result column="gender" property="gender"/>
         <result column="open_id" property="openId"/>
-        <result column="fans" property="fans"/>
-        <result column="follows" property="follows"/>
         <result column="thumbs" property="thumbs"/>
         <result column="eggs" property="eggs"/>
     </resultMap>
     <sql id="Base_Column_List">
-        user_id as userId,nickname,avatar_url as avatarUrl,create_time as createTime,last_login_time as lastLoginTime,country,province,city,gender,open_id as openId,
-        fans,follows,thumbs,eggs
+        user_id as userId,nickname,avatar_url as avatarUrl,create_time as createTime,
+        last_login_time as lastLoginTime,country,province,city,gender,open_id as openId,thumbs,eggs
     </sql>
 </mapper>
