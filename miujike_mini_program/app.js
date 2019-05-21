@@ -35,7 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    requestUrl:"http://192.168.1.5:9000",
+    requestUrl:"http://10.38.59.246:9000",
     tapp:"miujike-app",
     fetchNum:15,
     mediaPlay:{}

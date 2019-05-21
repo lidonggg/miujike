@@ -20,7 +20,8 @@ Page({
     navtabs: ["视频", "音乐"],
     loaded: true,
     worksTip: "去上传更多优秀的作品吧～",
-    tipShow:false,
+    videoTipShow:false,
+    musicTipShow:false,
     musicList: [{
       uploadBtnShow: true,
       musicId: 1,
@@ -72,7 +73,7 @@ Page({
     let touchDown = e.touches[0].clientY;
     this.dataScroll.touchDown = touchDown;
     // 获取 inner-wrap 的高度
-    wx.createSelectorQuery().select('#the-scroll').boundingClientRect(function (rect) {
+    wx.createSelectorQuery().select('#the-inner').boundingClientRect(function (rect) {
       that.dataScroll.inneHeight = rect.height;
     }).exec();
 
@@ -89,7 +90,6 @@ Page({
     let current_y = e.changedTouches[0].clientY;
     let that = this;
     let { startScroll, innerHeight, height, touchDown } = this.dataScroll;
-
     if (current_y > touchDown && current_y - touchDown > 20 && startScroll == 0) {
       console.log("下拉刷新")
       wx.showLoading({
@@ -130,12 +130,43 @@ Page({
       showLoading: false
     }).then(res => {
       console.log(res.data);
+      if(lastId == 0){
+        that.data.videoList = [];
+      }
       that.setData({
         videoList: that.data.videoList.concat(res.data.data)
       })
       if(res.data.data.length < app.globalData.fetchNum){
         that.setData({
           tipShow:true
+        })
+      }
+    })
+  },
+
+  /**
+   * 音乐列表
+   */
+  fetchMusicList(lastList){
+    let that = this;
+    this.data.loading = true;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/music/list/" + app.globalData.userInfo.userId + "?",
+      data: {
+        lastId: lastId
+      },
+      showLoading: false
+    }).then(res => {
+      console.log(res.data);
+      if (lastId == 0) {
+        that.data.videoList = [];
+      }
+      that.setData({
+        videoList: that.data.musicList.concat(res.data.data)
+      })
+      if (res.data.data.length < app.globalData.fetchNum) {
+        that.setData({
+          tipShow: true
         })
       }
     })

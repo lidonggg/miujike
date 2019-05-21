@@ -19,7 +19,7 @@ public interface IFanService extends IService<Fan> {
      * @param lastId lastId
      * @return list
      */
-    List<Map<String, Object>> getUserFollowList(Long userId, int fetchNum, Long lastId);
+    List<Map<String, Object>> getUserFollowList(Long userId, Long lastId);
 
     /**
      * 获取用户粉丝
@@ -28,5 +28,5 @@ public interface IFanService extends IService<Fan> {
      * @param lastId lastId
      * @return list
      */
-    List<Map<String, Object>> getUserFanList(Long userId, int fetchNum, Long lastId);
+    List<Map<String, Object>> getUserFanList(Long userId, Long lastId);
 }

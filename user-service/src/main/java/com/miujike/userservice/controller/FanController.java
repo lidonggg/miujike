@@ -1,6 +1,7 @@
 package com.miujike.userservice.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.miujike.common.constants.BaseController;
 import com.miujike.common.dto.ResponseData;
 import com.miujike.userservice.domain.Fan;
 import com.miujike.userservice.service.IFanService;
@@ -19,7 +20,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("api/v1/user")
-public class FanController {
+public class FanController extends BaseController {
 
     @Value("${fetchNum}")
     private int fetchNum;
@@ -40,7 +41,6 @@ public class FanController {
 
         return new ResponseData<>(fanService.count(fanWrapper));
     }
-
 
     /**
      * 获取关注数
@@ -68,7 +68,7 @@ public class FanController {
         if (null == lastId) {
             lastId = 0L;
         }
-        return new ResponseData<>(fanService.getUserFollowList(userId, fetchNum, lastId));
+        return new ResponseData<>(fanService.getUserFollowList(userId, lastId));
     }
 
     /**
@@ -83,7 +83,7 @@ public class FanController {
         if (null == lastId) {
             lastId = 0L;
         }
-        return new ResponseData<>(fanService.getUserFanList(userId, fetchNum, lastId));
+        return new ResponseData<>(fanService.getUserFanList(userId, lastId));
     }
 
     /**

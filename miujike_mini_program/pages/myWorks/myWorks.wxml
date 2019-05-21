@@ -9,7 +9,9 @@
     </view>
     <template is="uploaded-tip"></template>
     <scroll-view id="the-scroll" bindscrolltolower="onVideoReachBottom" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
-      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
+      <view id="the-inner">
+        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" video-tip-show="{{tipShow}}" />
+      </view>
     </scroll-view>
   </swiper-item>
   <swiper-item class="music-swiper-item">
@@ -18,7 +20,7 @@
     </view>
     <template is="uploaded-tip"></template>
     <scroll-view class="works-scroll-view-container" wx:if="{{musicList.length!=0}}" scroll-y>
-      <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}"/>
+      <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}" music-tip-show="{{musicTipShow}}"/>
       <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
     </scroll-view>
   </swiper-item>

@@ -5,6 +5,7 @@ import com.miujike.worksservice.domain.Video;
 import com.miujike.worksservice.mapper.VideoMapper;
 import com.miujike.worksservice.service.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,6 +21,9 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Autowired
     private VideoMapper videoMapper;
+
+    @Value("${fetchNum}")
+    private int fetchNum;
 
     @Override
     public int addThumbCount(long videoId) {
@@ -38,24 +42,18 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     }
 
     @Override
-    public List<Map<String, Object>> getUserVideoList(long userId, int fetchNum, Long lastId) {
+    public List<Map<String, Object>> getUserVideoList(long userId, Long lastId) {
         Map<String, Object> map = new HashMap<>(4);
         map.put("userId", userId);
         map.put("fetchNum", fetchNum);
         map.put("lastId", lastId);
         List<Map<String, Object>> resList = videoMapper.getUserVideoList(map);
-        for (Map<String, Object> one : resList) {
-            if (one.containsKey("duration")) {
-                int duration = (int) one.get("duration");
-                int hour = duration / 3600;
-                int minute = (duration - hour * 3660) / 60;
-                int second = duration - hour * 3660 - minute * 60;
-                String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
-                        + (minute < 10 ? "0" + minute : "" + minute) + ":"
-                        + (second < 10 ? "0" + second : "" + second);
-                one.put("durationShow", durationShow);
-            }
-        }
+        MusicServiceImpl.addDurationShow(resList);
         return resList;
+    }
+
+    @Override
+    public List<Video> getNewVideoList() {
+        return videoMapper.getNewVideoList();
     }
 }

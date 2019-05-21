@@ -32,9 +32,14 @@ public interface IVideoService extends IService<Video> {
      * 拉取用户video列表（分页）
      *
      * @param userId   userId
-     * @param fetchNum 开始位置
      * @param lastId   结束位置
      * @return list
      */
-    List<Map<String, Object>> getUserVideoList(long userId, int fetchNum, Long lastId);
+    List<Map<String, Object>> getUserVideoList(long userId, Long lastId);
+
+    /**
+     * 获取最新的五个视频
+     * @return  List<Video>
+     */
+    List<Video> getNewVideoList();
 }

@@ -18,4 +18,10 @@ public interface VideoMapper extends BaseMapper<Video> {
      * @return list
      */
     List<Map<String,Object>> getUserVideoList(Map<String,Object> map);
+
+    /**
+     * 获取最新的五个视频
+     * @return  List<Video>
+     */
+    List<Video> getNewVideoList();
 }

@@ -26,4 +26,25 @@
         release_time as releaseTime,eggs,thumbs,comments,original_singer as original_singer,
         play_times as playTimes
     </sql>
+
+    <select id="getUserMusicList" parameterType="map" resultType="map">
+        select music_id as musicId,music_url as musicUrl,singer ,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_music
+        where user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and music_id < #{lastId}
+            ]]>
+        </if>
+        order by music_id desc
+        limit #{fetchNum}
+    </select>
+
+    <select id="getNewMusicList" resultMap="BaseResultMap">
+        select * from miu_music
+        order by release_time desc
+        limit 5
+    </select>
 </mapper>

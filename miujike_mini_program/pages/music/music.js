@@ -1,3 +1,6 @@
+const app = getApp()
+const api = require("../../utils/httpRequest.js")
+
 // pages/music/music.js
 Page({
 
@@ -116,9 +119,23 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
-    
+    this.fetchNewMusic();
   },
 
+  /**
+   * 拉取最新的音乐
+   */
+  fetchNewMusic(){
+    let that = this;
+    api.fetch({
+      url:"apigateway-works/api/v1/works/music/new",
+
+    }).then(res => {
+      that.setData({
+        newMusicList:res.data.data
+      })
+    })
+  },
   /**
    * Lifecycle function--Called when page is initially rendered
    */

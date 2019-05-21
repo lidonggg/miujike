@@ -1,5 +1,6 @@
 package com.miujike.userservice.controller;
 
+import com.miujike.common.constants.BaseController;
 import com.miujike.common.dto.ResponseData;
 import com.miujike.common.util.DateUtil;
 import com.miujike.userservice.domain.SignLog;
@@ -20,7 +21,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("api/v1/user/sign")
-public class SignController {
+public class SignController extends BaseController {
 
     @Autowired
     private ISignLogService signLogService;

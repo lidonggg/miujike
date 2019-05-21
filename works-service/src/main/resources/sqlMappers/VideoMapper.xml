@@ -26,7 +26,6 @@
         release_time as releaseTime,eggs,thumbs,comments,original_singer as originalSinger,
         play_times as playTimes
     </sql>
-
     <select id="getUserVideoList" parameterType="map" resultType="map">
         select video_id as videoId,video_url as videoUrl,singer ,
         original_singer as originalSinger,play_times as playTimes,cover,
@@ -40,5 +39,11 @@
         </if>
         order by video_id desc
         limit #{fetchNum}
+    </select>
+
+    <select id="getNewVideoList" resultMap="BaseResultMap">
+        select * from miu_video
+        order by release_time desc
+        limit 5
     </select>
 </mapper>
