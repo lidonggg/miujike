@@ -14,7 +14,7 @@
 <import src="../../templates/searchInput/searchInputTemplate.wxml" />
 
 <template is="search-input" data="{{searchValue}}" />
-<scroll-view scroll-y class="main-scroll-container">
+<view class="main-scroll-container">
   <swiper class="new-video-swiper" 
           indicator-dots="true" 
           autoplay="true" 
@@ -38,4 +38,4 @@
     </block>
   </swiper>
   <video-list-component video-list="{{popularVideoList}}" works-tip="{{worksTip}}"/>
-</scroll-view>
+</view>

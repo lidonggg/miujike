@@ -22,6 +22,14 @@ Page({
 
   },
 
+  onNext(e){
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    this.setData({
+      curMusic: that.data.musicList[index]
+    })
+  },
+
   /**
    * Lifecycle function--Called when page show
    */

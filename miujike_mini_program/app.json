@@ -1,7 +1,8 @@
 {
   "pages":[
-    
     "pages/index/index",
+    "pages/authorize/authorize",
+    
     "pages/videoUploader/videoUploader",
     "pages/musicUploader/musicUploader",
     "pages/myFollows/myFollows",

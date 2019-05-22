@@ -1,0 +1,26 @@
+/* pages/authorize/authorize.wxss */
+
+.auth-btn {
+  height: 70rpx;
+  width: 600rpx;
+  border-radius: 40rpx;
+  color: white;
+  font-size: 32rpx;
+  border: none
+}
+
+page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-img{
+  width: 120rpx;
+  height: 160rpx;
+  border-radius: 60rpx;
+  margin-bottom: 30rpx;
+}
