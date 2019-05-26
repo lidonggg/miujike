@@ -42,8 +42,11 @@
         limit #{fetchNum}
     </select>
 
-    <select id="getNewMusicList" resultMap="BaseResultMap">
-        select * from miu_music
+    <select id="getNewMusicList" resultType="map">
+        select music_id as musicId,music_url as musicUrl,singer ,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_music
         order by release_time desc
         limit 5
     </select>

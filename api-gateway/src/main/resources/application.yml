@@ -10,7 +10,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8751/eureka/
+      defaultZone: http://172.17.0.17:8751/eureka/
 
 #自定义路由转发,统一入口
 #/user-service/api/v1/user/...

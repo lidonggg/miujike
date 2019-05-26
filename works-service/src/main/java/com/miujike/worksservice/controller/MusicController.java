@@ -20,7 +20,7 @@ public class MusicController {
     @Autowired
     private IMusicService musicService;
 
-    @RequestMapping("list/{userId}")
+    @RequestMapping("/list/{userId}")
     public ResponseData listVideo(@PathVariable long userId, Long lastId) {
         if(null == lastId){
             lastId = 0L;
@@ -31,5 +31,15 @@ public class MusicController {
     @GetMapping("/new")
     public ResponseData listNewMusic(){
         return new ResponseData<>(musicService.getNewMusicList());
+    }
+
+    /**
+     * 按照受欢迎程度进行分页
+     * @return
+     */
+    @GetMapping("/list")
+    public ResponseData listPopularVideo(int curPage){
+
+        return new ResponseData<>();
     }
 }

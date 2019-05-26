@@ -21,7 +21,7 @@ public interface MusicMapper extends BaseMapper<Music> {
 
     /**
      * 获取最新的五首音乐
-     * @return List<Music>
+     * @return List<Map<String,Object>>
      */
-    List<Music> getNewMusicList();
+    List<Map<String,Object>> getNewMusicList();
 }

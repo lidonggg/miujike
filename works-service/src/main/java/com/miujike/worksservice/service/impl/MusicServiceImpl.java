@@ -69,7 +69,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     }
 
     @Override
-    public List<Music> getNewMusicList() {
+    public List<Map<String,Object>> getNewMusicList() {
         return musicMapper.getNewMusicList();
     }
 }

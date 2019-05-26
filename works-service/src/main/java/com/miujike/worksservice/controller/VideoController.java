@@ -32,6 +32,10 @@ public class VideoController extends BaseController {
         return new ResponseData<>(videoService.getUserVideoList(userId, lastId));
     }
 
+    /**
+     * 拉取最新的五个视频
+     * @return
+     */
     @GetMapping("/new")
     public ResponseData listNewVideo(){
         return new ResponseData<>(videoService.getNewVideoList());

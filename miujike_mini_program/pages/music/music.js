@@ -119,22 +119,30 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
-    this.fetchNewMusic();
+    this.fetchNewMusics();
   },
-
+  
   /**
    * 拉取最新的音乐
    */
-  fetchNewMusic(){
+  fetchNewMusics(){
     let that = this;
     api.fetch({
       url:"apigateway-works/api/v1/works/music/new",
 
     }).then(res => {
+      wx.stopPullDownRefresh();
       that.setData({
         newMusicList:res.data.data
       })
     })
+  },
+
+  /**
+   * 拉取音乐
+   */
+  fetchPopularMusics(){
+
   },
   /**
    * Lifecycle function--Called when page is initially rendered

@@ -41,9 +41,21 @@
         limit #{fetchNum}
     </select>
 
-    <select id="getNewVideoList" resultMap="BaseResultMap">
-        select * from miu_video
+    <select id="getNewVideoList" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_video
         order by release_time desc
         limit 5
+    </select>
+    <select id="getVideoListByKey" parameterType="java.lang.String" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_video
+        where nickname like #{param} or title like #{param}
+        or original_singer like #{param}
+        or detail like #{param}
     </select>
 </mapper>
