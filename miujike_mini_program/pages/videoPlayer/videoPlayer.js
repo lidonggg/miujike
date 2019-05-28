@@ -164,6 +164,18 @@ Page({
         videoInfo: that.data.videoRecommended[index]
       })
       this.videoContext.start();
+
     }
+  },
+  fetchComments(){
+    let that = this;
+    api.fetch({
+      url:"apigateway-behavior/api/v1/comment/list/"+that.videoInfo.videoId,
+      data:{
+        type: 2
+      }
+    }).then(res => {
+      
+    })
   }
 })

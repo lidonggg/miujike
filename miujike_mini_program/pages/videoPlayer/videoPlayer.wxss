@@ -86,6 +86,10 @@
   margin-left: 30rpx;
 }
 
+.recommend-scroll-container .one-video:last-child {
+  margin-right: 30rpx;
+}
+
 .recommend-scroll-container .one-video image{
   position: absolute;
   width: 100%;

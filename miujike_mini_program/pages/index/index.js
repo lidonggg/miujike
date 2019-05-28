@@ -5,107 +5,20 @@ const api = require("../../utils/httpRequest.js")
 
 Page({
   data: {
+    autoplay:true,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     curSwiperItemIndex: 0,
-    newVideoList: [{
-      videoId: 1,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-
-    }, {
-      videoId: 2,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 3,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 4,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 5,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }],
-    popularVideoList: [{
-      videoId: 1,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 2,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 3,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 4,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }, {
-      videoId: 5,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      listenTimes: 100,
-      duration: "03:00",
-      cover: "http://file.yfjiaoyu.com/group1.jpg",
-      videoUrl: "http://file.yfjiaoyu.com/o_1ctcn6sms6gpn64kopjc69m0ac.mp4"
-    }]
+    newVideoList: [],
+    videoList: [],
+    worksTip:"已经划到底了哦~",
+    tipShow:false
   },
   onPullDownRefresh() {
     this.fetchNewVideos();
+    this.fetchVideos(0);
   },
   onSwiper(e) {
     let curIndex = e.detail.current;
@@ -115,6 +28,12 @@ Page({
   },
   onLoad: function() {
     this.fetchNewVideos();
+    this.fetchVideos(0);
+  },
+  onShow(){
+    this.setData({
+      autoplay: true
+    })
   },
   /**
    * 获取新视频
@@ -135,8 +54,26 @@ Page({
   /**
    * 拉取音乐
    */
-  fetchPopularVideos() {
-    
+  fetchVideos(lastId) {
+    let that = this;
+    api.fetch({
+      url:"apigateway-works/api/v1/works/video/list/0",
+      data:{
+        lastId:lastId
+      }
+    }).then(res => {
+      console.log(res.data);
+      if(res.data.code == 200){
+        that.setData({
+          videoList: res.data.data
+        });
+        if(res.data.data.length < app.globalData.fetchNum){
+          that.setData({
+            tipShow:true
+          })
+        }
+      }
+    })
   },
   goPlayPage(e) {
     let that = this;
@@ -148,5 +85,16 @@ Page({
   },
   doSearch(){
     this.getInfo();
+  },
+  onUnload(){
+    this.setData({
+      autoplay:false
+    })
+  },
+  onReachBottom(){
+    console.log("dodile");
+    if(!this.data.tipShow){
+      this.fetchVideos(this.data.videoList[this.data.videoList.length].videoId)
+    }
   }
 })

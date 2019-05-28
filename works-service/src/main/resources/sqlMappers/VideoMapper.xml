@@ -31,7 +31,9 @@
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_video
-        where user_id = #{userId}
+        <if test='userId != 0'>
+            where user_id = #{userId}
+        </if>
         <if test='lastId != 0'>
             <![CDATA[
                 and video_id < #{lastId}

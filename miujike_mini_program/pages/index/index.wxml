@@ -17,7 +17,7 @@
 <view class="main-scroll-container">
   <swiper class="new-video-swiper" 
           indicator-dots="true" 
-          autoplay="true" 
+          autoplay="{{autoplay}}" 
           interval="3000" 
           duration="1000" 
           circular="true" 
@@ -37,5 +37,5 @@
       </swiper-item>
     </block>
   </swiper>
-  <video-list-component video-list="{{popularVideoList}}" works-tip="{{worksTip}}"/>
+  <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
 </view>

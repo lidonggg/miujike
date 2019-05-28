@@ -25,7 +25,10 @@ public class VideoController extends BaseController {
     private IVideoService videoService;
 
     @RequestMapping("list/{userId}")
-    public ResponseData listVideo(@PathVariable long userId, Long lastId) {
+    public ResponseData listVideo(@PathVariable Long userId, Long lastId) {
+        if(null == userId){
+            userId = 0L;
+        }
         if(null == lastId){
             lastId = 0L;
         }

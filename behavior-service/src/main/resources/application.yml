@@ -1,37 +1,10 @@
-server:
-  port: 8791
-
-#指定注册中心地址
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8751/eureka/
-
 spring:
+  profiles:
+    active: dev
   #本服务的名称
   application:
     name: behavior-service
-#  zipkin:
-#    base-url: http://localhost:9411/
-#  sleuth:
-#    sampler:
-#      probability: 1
-  datasource:
-    url: jdbc:mysql://localhost:3306/miujike
-    username: root
-    password: zhang
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
   type-aliases-package: com.miujike.behaviorservice.domain
   mapper-locations: classpath:/sqlMappers/*.xml
-
-  #指定从哪个配置中心读取
-#  cloud:
-#    config:
-#      discovery:
-#        service-id: config-server
-#        enabled: true
-#      profile: dev
-#      label: master
-
