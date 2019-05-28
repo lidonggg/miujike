@@ -22,7 +22,7 @@ public class Comment extends Model<Comment> {
     private long commentId;
 
     @TableField("from_user_id")
-    private long fromUserId;
+    private Long fromUserId;
 
     /**
      * 1--music
@@ -33,7 +33,7 @@ public class Comment extends Model<Comment> {
     private int targetType;
 
     @TableField("target_id")
-    private long targetId;
+    private Long targetId;
 
     private String content;
 

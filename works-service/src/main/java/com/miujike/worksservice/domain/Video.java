@@ -64,6 +64,7 @@ public class Video extends Model<Video> {
 
     /**
      * 获得鸡蛋数，冗余
+     * 目前没有用到，用点赞代替鸡蛋数
      */
     private int eggs;
 
@@ -87,6 +88,8 @@ public class Video extends Model<Video> {
      */
     @TableField("play_times")
     private int playTimes;
+
+    private int shares;
 
     public long getVideoId() {
         return videoId;
@@ -216,6 +219,14 @@ public class Video extends Model<Video> {
         this.playTimes = playTimes;
     }
 
+    public int getShares() {
+        return shares;
+    }
+
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -235,6 +246,7 @@ public class Video extends Model<Video> {
                 ", comments=" + comments +
                 ", originalSinger='" + originalSinger + '\'' +
                 ", playTimes=" + playTimes +
+                ", shares=" + shares +
                 '}';
     }
 }

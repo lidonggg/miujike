@@ -4,48 +4,45 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 /**
  * @author Ls J
- * @date 2019/4/13 12:00 PM
+ * @date 2019/5/28 11:43 PM
  */
-@TableName("miu_thumb")
-public class Thumb extends Model<Thumb> {
+@TableName("miu_share")
+public class Share extends Model<Share> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("thumb_id")
-    private long thumbId;
+    @TableId("share_id")
+    private long shareId;
 
     @TableField("from_user_id")
     private Long fromUserId;
 
-    /**
-     * 1--music
-     * 2--video
-     * 3-comment
-     */
-    @TableField("target_type")
-    private int targetType;
-
     @TableField("target_id")
     private Long targetId;
 
+    @TableField("target_type")
+    private int targetType;
+
     @TableField("create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private int eggs;
 
-    public long getThumbId() {
-        return thumbId;
+    public long getShareId() {
+        return shareId;
     }
 
-    public void setThumbId(long thumbId) {
-        this.thumbId = thumbId;
+    public void setShareId(long shareId) {
+        this.shareId = shareId;
     }
 
     public Long getFromUserId() {
@@ -56,20 +53,20 @@ public class Thumb extends Model<Thumb> {
         this.fromUserId = fromUserId;
     }
 
-    public int getTargetType() {
-        return targetType;
-    }
-
-    public void setTargetType(int targetType) {
-        this.targetType = targetType;
-    }
-
     public Long getTargetId() {
         return targetId;
     }
 
     public void setTargetId(Long targetId) {
         this.targetId = targetId;
+    }
+
+    public int getTargetType() {
+        return targetType;
+    }
+
+    public void setTargetType(int targetType) {
+        this.targetType = targetType;
     }
 
     public Date getCreateTime() {
@@ -90,11 +87,11 @@ public class Thumb extends Model<Thumb> {
 
     @Override
     public String toString() {
-        return "Thumb{" +
-                "thumbId=" + thumbId +
+        return "Share{" +
+                "shareId=" + shareId +
                 ", fromUserId=" + fromUserId +
-                ", targetType=" + targetType +
                 ", targetId=" + targetId +
+                ", targetType=" + targetType +
                 ", createTime=" + createTime +
                 ", eggs=" + eggs +
                 '}';

@@ -19,17 +19,18 @@
         <result column="comments" property="comments"/>
         <result column="original_singer" property="originalSinger"/>
         <result column="play_times" property="playTimes"/>
+        <result column="shares" property="shares"/>
     </resultMap>
     <sql id="Base_Column_List">
         music_id as musicId,user_id as userId,singer,title,detail,
         music_url as musicUrl,duration,status,create_time as createTime,
         release_time as releaseTime,eggs,thumbs,comments,original_singer as original_singer,
-        play_times as playTimes
+        play_times as playTimes,shares
     </sql>
 
     <select id="getUserMusicList" parameterType="map" resultType="map">
         select music_id as musicId,music_url as musicUrl,singer ,user_id as userId,
-        original_singer as originalSinger,play_times as playTimes,cover,
+        original_singer as originalSinger,play_times as playTimes,cover,shares,
         title,duration
         from miu_music
         where user_id = #{userId}
@@ -44,7 +45,7 @@
 
     <select id="getNewMusicList" resultType="map">
         select music_id as musicId,music_url as musicUrl,singer ,user_id as userId,
-        original_singer as originalSinger,play_times as playTimes,cover,
+        original_singer as originalSinger,play_times as playTimes,cover,shares,
         title,duration
         from miu_music
         order by release_time desc

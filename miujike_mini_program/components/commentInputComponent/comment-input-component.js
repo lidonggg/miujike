@@ -62,6 +62,25 @@ Component({
           that.triggerEvent('addcomment', res.data.data, { bubbles: false });
         }
       })
+    },
+    doThumb(e) {
+      let that = this;
+      api.fetch({
+        url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
+        method: "post",
+        data: {
+          fromUserId: app.globalData.userInfo.userId,
+          targetType: that.data.targetType,
+          eggs: 1,
+          targetId: that.data.targetId
+        }
+      }).then(res => {
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '鸡蛋-1',
+          })
+        }
+      })
     }
   }
 })

@@ -48,8 +48,8 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         boolean success = save(comment);
         if (success) {
             //TODO 添加评论数
-            worksClient.addCommentNum(comment.getTargetId(), comment.getTargetType());
-            return comment;
+            boolean s = worksClient.addCommentNum(comment.getTargetId(), comment.getTargetType());
+            return s ? comment : null;
         }
         return null;
     }

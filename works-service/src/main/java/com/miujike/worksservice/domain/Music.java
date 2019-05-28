@@ -64,6 +64,7 @@ public class Music extends Model<Music> {
 
     /**
      * 获得鸡蛋数，冗余
+     * 目前没有用到，用点赞代替鸡蛋数
      */
     private int eggs;
 
@@ -87,6 +88,8 @@ public class Music extends Model<Music> {
      */
     @TableField("play_times")
     private int playTimes;
+
+    private int shares;
 
     public long getMusicId() {
         return musicId;
@@ -216,6 +219,14 @@ public class Music extends Model<Music> {
         this.playTimes = playTimes;
     }
 
+    public int getShares() {
+        return shares;
+    }
+
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
+
     @Override
     public String toString() {
         return "Music{" +
@@ -235,6 +246,7 @@ public class Music extends Model<Music> {
                 ", comments=" + comments +
                 ", originalSinger='" + originalSinger + '\'' +
                 ", playTimes=" + playTimes +
+                ", shares=" + shares +
                 '}';
     }
 }

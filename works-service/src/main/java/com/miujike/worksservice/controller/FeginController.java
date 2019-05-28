@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/v1/works/behavior")
-public class CommentThumbController {
+public class FeginController {
 
     @Autowired
     private IVideoService videoService;
@@ -64,6 +64,29 @@ public class CommentThumbController {
         }else if(targetType == 2){
             Video video = videoService.getById(targetId);
             video.setThumbs(video.getThumbs() + 1);
+            success = videoService.updateById(video);
+        }
+
+        return success;
+    }
+
+    /**
+     * 添加分享，做冗余
+     *
+     * @param targetId   targetId
+     * @param targetType targetType
+     * @return
+     */
+    @GetMapping("addShareNum")
+    public boolean addShareNum(Long targetId, int targetType) {
+        boolean success = false;
+        if(targetType == 1){
+            Music music = musicService.getById(targetId);
+            music.setShares(music.getShares() + 1);
+            success = musicService.updateById(music);
+        }else if(targetType == 2){
+            Video video = videoService.getById(targetId);
+            video.setShares(video.getShares() + 1);
             success = videoService.updateById(video);
         }
 

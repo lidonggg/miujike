@@ -1,3 +1,4 @@
+const api = require("../../utils/httpRequest.js")
 const app = getApp()
 
 Component({
@@ -33,7 +34,7 @@ Component({
   },
 
   methods: {
-    onShare() {
+    doShare() {
       wx.showToast({
         title: '分享',
       })
@@ -45,6 +46,26 @@ Component({
       console.log(app.globalData.mediaPlay)
       wx.navigateTo({
         url: '../../pages/videoPlayer/videoPlayer?videoId='+index,
+      })
+    },
+    doThumb(e){
+      let videoId = e.currentTarget.dataset.videoid;
+      let that = this;
+      api.fetch({
+        url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
+        method: "post",
+        data: {
+          fromUserId: app.globalData.userInfo.userId,
+          targetType: 2,
+          eggs: 1,
+          targetId: videoId
+        }
+      }).then(res => {
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '鸡蛋-1',
+          })
+        }
       })
     }
   }

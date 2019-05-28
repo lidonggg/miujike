@@ -2,6 +2,7 @@ package com.miujike.behaviorservice.controller;
 
 import com.miujike.behaviorservice.domain.Comment;
 import com.miujike.behaviorservice.service.ICommentService;
+import com.miujike.common.constants.BaseController;
 import com.miujike.common.constants.ResponseConstants;
 import com.miujike.common.dto.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +14,22 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("api/v1/behavior/comment")
-public class CommentController {
+public class CommentController extends BaseController {
 
     @Autowired
     private ICommentService commentService;
 
     /**
      * 添加评论
+     *
      * @param comment
      * @return
      */
     @PostMapping("addComment")
     public ResponseData addComment(Comment comment) {
-        System.out.print(comment.toString());
+        log.info("=======>{}", comment.toString());
         Comment commentAdded = commentService.addComment(comment);
-        return null != commentAdded? new ResponseData<>(commentAdded):new ResponseData<>(ResponseConstants.FAIL_CODE, ResponseConstants.FAIL, -1);
+        return null != commentAdded ? new ResponseData<>(commentAdded) : new ResponseData<>(ResponseConstants.FAIL_CODE, ResponseConstants.FAIL, -1);
     }
 
     /**

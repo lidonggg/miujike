@@ -12,4 +12,14 @@ public class WorksClientFallBack implements IWorksClient {
     public boolean addCommentNum(Long targetId, int targetType) {
         return false;
     }
+
+    @Override
+    public boolean addThumbNum(Long targetId, int targetType) {
+        return false;
+    }
+
+    @Override
+    public boolean addShareNum(Long targetId, int targetType) {
+        return false;
+    }
 }
