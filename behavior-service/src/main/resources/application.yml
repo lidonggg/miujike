@@ -8,3 +8,5 @@ spring:
 mybatis-plus:
   type-aliases-package: com.miujike.behaviorservice.domain
   mapper-locations: classpath:/sqlMappers/*.xml
+
+fetchNum: 15

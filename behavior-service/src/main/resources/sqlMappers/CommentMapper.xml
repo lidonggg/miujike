@@ -15,4 +15,21 @@
         comment_id as commentId,from_user_id as from_user_Id,create_time as createTime,target_type as targetType,
         target_id as targetId,content,thumbs
     </sql>
+    <!--拉取评论列表-->
+    <select id="getCommentList" parameterType="map" resultType="map">
+        select mc.comment_id as commentId,mc.content,
+        date_format(mc.create_time, '%Y-%m-%d %H:%i:%s') as createTime,
+        mc.from_user_id as fromUserId,
+        mu.avatar_url as avatarUrl,mu.nickname as nickname
+        from miu_comment mc left join miu_user mu
+        on mc.from_user_id = mu.user_id
+        where mc.target_type = #{targetType} and mc.target_id = #{targetId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and mc.comment_id < #{lastId}
+            ]]>
+        </if>
+        order by mc.comment_id desc
+        limit #{fetchNum}
+    </select>
 </mapper>

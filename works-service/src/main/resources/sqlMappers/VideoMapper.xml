@@ -27,7 +27,7 @@
         play_times as playTimes
     </sql>
     <select id="getUserVideoList" parameterType="map" resultType="map">
-        select video_id as videoId,video_url as videoUrl,singer ,
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_video
@@ -44,7 +44,7 @@
     </select>
 
     <select id="getNewVideoList" resultType="map">
-        select video_id as videoId,video_url as videoUrl,singer ,
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_video
@@ -52,7 +52,7 @@
         limit 5
     </select>
     <select id="getVideoListByKey" parameterType="java.lang.String" resultType="map">
-        select video_id as videoId,video_url as videoUrl,singer ,
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_video

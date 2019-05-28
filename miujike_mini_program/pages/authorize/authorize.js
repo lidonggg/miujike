@@ -28,11 +28,11 @@ Page({
     if (options != null) {
       
       let paths = options.tpath.split("%")
-      let tpath = paths[0];
+      let tpath = decodeURIComponent(options.tpath);
 
-      for (let r = 1; r < paths.length; r++) {
-        tpath += "/" + paths[r];
-      }
+      // for (let r = 1; r < paths.length; r++) {
+      //   tpath += "/" + paths[r];
+      // }
       this.setData({
         tpath: tpath
       })

@@ -92,7 +92,6 @@ Page({
     })
   },
   onReachBottom(){
-    console.log("dodile");
     if(!this.data.tipShow){
       this.fetchVideos(this.data.videoList[this.data.videoList.length].videoId)
     }

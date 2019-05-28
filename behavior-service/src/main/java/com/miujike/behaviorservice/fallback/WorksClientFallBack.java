@@ -8,4 +8,8 @@ import com.miujike.behaviorservice.service.IWorksClient;
  * 针对作品服务做降级处理
  */
 public class WorksClientFallBack implements IWorksClient {
+    @Override
+    public boolean addCommentNum(Long targetId, int targetType) {
+        return false;
+    }
 }

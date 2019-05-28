@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "comment-input-component": "/components/commentInputComponent/comment-input-component"
+  },
+  "disableScroll": true
 }

@@ -74,7 +74,7 @@ Page({
     this.dataScroll.touchDown = touchDown;
     // 获取 inner-wrap 的高度
     wx.createSelectorQuery().select('#the-inner').boundingClientRect(function (rect) {
-      that.dataScroll.inneHeight = rect.height;
+      that.dataScroll.innerHeight = rect.height;
     }).exec();
 
     // 获取 scroll-wrap 的高度和当前的 scrollTop 位置
@@ -87,25 +87,20 @@ Page({
     }).exec();
   },
   endFn: function (e) {
-    let current_y = e.changedTouches[0].clientY;
+    let currentY = e.changedTouches[0].clientY;
     let that = this;
     let { startScroll, innerHeight, height, touchDown } = this.dataScroll;
-    if (current_y > touchDown && current_y - touchDown > 20 && startScroll == 0) {
-      console.log("下拉刷新")
+    console.log(currentY, touchDown, startScroll,innerHeight,height)
+    if (currentY > touchDown && currentY - touchDown > 20 && startScroll == 0) {
       wx.showLoading({
         title: '加载中',
       })
       this.fetchVideoList(0);
-    }
-  },
-  /**
-   * 触底加载
-   */
-  onVideoReachBottom: function () {
-    
-    if (!this.data.loading && !this.data.tipShow) {
-      console.log("到底了");
-      this.fetchVideoList(this.data.videoList[this.data.videoList.length - 1].videoId);
+    } else if (currentY < touchDown && touchDown - currentY> 20 && innerHeight - height == 0){
+      if (!this.data.loading && !this.data.tipShow) {
+        
+        this.fetchVideoList(this.data.videoList[this.data.videoList.length - 1].videoId);
+      }
     }
   },
 

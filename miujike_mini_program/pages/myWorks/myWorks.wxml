@@ -8,9 +8,9 @@
       <image bindtap='uploadVideo' src='../../resources/imgs/mine/myWorks/upload_btn.png'></image>
     </view>
     <template is="uploaded-tip"></template>
-    <scroll-view id="the-scroll" bindscrolltolower="onVideoReachBottom" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
-      <view id="the-inner">
-        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" video-tip-show="{{tipShow}}" />
+    <scroll-view id="the-scroll" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
+      <view id="the-inner" style="height:100%">
+        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />
       </view>
     </scroll-view>
   </swiper-item>

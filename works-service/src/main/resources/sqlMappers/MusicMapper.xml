@@ -28,7 +28,7 @@
     </sql>
 
     <select id="getUserMusicList" parameterType="map" resultType="map">
-        select music_id as musicId,music_url as musicUrl,singer ,
+        select music_id as musicId,music_url as musicUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_music
@@ -43,7 +43,7 @@
     </select>
 
     <select id="getNewMusicList" resultType="map">
-        select music_id as musicId,music_url as musicUrl,singer ,
+        select music_id as musicId,music_url as musicUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration
         from miu_music

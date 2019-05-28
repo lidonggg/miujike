@@ -4,11 +4,11 @@ App({
     console.log("options.path:",options.path);
     let path = options.path;
     let paths = path.split("/")
-    let tpath = paths[0];
+    let tpath = encodeURIComponent(options.path);
 
-    for (let r = 1; r < paths.length; r++) {
-      tpath += "%" + paths[r];
-    }
+    // for (let r = 1; r < paths.length; r++) {
+    //   tpath += "%" + paths[r];
+    // }
     console.log("tpath:" + tpath);
     let opt = "";
     let that = this;

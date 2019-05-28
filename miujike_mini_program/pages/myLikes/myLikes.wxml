@@ -4,7 +4,7 @@
 <swiper class="works-swiper" bindchange='switchTab' current="{{curTab}}" duration="300">
   <swiper-item class="video-swiper-item">
     <scroll-view wx:if="{{videoList.length!=0}}" scroll-y>
-      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}"/>
+      <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
     </scroll-view>
     <view wx:if="{{videoList.length==0 && loaded}}" class="no-video-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
   </swiper-item>
