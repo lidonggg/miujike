@@ -42,6 +42,13 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     }
 
     @Override
+    public Map<String, Object> getVideoInfo(long videoId) {
+        Map<String,Object> map = videoMapper.getVideoInfo(videoId);
+        MusicServiceImpl.addDurationShowOfOne(map);
+        return map;
+    }
+
+    @Override
     public List<Map<String, Object>> getUserVideoList(long userId, Long lastId) {
         Map<String, Object> map = new HashMap<>(4);
         map.put("userId", userId);

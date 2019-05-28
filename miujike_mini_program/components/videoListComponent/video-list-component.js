@@ -35,9 +35,7 @@ Component({
 
   methods: {
     doShare() {
-      wx.showToast({
-        title: '分享',
-      })
+      
     },
     goPlayPage(e){
       let index = e.currentTarget.dataset.index;
@@ -45,7 +43,7 @@ Component({
       app.globalData.mediaPlay = this.properties.videoList[index];
       console.log(app.globalData.mediaPlay)
       wx.navigateTo({
-        url: '../../pages/videoPlayer/videoPlayer?videoId='+index,
+        url: '../../pages/videoPlayer/videoPlayer?videoId=' + this.properties.videoList[index].videoId,
       })
     },
     doThumb(e){

@@ -27,6 +27,13 @@
         release_time as releaseTime,eggs,thumbs,comments,original_singer as originalSinger,
         play_times as playTimes,shares
     </sql>
+    <select id="getVideoInfo" parameterType="long" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration,shares
+        from miu_video
+        where video_id = #{videoId}
+    </select>
     <select id="getUserVideoList" parameterType="map" resultType="map">
         select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,

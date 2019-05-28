@@ -27,7 +27,11 @@
         </view>
         <view class="right-part">
           <image class="behavior-icon add-eggs-icon" src="../../resources/imgs/video/add_eggs.png" data-videoid="{{item.videoId}}" catchtap='doThumb'></image>
-          <image class="behavior-icon share-icon" src="../../resources/imgs/video/share.png" data-videoid="{{item.videoId}}" catchtap='doShare'></image>
+          <view class="behavior-icon share-icon">
+            <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}' catchtap='doShare'>
+            </button>
+            <image class="share-image-show" src="../../resources/imgs/video/share.png" data-videoid="{{item.videoId}}" catchtap='doShare'></image>
+          </view>
         </view>
       </view>
     </view>

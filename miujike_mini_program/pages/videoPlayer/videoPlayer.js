@@ -14,6 +14,7 @@ Page({
    */
   data: {
     curVideoInfo: {},
+    curVideoId:"",
     loading: false,
     tipShow: false,
     commentTip: "暂时没有更多评论了哦～",
@@ -120,13 +121,25 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
-    this.setData({
-      curVideoInfo: app.globalData.mediaPlay
-    })
-    app.globalData.mediaPlay = {};
-    this.videoContext = wx.createVideoContext('the-video');
-    this.videoContext.play();
-    this.fetchCommentList(0);
+    if(options.videoId){
+      this.setData({
+        curVideoId: options.videoId
+      });
+      let that = this;
+      api.fetch({
+        url:"apigateway-works/api/v1/works/video/info/"+options.videoId
+      }).then(res => {
+        if(res.data.code == 200){
+          that.setData({
+            curVideoInfo:res.data.data
+          })
+          app.globalData.mediaPlay = {};
+          this.videoContext = wx.createVideoContext('the-video');
+          this.videoContext.play();
+          this.fetchCommentList(0);
+        }
+      })
+    }
   },
 
   /**

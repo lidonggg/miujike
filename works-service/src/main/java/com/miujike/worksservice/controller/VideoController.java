@@ -24,12 +24,29 @@ public class VideoController extends BaseController {
     @Autowired
     private IVideoService videoService;
 
+    /**
+     * 获取某一个视频的信息
+     *
+     * @return
+     */
+    @RequestMapping("info/{videoId}")
+    public ResponseData getVideoInfo(@PathVariable long videoId) {
+        return new ResponseData<>(videoService.getVideoInfo(videoId));
+    }
+
+    /**
+     * 拉取视频
+     *
+     * @param userId
+     * @param lastId
+     * @return
+     */
     @RequestMapping("list/{userId}")
     public ResponseData listVideo(@PathVariable Long userId, Long lastId) {
-        if(null == userId){
+        if (null == userId) {
             userId = 0L;
         }
-        if(null == lastId){
+        if (null == lastId) {
             lastId = 0L;
         }
         return new ResponseData<>(videoService.getUserVideoList(userId, lastId));
@@ -37,10 +54,11 @@ public class VideoController extends BaseController {
 
     /**
      * 拉取最新的五个视频
+     *
      * @return
      */
     @GetMapping("/new")
-    public ResponseData listNewVideo(){
+    public ResponseData listNewVideo() {
         return new ResponseData<>(videoService.getNewVideoList());
     }
 }

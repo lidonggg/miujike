@@ -29,6 +29,13 @@ public interface IVideoService extends IService<Video> {
     int addCommentCount(long videoId);
 
     /**
+     * 获取某条视频的信息
+     * @param videoId videoId
+     * @return map
+     */
+    Map<String,Object> getVideoInfo(long videoId);
+
+    /**
      * 拉取用户video列表（分页）
      *
      * @param userId   userId

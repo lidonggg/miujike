@@ -55,16 +55,20 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
 
     static void addDurationShow(List<Map<String, Object>> resList) {
         for (Map<String, Object> one : resList) {
-            if (one.containsKey("duration")) {
-                int duration = (int) one.get("duration");
-                int hour = duration / 3600;
-                int minute = (duration - hour * 3660) / 60;
-                int second = duration - hour * 3660 - minute * 60;
-                String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
-                        + (minute < 10 ? "0" + minute : "" + minute) + ":"
-                        + (second < 10 ? "0" + second : "" + second);
-                one.put("durationShow", durationShow);
-            }
+            addDurationShowOfOne(one);
+        }
+    }
+
+    static void addDurationShowOfOne(Map<String, Object> one){
+        if (one.containsKey("duration")) {
+            int duration = (int) one.get("duration");
+            int hour = duration / 3600;
+            int minute = (duration - hour * 3660) / 60;
+            int second = duration - hour * 3660 - minute * 60;
+            String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
+                    + (minute < 10 ? "0" + minute : "" + minute) + ":"
+                    + (second < 10 ? "0" + second : "" + second);
+            one.put("durationShow", durationShow);
         }
     }
 

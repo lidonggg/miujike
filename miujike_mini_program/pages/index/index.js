@@ -5,7 +5,7 @@ const api = require("../../utils/httpRequest.js")
 
 Page({
   data: {
-    autoplay:true,
+    autoplay: true,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -13,8 +13,8 @@ Page({
     curSwiperItemIndex: 0,
     newVideoList: [],
     videoList: [],
-    worksTip:"已经划到底了哦~",
-    tipShow:false
+    worksTip: "已经划到底了哦~",
+    tipShow: false
   },
   onPullDownRefresh() {
     this.fetchNewVideos();
@@ -30,7 +30,7 @@ Page({
     this.fetchNewVideos();
     this.fetchVideos(0);
   },
-  onShow(){
+  onShow() {
     this.setData({
       autoplay: true
     })
@@ -38,13 +38,13 @@ Page({
   /**
    * 获取新视频
    */
-  fetchNewVideos(){
+  fetchNewVideos() {
     let that = this;
     api.fetch({
       url: "apigateway-works/api/v1/works/video/new"
     }).then(res => {
       wx.stopPullDownRefresh();
-      if (res.data.data && res.data.data.length > 0){
+      if (res.data.data && res.data.data.length > 0) {
         that.setData({
           newVideoList: res.data.data
         })
@@ -57,19 +57,19 @@ Page({
   fetchVideos(lastId) {
     let that = this;
     api.fetch({
-      url:"apigateway-works/api/v1/works/video/list/0",
-      data:{
-        lastId:lastId
+      url: "apigateway-works/api/v1/works/video/list/0",
+      data: {
+        lastId: lastId
       }
     }).then(res => {
       console.log(res.data);
-      if(res.data.code == 200){
+      if (res.data.code == 200) {
         that.setData({
           videoList: res.data.data
         });
-        if(res.data.data.length < app.globalData.fetchNum){
+        if (res.data.data.length < app.globalData.fetchNum) {
           that.setData({
-            tipShow:true
+            tipShow: true
           })
         }
       }
@@ -83,17 +83,54 @@ Page({
       url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId
     })
   },
-  doSearch(){
+  doSearch() {
     this.getInfo();
   },
-  onUnload(){
+  onUnload() {
     this.setData({
-      autoplay:false
+      autoplay: false
     })
   },
-  onReachBottom(){
-    if(!this.data.tipShow){
+  onReachBottom() {
+    if (!this.data.tipShow) {
       this.fetchVideos(this.data.videoList[this.data.videoList.length].videoId)
     }
-  }
+  },
+  onShareAppMessage: function(res) {
+    let videoId = res.target.dataset.videoid;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '分享',
+      path: '/pages/videoPlayer/videoPlayer?videoId=' + videoId,
+      imageUrl: '', //用户分享出去的自定义图片大小为5:4,
+      success: function(res) {
+        // 转发成功
+        api.fetch({
+          url: "apigateway-behavior/api/v1/behavior/share/Share",
+          method: "post",
+          data: {
+            fromUserId: app.globalData.userInfo.userId,
+            targetType: 2,
+            eggs: 1,
+            targetId: videoId
+          }
+        }).then(data => {
+          if (data.data.code == 200) {
+            wx.showToast({
+              title: '鸡蛋+1',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        })
+      },
+      fail: function(res) {
+        // 分享失败
+      },
+    }
+  },
+
 })

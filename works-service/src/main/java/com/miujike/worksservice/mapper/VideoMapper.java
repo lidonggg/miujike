@@ -13,6 +13,13 @@ import java.util.Map;
 public interface VideoMapper extends BaseMapper<Video> {
 
     /**
+     * 获取某条视频的信息
+     * @param videoId videoId
+     * @return map
+     */
+    Map<String,Object> getVideoInfo(long videoId);
+
+    /**
      * 拉取用户video列表（分页）
      * @param map userId, start, end
      * @return list
