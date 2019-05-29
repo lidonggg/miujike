@@ -68,7 +68,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         map.put("lastId", lastId);
         List<Map<String, Object>> resList = musicMapper.getUserMusicList(map);
         addDurationShow(resList);
-        return null;
+        return resList;
     }
 
     static void addDurationShow(List<Map<String, Object>> resList) {

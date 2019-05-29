@@ -244,6 +244,7 @@ Page({
           prevPage.setData({
             musicList: preMusics
           })
+          wx.navigateBack({})
         }
       })
     }

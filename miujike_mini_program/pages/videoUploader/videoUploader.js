@@ -169,7 +169,8 @@ Page({
           preVideos.unshift(newVideo)
           prevPage.setData({
             videoList: preVideos
-          })
+          });
+          wx.navigateBack({})
         }
       })
     }
