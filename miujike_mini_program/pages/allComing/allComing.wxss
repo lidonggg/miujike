@@ -1,1 +1,3 @@
 /* pages/allComing/allComing.wxss */
+@import "../../templates/searchInput/searchInputTemplate.wxss";
+

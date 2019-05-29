@@ -1,5 +1,6 @@
-const app = getApp()
-const api = require("../../utils/httpRequest.js")
+const app = getApp();
+const api = require("../../utils/httpRequest.js");
+const innerAudioContext = wx.createInnerAudioContext();
 
 // pages/music/music.js
 Page({
@@ -12,7 +13,12 @@ Page({
     tipShow: false,
     worksTip: "暂时没有更多音乐了哦~",
     newMusicList: [],
-    popularMusicList: []
+    popularMusicList: [],
+    canThumb: true,
+    curPlayId: "",
+    curPlayIndex: "",
+    percents: [],
+    loaded:false
   },
 
   /**
@@ -21,6 +27,41 @@ Page({
   onLoad: function(options) {
     this.fetchNewMusics();
     this.fetchPopularMusics(0);
+    let that = this;
+    // innerAudioContext.autoplay=true;
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放',new Date().getSeconds());
+      console.log(innerAudioContext.src);
+    });
+
+    setTimeout(() => {
+      innerAudioContext.onTimeUpdate(() => {
+        console.log(innerAudioContext.duration) //总时长
+        console.log(innerAudioContext.currentTime) //当前播放进度
+        let changeKey = "percents[" + that.data.curPlayIndex + "]";
+        that.setData({
+          [changeKey]: Math.ceil((innerAudioContext.currentTime / innerAudioContext.duration) * 100) + 5
+        })
+      })
+    }, 10)
+
+    // innerAudioContext.onTimeUpdate((res) => {
+    //   console.log(res);
+    // });
+    innerAudioContext.onPause(() => {
+      console.log('播放暂停', new Date().getSeconds());
+      // that.setData({
+      //   curPlayId: ""
+      // })
+    })
+    innerAudioContext.onEnded(() => {
+      console.log('播放结束', new Date().getSeconds());
+      that.setData({
+        curPlayId: "",
+        curPlayIndex: -1,
+        ["percents[" + that.data.curPlayIndex + "]"]:100
+      })
+    })
   },
 
   /**
@@ -33,9 +74,13 @@ Page({
 
     }).then(res => {
       wx.stopPullDownRefresh();
+      for (let i = 0; i < res.data.data.length; i++) {
+        that.data.percents.push("");
+      }
       that.setData({
-        newMusicList: res.data.data
-      })
+        newMusicList: res.data.data,
+        loaded:true
+      });
     })
   },
 
@@ -45,10 +90,8 @@ Page({
   fetchPopularMusics(lastId) {
     let that = this;
     api.fetch({
-      url: "apigateway-works/api/v1/works/music/list/0",
-      data: {
-        lastId: lastId
-      }
+      url: "apigateway-works/api/v1/works/music/listPopular",
+      data: {}
     }).then(res => {
       wx.stopPullDownRefresh();
       console.log(res.data);
@@ -56,13 +99,32 @@ Page({
         that.setData({
           popularMusicList: res.data.data
         });
-        if (res.data.data.length < app.globalData.fetchNum) {
-          that.setData({
-            tipShow: true
-          })
-        }
+        that.setData({
+          tipShow: true
+        })
       }
     })
+  },
+  doPlayNewMusic(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let musicId = e.currentTarget.dataset.musicid;
+    console.log(musicId,musicId);
+    if (this.data.curPlayId != musicId) {
+      that.setData({
+        curPlayId: musicId,
+        curPlayIndex: index
+      });
+      innerAudioContext.src = this.data.newMusicList[index].musicUrl;
+      innerAudioContext.play();
+      console.log("播放" + index);
+    } else {
+      if (innerAudioContext.paused) {
+        innerAudioContext.play();
+      } else {
+        innerAudioContext.pause();
+      }
+    }
   },
   /**
    * Lifecycle function--Called when page is initially rendered
@@ -129,6 +191,34 @@ Page({
           // 分享失败
         },
       }
+    }
+  },
+  doThumb(e) {
+    if (this.data.canThumb) {
+      this.data.canThumb = false;
+      let musicId = e.currentTarget.dataset.musicid;
+      let that = this;
+      api.fetch({
+        url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
+        method: "post",
+        data: {
+          fromUserId: app.globalData.userInfo.userId,
+          targetType: 1,
+          eggs: 1,
+          targetId: musicId
+        }
+      }).then(res => {
+        this.data.canThumb = true;
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '鸡蛋-1',
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '操作太频繁～',
+      })
     }
   },
   /**

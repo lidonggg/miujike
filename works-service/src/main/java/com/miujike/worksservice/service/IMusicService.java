@@ -43,6 +43,13 @@ public interface IMusicService extends IService<Music> {
     List<Map<String,Object>> getUserMusicList(long userId,  Long lastId);
 
     /**
+     * 获取最流行的音乐列表
+     *
+     * @return list
+     */
+    List<Map<String, Object>> getPopularMusicList();
+
+    /**
      * 拉取用户喜欢的music列表（分页）
      * @param userId userId
      * @param lastId lastId

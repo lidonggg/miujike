@@ -4,6 +4,8 @@ spring:
   #本服务的名称
   application:
     name: user-service
+  jackson:
+    time-zone: GMT+8 #处理时区不一致问题
 
 mybatis-plus:
   type-aliases-package: com.miujike.userservice.domain

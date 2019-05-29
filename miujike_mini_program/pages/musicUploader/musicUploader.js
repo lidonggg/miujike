@@ -153,18 +153,12 @@ Page({
     innerAudioContext.autoplay = true;
     innerAudioContext.src = this.data.audioTempPath;
     innerAudioContext.play();
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放')
-    });
     wx.showModal({
       title: '提示',
       content: '试听中,按确定结束试听',
       showCancel:false,
       success(res){
         innerAudioContext.pause();
-        innerAudioContext.onPause(() => {
-          console.log('结束播放')
-        });
       }
     })
   },

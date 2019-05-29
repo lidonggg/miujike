@@ -31,7 +31,9 @@ public class SignController extends BaseController {
 
     @GetMapping("{userId}")
     public ResponseData doSign(@PathVariable Long userId) {
+        System.out.print("现在是：" + new Date());
         User user = userService.getById(userId);
+        System.out.print("lastSignTime"+user.getLastSignTime());
         if (null == user.getLastSignTime() || !DateUtil.isNowDate(user.getLastSignTime())) {
             SignLog signLog = new SignLog();
             Date now = new Date();
@@ -44,6 +46,7 @@ public class SignController extends BaseController {
             user.setLastSignTime(now);
             user.setEggs(user.getEggs() + eggs);
             userService.updateById(user);
+            System.out.print("现在是：" + now);
             return new ResponseData<>(eggs);
         }
         return new ResponseData();

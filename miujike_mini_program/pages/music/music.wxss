@@ -52,6 +52,10 @@ page {
   justify-content: space-between
 }
 
+.the-audio{
+  width: 300rpx;
+}
+
 .one-new-item .palyer-container .play-info-container .title-progress-container{
   display: inline-block;
   width: 320rpx;
@@ -69,8 +73,8 @@ page {
 }
 
 .one-new-item .palyer-container .play-info-container .music-start-icon{
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
 
 }
 
@@ -112,8 +116,8 @@ page {
 }
 
 .one-new-item .info-container .left-part .play-times-icon{
-  width: 60rpx;
-  height: 56rpx;
+  width: 40rpx;
+  height: 38rpx;
   margin-right: 10rpx;
 }
 

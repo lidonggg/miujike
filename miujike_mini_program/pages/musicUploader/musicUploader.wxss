@@ -45,8 +45,10 @@ label {
 input {
   height: 54rpx;
   width: 560rpx;
+ -webkit-border-before-style: unset;
   border: 1rpx solid #979797;
   font-size: 28rpx;
+  -webkit-border-before: unset
 }
 
 .one-textarea-item{

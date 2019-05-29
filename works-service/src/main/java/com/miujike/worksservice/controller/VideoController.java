@@ -99,4 +99,18 @@ public class VideoController extends BaseController {
         }
         return new ResponseData<>(videoService.getRecommendVideoList(curVideoId, n));
     }
+
+    /**
+     * 增加播放次数
+     *
+     * @param videoId
+     * @return
+     */
+    @GetMapping("addPlayTimes")
+    public ResponseData addPlayTimes(long videoId) {
+        Video video = videoService.getById(videoId);
+        video.setPlayTimes(video.getPlayTimes() + 1);
+        boolean success = videoService.updateById(video);
+        return success ? new ResponseData<>(1) : new ResponseData();
+    }
 }

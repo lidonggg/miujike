@@ -21,6 +21,13 @@ public interface MusicMapper extends BaseMapper<Music> {
     List<Map<String, Object>> getUserMusicList(Map<String, Object> map);
 
     /**
+     * 获取最流行的音乐列表
+     *
+     * @return list
+     */
+    List<Map<String, Object>> getPopularMusicList();
+
+    /**
      * 拉取用户喜欢的music列表（分页）
      *
      * @param map userId, start, end

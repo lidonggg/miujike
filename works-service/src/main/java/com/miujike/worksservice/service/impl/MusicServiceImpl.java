@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,10 +68,24 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     }
 
     @Override
+    public List<Map<String, Object>> getPopularMusicList() {
+        List<Map<String,Object>> resList = musicMapper.getPopularMusicList();
+        addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
     public List<Map<String, Object>> getUserMusicListLike(long userId, Long lastId) {
         Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
         List<Map<String, Object>> resList = musicMapper.getUserMusicListLike(map);
         MusicServiceImpl.addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String,Object>> getNewMusicList() {
+        List<Map<String,Object>> resList = musicMapper.getNewMusicList();
+        addDurationShow(resList);
         return resList;
     }
 
@@ -93,10 +106,5 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
                     + (second < 10 ? "0" + second : "" + second);
             one.put("durationShow", durationShow);
         }
-    }
-
-    @Override
-    public List<Map<String,Object>> getNewMusicList() {
-        return musicMapper.getNewMusicList();
     }
 }

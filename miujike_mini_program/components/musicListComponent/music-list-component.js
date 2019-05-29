@@ -38,10 +38,28 @@ Component({
       
     },
     goPlayPage(e) {
-      let id = e.currentTarget.dataset.id;
-      console.log(id);
+      let that = this;
+      let index = e.currentTarget.dataset.index;
+      let musicId = e.currentTarget.dataset.musicid;
+      console.log(musicId);
       wx.navigateTo({
-        url: '../../pages/musicPlayer/musicPlayer?id=' + id,
+        url: '../../pages/musicPlayer/musicPlayer?musicId=' + musicId,
+        success(){
+          api.fetch({
+            url: "apigateway-works/api/v1/works/music/addPlayTimes",
+            data: {
+              musicId: musicId
+            }
+          }).then(res => {
+            if (res.data.code == 200) {
+              let changeKey = "musicList[" + index + "].playTimes";
+              let playTimes = parseInt(that.data.musicList[index].playTimes)
+              that.setData({
+                [changeKey]: playTimes + 1
+              })
+            }
+          })
+        }
       })
     },
     doThumb(e) {

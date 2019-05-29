@@ -13,11 +13,14 @@
             <view class="play-info-container">
               <view class="title-progress-container">
                 <view class="title-singer-info">
-                  <text style='font-size:26rpx'>{{item.title}}-{{item.singer}}</text>
-                  <text style='font-size:22rpx'>(原唱：{{item.originalSinger}})</text>
+                  <text style='font-size:26rpx;color:white'>{{item.title}}-{{item.singer}}</text>
+                  <text style='font-size:22rpx;color:white'>(原唱：{{item.originalSinger}})</text>
+                </view>
+                <view class="progress-container" style='margin-top:10rpx'>
+                  <progress percent="{{percents[index]}}" border-radius="6" stroke-width="4" color="#f9e351" />
                 </view>
               </view>
-              <image src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-start-icon"></image>
+              <image data-index="{{index}}" data-musicid="{{item.musicId}}"  src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-start-icon" catchtap='doPlayNewMusic'></image>
             </view>
           </view>
           <view class="info-container flex-center-layout-row">
@@ -31,10 +34,10 @@
                   <text class="gray-color-text" style='font-size:24rpx'>{{item.playTimes}}</text>
                 </view>
               </view>
-              <view class="light-gray-color-text" style="font-size:30rpx">Music only</view>
+              <view class="light-gray-color-text" style="font-size:26rpx">Music only</view>
             </view>
             <view class="right-part">
-              <image class="the-option" src='../../resources/imgs/music/add_eggs_group.png'></image>
+              <image class="the-option" data-musicid='{{item.musicId}}' catchtap='doThumb' src='../../resources/imgs/music/add_eggs_group.png'></image>
               <view class="the-option share-icon">
               <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}'></button>
               <image src='../../resources/imgs/music/share_group.png'></image>
@@ -43,7 +46,7 @@
           </view>
         </view>
       </block>
-      <view wx:if="{{newMusicList.length == 0}}" class="no-new-tip light-gray-color-text flex-center-layout-row">暂时没有新歌曲哦~</view>
+      <view wx:if="{{loaded && newMusicList.length == 0}}" class="no-new-tip light-gray-color-text flex-center-layout-row">暂时没有新歌曲哦~</view>
     </scroll-view>
     <view class="popular-tip">Popular</view>
     <music-list-component music-list="{{popularMusicList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />

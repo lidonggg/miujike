@@ -60,6 +60,7 @@ Page({
         })
         let haveSigned = false;
         if (resInfo.lastSignTime) {
+          console.log(resInfo.lastSignTime)
           if (util.judgeTime(resInfo.lastSignTime.replace(/-|T|:/g, '')) == 0) {
             console.log("签到过了")
             haveSigned = true

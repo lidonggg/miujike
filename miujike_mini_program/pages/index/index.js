@@ -80,10 +80,27 @@ Page({
   },
   goPlayPage(e) {
     let that = this;
+    let videoId = e.currentTarget.dataset.videoid;
     let index = e.currentTarget.dataset.index;
     app.globalData.mediaPlay = this.data.newVideoList[index];
     wx.navigateTo({
-      url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId
+      url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId,
+      success(){
+        api.fetch({
+          url: "apigateway-works/api/v1/works/video/addPlayTimes",
+          data: {
+            videoId: videoId
+          }
+        }).then(res => {
+          /**if (res.data.code == 200) {
+            let changeKey = "videoList[" + index + "].playTimes";
+            let playTimes = parseInt(that.data.videoList[index].playTimes)
+            that.setData({
+              [changeKey]: playTimes + 1
+            })
+          }*/
+        })
+      }
     })
   },
   doSearch() {
