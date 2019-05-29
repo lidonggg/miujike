@@ -102,7 +102,7 @@ Page({
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
     let userId = res.target.dataset.userid;
     if (res.from === 'button') {
       // 来自页面内转发按钮

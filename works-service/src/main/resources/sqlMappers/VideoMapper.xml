@@ -39,6 +39,9 @@
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration,shares
         from miu_video
+        <if test='userId == 0'>
+            where user_id != 0
+        </if>
         <if test='userId != 0'>
             where user_id = #{userId}
         </if>

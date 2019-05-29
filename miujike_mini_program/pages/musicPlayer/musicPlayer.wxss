@@ -1,1 +1,10 @@
 /* pages/musicPlayer/musicPlayer.wxss */
+.cover-container{
+  height: 750rpx;
+  width: 750rpx;
+}
+
+.cover-container image{
+  width: 100%;
+  height: 100%;
+}

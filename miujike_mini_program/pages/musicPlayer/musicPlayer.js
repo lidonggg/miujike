@@ -1,3 +1,7 @@
+const app = getApp();
+const api = require("../../utils/httpRequest.js");
+const innerAudioContext = wx.createInnerAudioContext();
+
 // pages/musicPlayer/musicPlayer.js
 Page({
 
@@ -5,14 +9,29 @@ Page({
    * Page initial data
    */
   data: {
+    curMusicInfo:{
 
+    }
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    if(options.index){
+      this.setData({
+        curMusicInfo: app.globalData.musicPlayList[options.index]
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '播放失败',
+        showCancel:false,
+        success(){
+          wx.navigateBack({})
+        }
+      })
+    }
   },
 
   /**
@@ -24,9 +43,9 @@ Page({
 
   onNext(e){
     let that = this;
-    let index = e.currentTarget.dataset.index;
-    this.setData({
-      curMusic: that.data.musicList[index]
+    let lastId = this.data.curMusicInfo.musicId;
+    api.fetch({
+      url:"apigateway-works/api/v1/works/music/getNext"
     })
   },
 

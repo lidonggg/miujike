@@ -8,7 +8,7 @@ Component({
       observer: function(newVal, oldVal) {} // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
     },
     worksTip: String, // 简化的定义方式
-    musicTipShow: Boolean
+    tipShow: Boolean
   },
   data: {
 

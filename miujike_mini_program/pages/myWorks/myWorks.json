@@ -4,6 +4,5 @@
     "video-list-component": "/components/videoListComponent/video-list-component"
   },
   "navigationBarTitleText": "我的作品",
-  "enablePullDownRefresh": false,
   "disableScroll": true
 }

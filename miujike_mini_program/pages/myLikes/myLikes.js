@@ -20,7 +20,9 @@ Page({
     loaded: true,
     worksTip: "去为更多优秀的作品加鸡蛋吧～",
     musicList: [],
-    videoList: []
+    videoList: [],
+    videoTipShow:false,
+    musicTipShow:false
   },
 
   // start: 触摸开始

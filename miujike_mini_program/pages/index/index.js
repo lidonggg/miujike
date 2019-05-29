@@ -63,9 +63,12 @@ Page({
       }
     }).then(res => {
       console.log(res.data);
+      if(lastId == 0){
+        that.data.videoList = [];
+      }
       if (res.data.code == 200) {
         that.setData({
-          videoList: res.data.data
+          videoList: that.data.videoList.concat(res.data.data)
         });
         if (res.data.data.length < app.globalData.fetchNum) {
           that.setData({

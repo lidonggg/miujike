@@ -78,6 +78,6 @@ App({
     tapp: "miujike-app",
     fetchNum: 15,
     qiniuDomain:"http://ps8xnh0n1.bkt.clouddn.com/",
-    mediaPlay: {}
+    musicPlayList: []
   }
 })

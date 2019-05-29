@@ -33,7 +33,12 @@
         original_singer as originalSinger,play_times as playTimes,cover,shares,
         title,duration
         from miu_music
-        where user_id = #{userId}
+        <if test='userId == 0'>
+            where user_id != 0
+        </if>
+        <if test='userId != 0'>
+            where user_id = #{userId}
+        </if>
         <if test='lastId != 0'>
             <![CDATA[
                 and music_id < #{lastId}

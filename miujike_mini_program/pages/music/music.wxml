@@ -3,8 +3,7 @@
 <import src="../../templates/musicList/musicListTemplate.wxml" />
 
 <template is="search-input" data="{{searchValue}}" />
-<scroll-view class="main-scroll-container" scroll-y>
-  <view>
+<view class="main-scroll-container" scroll-y>
     <scroll-view class="new-scroll-container" scroll-x>
       <block wx:for="{{newMusicList}}" wx:key="musicId">
         <view class="one-new-item inline-flex-center-layout-col">
@@ -44,6 +43,5 @@
       <view wx:if="{{newMusicList.length == 0}}" class="no-new-tip light-gray-color-text flex-center-layout-row">暂时没有新歌曲哦~</view>
     </scroll-view>
     <view class="popular-tip">Popular</view>
-    <music-list-component music-list="{{popularMusicList}}" works-tip="{{worksTip}}" />
-  </view>
-</scroll-view>
+    <music-list-component music-list="{{popularMusicList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />
+</view>

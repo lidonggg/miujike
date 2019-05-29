@@ -9,14 +9,16 @@ Page({
    */
   data: {
     searchValue: "",
+    tipShow:false,
+    worksTip:"暂时没有更多音乐了哦~",
     newMusicList: [{
         musicId: 1,
         title: "圣诞节,,,........",
         singer: "ld",
         originalSinger: "dongdong",
-      playTimes: 100,
-      duration: 235,
-      durationShow: "03:55",
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -45,9 +47,9 @@ Page({
         title: "圣诞节,,,........",
         singer: "ld",
         originalSinger: "dongdong",
-      playTimes: 100,
-      duration: 235,
-      durationShow: "03:55",
+        playTimes: 100,
+        duration: 235,
+        durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
       },
       {
@@ -69,8 +71,7 @@ Page({
         duration: 235,
         durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      }
-      ,
+      },
       {
         musicId: 4,
         title: "圣诞节",
@@ -80,8 +81,7 @@ Page({
         duration: 235,
         durationShow: "03:55",
         cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      }
-      ,
+      },
       {
         musicId: 5,
         title: "圣诞节",
@@ -120,20 +120,21 @@ Page({
    */
   onLoad: function(options) {
     this.fetchNewMusics();
+    this.fetchPopularMusics(0);
   },
-  
+
   /**
    * 拉取最新的音乐
    */
-  fetchNewMusics(){
+  fetchNewMusics() {
     let that = this;
     api.fetch({
-      url:"apigateway-works/api/v1/works/music/new",
+      url: "apigateway-works/api/v1/works/music/new",
 
     }).then(res => {
       wx.stopPullDownRefresh();
       that.setData({
-        newMusicList:res.data.data
+        newMusicList: res.data.data
       })
     })
   },
@@ -141,8 +142,27 @@ Page({
   /**
    * 拉取音乐
    */
-  fetchPopularMusics(){
-
+  fetchPopularMusics(lastId) {
+    let that = this;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/music/list/0",
+      data: {
+        lastId: lastId
+      }
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      console.log(res.data);
+      if (res.data.code == 200) {
+        that.setData({
+          popularMusicList: res.data.data
+        });
+        if (res.data.data.length < app.globalData.fetchNum) {
+          that.setData({
+            tipShow: true
+          })
+        }
+      }
+    })
   },
   /**
    * Lifecycle function--Called when page is initially rendered
@@ -176,16 +196,17 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function() {
-    setTimeout(function() {
-      wx.stopPullDownRefresh();
-    }, 2000)
+    this.fetchPopularMusics(0);
   },
 
   /**
    * Called when page reach bottom
    */
   onReachBottom: function() {
-
+    if (!this.data.tipShow) {
+      let lastId = this.data.popularMusicList[this.data.popularMusicList.length - 1].musicId;
+      this.fetchPopularMusics(lastId);
+    }
   },
 
   /**

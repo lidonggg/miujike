@@ -1,2 +1,4 @@
 <!--pages/musicPlayer/musicPlayer.wxml-->
-<text>pages/musicPlayer/musicPlayer.wxml</text>
+<view class="cover-container">
+  <image src="{{curMusicInfo.cover}}"></image>
+</view>
