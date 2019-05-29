@@ -140,3 +140,12 @@
   -webkit-box-orient: vertical;
   align-content: center;
 }
+
+.share-button {
+  /* background-color: rgba(255, 255, 255, 0); */
+  border: 0rpx solid rgba(255, 255, 255, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2
+}

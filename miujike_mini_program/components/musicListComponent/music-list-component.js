@@ -1,3 +1,6 @@
+const api = require("../../utils/httpRequest.js")
+const app = getApp()
+
 Component({
   behaviors: [],
 
@@ -11,7 +14,7 @@ Component({
     tipShow: Boolean
   },
   data: {
-
+    canThumb: true
   },
 
   lifetimes: {
@@ -31,10 +34,8 @@ Component({
   },
 
   methods: {
-    onShare() {
-      wx.showToast({
-        title: '分享',
-      })
+    doShare() {
+      
     },
     goPlayPage(e) {
       let id = e.currentTarget.dataset.id;
@@ -42,7 +43,34 @@ Component({
       wx.navigateTo({
         url: '../../pages/musicPlayer/musicPlayer?id=' + id,
       })
+    },
+    doThumb(e) {
+      if (this.data.canThumb) {
+        this.data.canThumb = false;
+        let musicId = e.currentTarget.dataset.musicid;
+        let that = this;
+        api.fetch({
+          url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
+          method: "post",
+          data: {
+            fromUserId: app.globalData.userInfo.userId,
+            targetType: 1,
+            eggs: 1,
+            targetId: musicId
+          }
+        }).then(res => {
+          this.data.canThumb = true;
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: '鸡蛋-1',
+            })
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '操作太频繁～',
+        })
+      }
     }
   }
-
 })

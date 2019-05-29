@@ -34,8 +34,11 @@
               <view class="light-gray-color-text" style="font-size:30rpx">Music only</view>
             </view>
             <view class="right-part">
-              <image src='../../resources/imgs/music/add_eggs_group.png'></image>
+              <image class="the-option" src='../../resources/imgs/music/add_eggs_group.png'></image>
+              <view class="the-option share-icon">
+              <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}'></button>
               <image src='../../resources/imgs/music/share_group.png'></image>
+              </view>
             </view>
           </view>
         </view>

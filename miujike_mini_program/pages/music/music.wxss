@@ -124,10 +124,21 @@ page {
   align-items: center;
 }
 
-.one-new-item .info-container .right-part image{
+.one-new-item .info-container .right-part .the-option{
   width: 60rpx;
   height: 94rpx;
   margin-left: 20rpx;
+}
+
+.share-icon{
+  position: relative;
+}
+
+.share-icon image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1
 }
 
 .duration-container{

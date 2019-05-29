@@ -46,6 +46,7 @@ public class Music extends Model<Music> {
 
     private int duration;
 
+    @TableField(exist = false)
     private String durationShow;
 
     private short status;

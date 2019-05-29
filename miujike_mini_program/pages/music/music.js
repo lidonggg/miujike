@@ -9,110 +9,10 @@ Page({
    */
   data: {
     searchValue: "",
-    tipShow:false,
-    worksTip:"暂时没有更多音乐了哦~",
-    newMusicList: [{
-        musicId: 1,
-        title: "圣诞节,,,........",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 2,
-        title: "圣诞节,,,,,",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 3,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      }
-    ],
-    popularMusicList: [{
-        musicId: 1,
-        title: "圣诞节,,,........",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 2,
-        title: "圣诞节,,,,,",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 3,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 4,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 5,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 6,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      },
-      {
-        musicId: 7,
-        title: "圣诞节",
-        singer: "ld",
-        originalSinger: "dongdong",
-        playTimes: 100,
-        duration: 235,
-        durationShow: "03:55",
-        cover: "http://pq3gqpelo.bkt.clouddn.com/2019-05-04-46707c55-1105-420a-b8f4-dd908bb09b67.png"
-      }
-    ]
+    tipShow: false,
+    worksTip: "暂时没有更多音乐了哦~",
+    newMusicList: [],
+    popularMusicList: []
   },
 
   /**
@@ -212,8 +112,24 @@ Page({
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    let musicId = res.target.dataset.musicid;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+      return {
+        title: '分享',
+        path: '/pages/musicPlayer/musicPlayer?musicId=' + musicId,
+        imageUrl: '', //用户分享出去的自定义图片大小为5:4,
+        // 此回调不会被执行
+        success: function(res) {
 
+        },
+        fail: function(res) {
+          // 分享失败
+        },
+      }
+    }
   },
   /**
    * 输入

@@ -31,7 +31,8 @@ public class ThumbServiceImpl extends ServiceImpl<ThumbMapper, Thumb> implements
         if (us) {
             QueryWrapper<Thumb> thumbWrapper = new QueryWrapper<>();
             thumbWrapper.eq("target_id", thumb.getTargetId())
-                    .eq("from_user_id", thumb.getFromUserId());
+                    .eq("from_user_id", thumb.getFromUserId())
+                    .eq("target_type", thumb.getTargetType());
             Thumb exit = getOne(thumbWrapper);
             if (null == exit) {
                 exit = thumb;
