@@ -15,7 +15,7 @@ public interface IMusicService extends IService<Music> {
     /**
      * 添加新视频
      *
-     * @param video
+     * @param music
      * @return
      */
     Music saveNewMusic(Music music);
@@ -41,6 +41,14 @@ public interface IMusicService extends IService<Music> {
      * @return list
      */
     List<Map<String,Object>> getUserMusicList(long userId,  Long lastId);
+
+    /**
+     * 拉取用户喜欢的music列表（分页）
+     * @param userId userId
+     * @param lastId lastId
+     * @return list
+     */
+    List<Map<String,Object>> getUserMusicListLike(long userId,  Long lastId);
 
     /**
      * 获取最新的五首音乐

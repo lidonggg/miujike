@@ -51,4 +51,20 @@
         order by release_time desc
         limit 5
     </select>
+
+    <!--获取喜欢的音乐-->
+    <select id="getUserMusicListLike" parameterType="map" resultType="map">
+        select distinct mt.target_id as musicId,mm.music_url as musicUrl,mm.singer ,mm.user_id as userId,
+        mm.original_singer as originalSinger,mm.play_times as playTimes,mm.cover,mm.title,mm.duration,mt.thumb_id as thumbId
+        from miu_music mm right join miu_thumb mt on mt.target_id = mm.music_id
+        where mt.target_type = 1
+        and mt.from_user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and mt.thumb_id < #{lastId}
+            ]]>
+        </if>
+        order by mt.thumb_id desc
+        limit #{fetchNum}
+    </select>
 </mapper>

@@ -24,25 +24,48 @@ public class MusicController {
         return 0L != musicAdded.getMusicId() ? new ResponseData<>(musicAdded) : new ResponseData();
     }
 
+    /**
+     * 拉取音乐
+     *
+     * @param userId
+     * @param lastId
+     * @return
+     */
     @RequestMapping("/list/{userId}")
     public ResponseData listMusic(@PathVariable long userId, Long lastId) {
-        if(null == lastId){
+        if (null == lastId) {
             lastId = 0L;
         }
         return new ResponseData<>(musicService.getUserMusicList(userId, lastId));
     }
 
+    /**
+     * 拉取喜欢的音乐
+     *
+     * @param userId
+     * @param lastId
+     * @return
+     */
+    @RequestMapping("/listLike/{userId}")
+    public ResponseData listLike(@PathVariable long userId, Long lastId) {
+        if (null == lastId) {
+            lastId = 0L;
+        }
+        return new ResponseData<>(musicService.getUserMusicListLike(userId, lastId));
+    }
+
     @GetMapping("/new")
-    public ResponseData listNewMusic(){
+    public ResponseData listNewMusic() {
         return new ResponseData<>(musicService.getNewMusicList());
     }
 
     /**
      * 按照受欢迎程度进行分页
+     *
      * @return
      */
     @GetMapping("/list")
-    public ResponseData listPopularVideo(int curPage){
+    public ResponseData listPopularVideo(int curPage) {
 
         return new ResponseData<>();
     }

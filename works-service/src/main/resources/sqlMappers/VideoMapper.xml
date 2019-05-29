@@ -79,4 +79,19 @@
         and video_id != #{curVideoId}
         limit #{n};
     </select>
+    <!--获取喜欢的视频-->
+    <select id="getUserVideoListLike" parameterType="map" resultType="map">
+        select distinct mt.target_id as videoId,mv.video_url as videoUrl,mv.singer ,mv.user_id as userId,
+        mv.original_singer as originalSinger,mv.play_times as playTimes,mv.cover,mv.title,mv.duration,mt.thumb_id as thumbId
+        from miu_video mv right join miu_thumb mt on mt.target_id = mv.video_id
+        where mt.target_type = 2
+        and mt.from_user_id = #{userId}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and mt.thumb_id < #{lastId}
+            ]]>
+        </if>
+        order by mt.thumb_id desc
+        limit #{fetchNum}
+    </select>
 </mapper>

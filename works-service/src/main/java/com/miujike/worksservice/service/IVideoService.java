@@ -54,6 +54,15 @@ public interface IVideoService extends IService<Video> {
     List<Map<String, Object>> getUserVideoList(long userId, Long lastId);
 
     /**
+     * 拉取用户喜欢的video列表（分页）
+     *
+     * @param userId userId
+     * @param lastId 结束位置
+     * @return list
+     */
+    List<Map<String, Object>> getUserVideoListLike(long userId, Long lastId);
+
+    /**
      * 获取最新的五个视频
      *
      * @return List<Map   <   String   ,   Object>>

@@ -59,6 +59,24 @@ public class VideoController extends BaseController {
     }
 
     /**
+     * 拉取喜欢的视频
+     *
+     * @param userId
+     * @param lastId
+     * @return
+     */
+    @RequestMapping("listLike/{userId}")
+    public ResponseData listLike(@PathVariable Long userId, Long lastId) {
+        if (null == userId) {
+            userId = 0L;
+        }
+        if (null == lastId) {
+            lastId = 0L;
+        }
+        return new ResponseData<>(videoService.getUserVideoListLike(userId, lastId));
+    }
+
+    /**
      * 拉取最新的五个视频
      *
      * @return

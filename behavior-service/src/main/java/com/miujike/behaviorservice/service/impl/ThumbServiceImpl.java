@@ -1,5 +1,6 @@
 package com.miujike.behaviorservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.miujike.behaviorservice.domain.Thumb;
 import com.miujike.behaviorservice.mapper.ThumbMapper;
@@ -28,8 +29,17 @@ public class ThumbServiceImpl extends ServiceImpl<ThumbMapper, Thumb> implements
     public Thumb doThumb(Thumb thumb) {
         boolean us = userClient.subtractEggNum(thumb.getFromUserId(), thumb.getEggs());
         if (us) {
-            thumb.setCreateTime(new Date());
-            boolean success = save(thumb);
+            QueryWrapper<Thumb> thumbWrapper = new QueryWrapper<>();
+            thumbWrapper.eq("target_id", thumb.getTargetId())
+                    .eq("from_user_id", thumb.getFromUserId());
+            Thumb exit = getOne(thumbWrapper);
+            if (null == exit) {
+                exit = thumb;
+                exit.setEggs(0);
+            }
+            exit.setCreateTime(new Date());
+            exit.setEggs(exit.getEggs() + 1);
+            boolean success = saveOrUpdate(exit);
             if (success) {
                 boolean s = worksClient.addThumbNum(thumb.getTargetId(), thumb.getTargetType());
                 return s ? thumb : null;

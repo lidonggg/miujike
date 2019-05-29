@@ -14,7 +14,7 @@ Component({
     tipShow: Boolean
   },
   data: {
-
+    canThumb:true
   },
 
   lifetimes: {
@@ -47,24 +47,33 @@ Component({
       })
     },
     doThumb(e){
-      let videoId = e.currentTarget.dataset.videoid;
-      let that = this;
-      api.fetch({
-        url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
-        method: "post",
-        data: {
-          fromUserId: app.globalData.userInfo.userId,
-          targetType: 2,
-          eggs: 1,
-          targetId: videoId
-        }
-      }).then(res => {
-        if (res.data.code == 200) {
-          wx.showToast({
-            title: '鸡蛋-1',
-          })
-        }
-      })
+      if(this.data.canThumb){
+        this.data.canThumb = false;
+        let videoId = e.currentTarget.dataset.videoid;
+        let that = this;
+        api.fetch({
+          url: "apigateway-behavior/api/v1/behavior/thumb/doThumb",
+          method: "post",
+          data: {
+            fromUserId: app.globalData.userInfo.userId,
+            targetType: 2,
+            eggs: 1,
+            targetId: videoId
+          }
+        }).then(res => {
+          this.data.canThumb = true;
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: '鸡蛋-1',
+            })
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '操作太频繁～',
+        })
+      }
+      
     }
   }
 })

@@ -1,6 +1,7 @@
 package com.miujike.worksservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.miujike.common.dto.MapCreator;
 import com.miujike.common.util.QiNiuUtil;
 import com.miujike.worksservice.domain.Video;
 import com.miujike.worksservice.mapper.VideoMapper;
@@ -72,11 +73,16 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public List<Map<String, Object>> getUserVideoList(long userId, Long lastId) {
-        Map<String, Object> map = new HashMap<>(4);
-        map.put("userId", userId);
-        map.put("fetchNum", fetchNum);
-        map.put("lastId", lastId);
+        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);;
         List<Map<String, Object>> resList = videoMapper.getUserVideoList(map);
+        MusicServiceImpl.addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserVideoListLike(long userId, Long lastId) {
+        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
+        List<Map<String, Object>> resList = videoMapper.getUserVideoListLike(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
     }

@@ -1,6 +1,7 @@
 package com.miujike.worksservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.miujike.common.dto.MapCreator;
 import com.miujike.worksservice.domain.Music;
 import com.miujike.worksservice.mapper.MusicMapper;
 import com.miujike.worksservice.service.IMusicService;
@@ -61,13 +62,17 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
 
     @Override
     public List<Map<String,Object>> getUserMusicList(long userId,  Long lastId) {
-
-        Map<String, Object> map = new HashMap<>(4);
-        map.put("userId", userId);
-        map.put("fetchNum", fetchNum);
-        map.put("lastId", lastId);
+        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
         List<Map<String, Object>> resList = musicMapper.getUserMusicList(map);
         addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserMusicListLike(long userId, Long lastId) {
+        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
+        List<Map<String, Object>> resList = musicMapper.getUserMusicListLike(map);
+        MusicServiceImpl.addDurationShow(resList);
         return resList;
     }
 

@@ -14,14 +14,24 @@ public interface MusicMapper extends BaseMapper<Music> {
 
     /**
      * 拉取用户music列表（分页）
+     *
      * @param map userId, start, end
      * @return list
      */
-    List<Map<String,Object>> getUserMusicList(Map<String,Object> map);
+    List<Map<String, Object>> getUserMusicList(Map<String, Object> map);
+
+    /**
+     * 拉取用户喜欢的music列表（分页）
+     *
+     * @param map userId, start, end
+     * @return list
+     */
+    List<Map<String, Object>> getUserMusicListLike(Map<String, Object> map);
 
     /**
      * 获取最新的五首音乐
-     * @return List<Map<String,Object>>
+     *
+     * @return list
      */
-    List<Map<String,Object>> getNewMusicList();
+    List<Map<String, Object>> getNewMusicList();
 }
