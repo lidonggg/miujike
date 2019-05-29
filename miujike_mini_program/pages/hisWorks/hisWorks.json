@@ -4,7 +4,5 @@
     "video-list-component": "/components/videoListComponent/video-list-component"
   },
   "navigationBarTitleText": "TA的作品",
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark",
   "disableScroll": true
 }

@@ -77,6 +77,11 @@ Component({
       })
 
       console.log(this.data.userList)
+    },
+    goHisWorksPage(e){
+      wx.navigateTo({
+        url: '../../pages/hisWorks/hisWorks?userId='+e.currentTarget.dataset.userid,
+      })
     }
   }
 

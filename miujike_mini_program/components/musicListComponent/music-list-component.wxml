@@ -30,7 +30,7 @@
       </view>
     </view>
   </block>
-  <view class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
+  <view wx:if="{{musicTipShow}}" class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
     {{worksTip}}
   </view>
 </music-list-component>

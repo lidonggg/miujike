@@ -122,7 +122,7 @@ Page({
       })
       if (res.data.data.length < app.globalData.fetchNum) {
         that.setData({
-          tipShow: true
+          videoTipShow: true
         })
       }
     })
@@ -150,7 +150,7 @@ Page({
       })
       if (res.data.data.length < app.globalData.fetchNum) {
         that.setData({
-          tipShow: true
+          musicTipShow: true
         })
       }
     })

@@ -36,7 +36,7 @@
       </view>
     </view>
   </block>
-  <view wx:if="{{tipShow}}" class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
+  <view wx:if="{{videoTipShow}}" class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
     {{worksTip}}
   </view>
 </video-list-component>

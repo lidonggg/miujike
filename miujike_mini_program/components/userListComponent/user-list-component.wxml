@@ -4,7 +4,7 @@
     <text class="nickname-text text-overflow-hidden">{{item.nickname}}</text>
     <image class="fans-icon" src="../../resources/imgs/mine/myFans/his_fans.png"></image>
     <text class="gray-color-text fans-text text-overflow-hidden">{{item.fans}}</text>
-    <image class="works-icon" src="../../resources/imgs/mine/myFans/his_works.png"></image>
+    <image data-userid='{{item.userId}}' class="works-icon" src="../../resources/imgs/mine/myFans/his_works.png" catchtap='goHisWorksPage'></image>
     <image class="share-icon" src="../../resources/imgs/mine/myFans/share_group.png"></image>
     <image data-index="{{index}}" bindtap='changeRelationship' class="unsubmit-icon" src="{{item.myFollow?'../../resources/imgs/mine/myFans/unsubmit.png':'../../resources/imgs/mine/myFans/submit.png'}}"></image>
   </view>

@@ -5,7 +5,7 @@
   <swiper-item class="video-swiper-item">
     <scroll-view id="the-scroll" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" wx:if="{{videoList.length!=0}}" scroll-y>
       <view id="the-inner" style="height:100%">
-        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />
+        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" video-tip-show="{{videoTipShow}}" />
       </view>
     </scroll-view>
     <view wx:if="{{videoList.length==0 && loaded}}" class="no-video-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
@@ -13,7 +13,7 @@
   <swiper-item class="music-swiper-item">
     <scroll-view id="the-scroll-2" bindtouchstart='startFn2' bindtouchend='endFn2' scroll-top="{{scrollTop}}"  wx:if="{{musicList.length!=0}}" scroll-y>
       <view id="the-inner-2" style="height:100%">
-        <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}" />
+        <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}" music-tip-show="{{musicTipShow}}" />
       </view>
     </scroll-view>
     <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有喜欢的音乐作品哦～</view>
