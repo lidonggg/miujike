@@ -103,6 +103,22 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
+    let userId = res.target.dataset.userid;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target);
+      return {
+        title: '分享',
+        path: '/pages/hisWorks/hisWorks?userId=' + userId,
+        imageUrl: '', //用户分享出去的自定义图片大小为5:4,
+        // 由于微信政策，此回调不会被执行
+        success: function (res) {
 
+        },
+        fail: function (res) {
+          // 分享失败
+        },
+      }
+    }
   }
 })

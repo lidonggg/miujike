@@ -101,36 +101,36 @@ Page({
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
-    }
-    return {
-      title: '分享',
-      path: '/pages/videoPlayer/videoPlayer?videoId=' + videoId,
-      imageUrl: '', //用户分享出去的自定义图片大小为5:4,
-      // 此回调不会被执行
-      success: function(res) {
-        // 转发成功
-        api.fetch({
-          url: "apigateway-behavior/api/v1/behavior/share/Share",
-          method: "post",
-          data: {
-            fromUserId: app.globalData.userInfo.userId,
-            targetType: 2,
-            eggs: 1,
-            targetId: videoId
-          }
-        }).then(data => {
-          if (data.data.code == 200) {
-            wx.showToast({
-              title: '鸡蛋+1',
-              icon: 'success',
-              duration: 2000
-            })
-          }
-        })
-      },
-      fail: function(res) {
-        // 分享失败
-      },
+      return {
+        title: '分享',
+        path: '/pages/videoPlayer/videoPlayer?videoId=' + videoId,
+        imageUrl: '', //用户分享出去的自定义图片大小为5:4,
+        // 此回调不会被执行
+        success: function (res) {
+          // 转发成功
+          api.fetch({
+            url: "apigateway-behavior/api/v1/behavior/share/doShare",
+            method: "post",
+            data: {
+              fromUserId: app.globalData.userInfo.userId,
+              targetType: 2,
+              eggs: 1,
+              targetId: videoId
+            }
+          }).then(data => {
+            if (data.data.code == 200) {
+              wx.showToast({
+                title: '鸡蛋+1',
+                icon: 'success',
+                duration: 2000
+              })
+            }
+          })
+        },
+        fail: function (res) {
+          // 分享失败
+        },
+      }
     }
   },
 

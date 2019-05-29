@@ -22,12 +22,12 @@ public class ShareController extends BaseController {
     private IShareService shareService;
 
     /**
-     * 点赞（送鸡蛋）
+     * 分享
      *
      * @param share
      * @return
      */
-    @PostMapping("doThumb")
+    @PostMapping("doShare")
     public ResponseData doShare(Share share) {
         Share shareDid = shareService.doShare(share);
         return null != shareDid? new ResponseData<>(shareDid):new ResponseData<>(ResponseConstants.FAIL_CODE, ResponseConstants.FAIL, -1);
