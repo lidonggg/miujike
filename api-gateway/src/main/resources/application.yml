@@ -8,7 +8,6 @@ spring:
   profiles:
     active: dev
 
-
 #自定义路由转发,统一入口
 #/user-service/api/v1/user/...
 # |

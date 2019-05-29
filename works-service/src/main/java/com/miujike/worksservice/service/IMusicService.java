@@ -13,6 +13,14 @@ import java.util.Map;
 public interface IMusicService extends IService<Music> {
 
     /**
+     * 添加新视频
+     *
+     * @param video
+     * @return
+     */
+    Music saveNewMusic(Music music);
+
+    /**
      * 点赞，添加点赞人数
      * @param musicId musicId
      * @return

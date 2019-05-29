@@ -106,6 +106,7 @@ Page({
       title: '分享',
       path: '/pages/videoPlayer/videoPlayer?videoId=' + videoId,
       imageUrl: '', //用户分享出去的自定义图片大小为5:4,
+      // 此回调不会被执行
       success: function(res) {
         // 转发成功
         api.fetch({

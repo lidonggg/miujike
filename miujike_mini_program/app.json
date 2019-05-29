@@ -1,26 +1,19 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/authorize/authorize",
+    "pages/test/test",
     
+    "pages/authorize/authorize",
     "pages/videoUploader/videoUploader",
     "pages/musicUploader/musicUploader",
     "pages/myFollows/myFollows",
-    
     "pages/myFans/myFans",
-    
     "pages/hisWorks/hisWorks",
-    
-    
-    
-    
     "pages/music/music",
     "pages/videoPlayer/videoPlayer",
     "pages/musicPlayer/musicPlayer",
     "pages/mine/mine",
-    
     "pages/logs/logs",
-    
     "pages/allComing/allComing",
     "pages/upload/upload",
     "pages/myWorks/myWorks",
@@ -29,11 +22,11 @@
     "pages/getEggs/getEggs",
     "pages/myNotifications/myNotifications"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Miu叽壳音乐",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#9c9c9c",
@@ -43,18 +36,16 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"resources/imgs/tabBars/index.png",
-        "selectedIconPath":"resources/imgs/tabBars/index_active.png"
+        "iconPath": "resources/imgs/tabBars/index.png",
+        "selectedIconPath": "resources/imgs/tabBars/index_active.png"
       },
       {
-        
         "pagePath": "pages/music/music",
         "text": "音乐",
         "iconPath": "resources/imgs/tabBars/music.png",
         "selectedIconPath": "resources/imgs/tabBars/music_active.png"
       },
       {
-        
         "pagePath": "pages/allComing/allComing",
         "text": "全民来稿",
         "iconPath": "resources/imgs/tabBars/all_coming.png",
@@ -67,5 +58,6 @@
         "selectedIconPath": "resources/imgs/tabBars/mine_active.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

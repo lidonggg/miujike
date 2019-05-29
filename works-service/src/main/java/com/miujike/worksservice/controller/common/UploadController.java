@@ -1,13 +1,10 @@
 package com.miujike.worksservice.controller.common;
 
 import com.alibaba.fastjson.JSONObject;
+import com.miujike.common.dto.ResponseData;
 import com.miujike.common.util.QiNiuUtil;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,7 +18,7 @@ import java.util.UUID;
  * @author Ls J
  * @date 2019/4/22 9:47 AM
  */
-@Controller
+@RestController
 @RequestMapping("/api/v1/upload")
 public class UploadController {
     private org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());
@@ -29,23 +26,19 @@ public class UploadController {
     /**
      * 七牛域名
      */
-    private final String QINIU_BASE_PATH = "http://pq3gqpelo.bkt.clouddn.com/";
+    private final String QINIU_BASE_PATH = "http://ps8xnh0n1.bkt.clouddn.com/";
 
     /**
      * 上传文件
      *
+     * @param uploadFile
      * @return
      */
-    @ResponseBody
     @PostMapping("/uploadInMini")
-    public Map<String, Object> uploadFile(@RequestParam("file") MultipartFile uploadFile) {
-        Map<String, Object> map = new HashMap<>();
-        // 上传是否成功的判断标识，0-成功，1-失败
+    public ResponseData uploadFile(@RequestParam("file") MultipartFile uploadFile) {
         String url = saveUploadFile(uploadFile, uploadFile.getOriginalFilename());
         log.info("url=======>" + QINIU_BASE_PATH + url);
-        map.put("url", QINIU_BASE_PATH + url);
-        map.put("error", 0);
-        return map;
+        return new ResponseData<>(QINIU_BASE_PATH + url);
     }
 
     /**
@@ -54,7 +47,6 @@ public class UploadController {
      * @param file
      * @return
      */
-    @ResponseBody
     @RequestMapping("/uploadLayuiFile")
     public String uploadLayuiFile(@RequestParam("file") MultipartFile file) {
         String url = saveUploadFile(file, file.getOriginalFilename());
@@ -80,14 +72,13 @@ public class UploadController {
      *
      * @return
      */
-    @ResponseBody
     @RequestMapping("/getToken")
     public Map<String, Object> getToken() {
         Map<String, Object> map = new HashMap<>();
-
+        String token = QiNiuUtil.getUpToken();
         map.put("code", 0);
-        map.put("uptoken", QiNiuUtil.getUpToken());
-
+        map.put("uptoken", token);
+        log.debug("toekn=======>" + token);
         return map;
     }
 

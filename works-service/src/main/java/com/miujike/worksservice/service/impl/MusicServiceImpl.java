@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,23 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
 
     @Value("${fetchNum}")
     private int fetchNum;
+
+    @Override
+    public Music saveNewMusic(Music music) {
+        music.setCreateTime(new Date());
+        music.setReleaseTime(new Date());
+        System.out.print(music.toString());
+        save(music);
+        int duration = music.getDuration();
+        int hour = (duration / 1000) / 3600;
+        int minute = (duration / 1000 - hour * 3660) / 60;
+        int second = duration / 1000 - hour * 3660 - minute * 60;
+        String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
+                + (minute < 10 ? "0" + minute : "" + minute) + ":"
+                + (second < 10 ? "0" + second : "" + second);
+        music.setDurationShow(durationShow);
+        return music;
+    }
 
     @Override
     public int addThumbCount(long musicId) {
@@ -62,9 +80,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     static void addDurationShowOfOne(Map<String, Object> one){
         if (one.containsKey("duration")) {
             int duration = (int) one.get("duration");
-            int hour = duration / 3600;
-            int minute = (duration - hour * 3660) / 60;
-            int second = duration - hour * 3660 - minute * 60;
+            int hour = (duration / 1000) / 3600;
+            int minute = (duration / 1000 - hour * 3660) / 60;
+            int second = duration / 1000 - hour * 3660 - minute * 60;
             String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
                     + (minute < 10 ? "0" + minute : "" + minute) + ":"
                     + (second < 10 ? "0" + second : "" + second);

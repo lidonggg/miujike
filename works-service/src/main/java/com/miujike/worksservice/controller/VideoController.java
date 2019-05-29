@@ -2,13 +2,13 @@ package com.miujike.worksservice.controller;
 
 import com.miujike.common.constants.BaseController;
 import com.miujike.common.dto.ResponseData;
+import com.miujike.worksservice.domain.Video;
 import com.miujike.worksservice.service.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * @author Ls J
@@ -24,8 +24,14 @@ public class VideoController extends BaseController {
     @Autowired
     private IVideoService videoService;
 
+    @PostMapping("upload")
+    public ResponseData upload(Video video) {
+        Video videoAdded = videoService.saveNewVideo(video);
+        return 0L != videoAdded.getVideoId() ? new ResponseData<>(videoAdded) : new ResponseData();
+    }
+
     /**
-     * 获取某一个视频的信息
+     * 获取某一条视频的信息
      *
      * @return
      */
@@ -60,5 +66,19 @@ public class VideoController extends BaseController {
     @GetMapping("/new")
     public ResponseData listNewVideo() {
         return new ResponseData<>(videoService.getNewVideoList());
+    }
+
+    /**
+     * 随机推荐
+     *
+     * @param n
+     * @return
+     */
+    @GetMapping("recommend/{curVideoId}")
+    public ResponseData listRecommend(@PathVariable Long curVideoId, int n) {
+        if (null == curVideoId) {
+            curVideoId = 0L;
+        }
+        return new ResponseData<>(videoService.getRecommendVideoList(curVideoId, n));
     }
 }

@@ -1,6 +1,7 @@
 package com.miujike.worksservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.miujike.common.util.QiNiuUtil;
 import com.miujike.worksservice.domain.Video;
 import com.miujike.worksservice.mapper.VideoMapper;
 import com.miujike.worksservice.service.IVideoService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,26 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Value("${fetchNum}")
     private int fetchNum;
+
+    @Override
+    public Video saveNewVideo(Video video) {
+        if (null == video.getCover()) {
+            video.setCover(video.getVideoUrl() + QiNiuUtil.coverParam);
+        }
+        video.setCreateTime(new Date());
+        video.setReleaseTime(new Date());
+        System.out.print(video.toString());
+        save(video);
+        int duration = video.getDuration();
+        int hour = (duration / 1000) / 3600;
+        int minute = (duration / 1000 - hour * 3660) / 60;
+        int second = duration / 1000 - hour * 3660 - minute * 60;
+        String durationShow = (hour == 0 ? "" : (hour < 10 ? "0" + hour + ":" : "" + hour + ":"))
+                + (minute < 10 ? "0" + minute : "" + minute) + ":"
+                + (second < 10 ? "0" + second : "" + second);
+        video.setDurationShow(durationShow);
+        return video;
+    }
 
     @Override
     public int addThumbCount(long videoId) {
@@ -43,7 +65,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public Map<String, Object> getVideoInfo(long videoId) {
-        Map<String,Object> map = videoMapper.getVideoInfo(videoId);
+        Map<String, Object> map = videoMapper.getVideoInfo(videoId);
         MusicServiceImpl.addDurationShowOfOne(map);
         return map;
     }
@@ -60,7 +82,17 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     }
 
     @Override
-    public List<Map<String,Object>> getNewVideoList() {
+    public List<Map<String, Object>> getNewVideoList() {
         return videoMapper.getNewVideoList();
+    }
+
+    @Override
+    public List<Map<String, Object>> getRecommendVideoList(long curVideoId, int n) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("curVideoId",curVideoId);
+        map.put("n",n);
+        List<Map<String, Object>> resList = videoMapper.getRecommendVideoList(map);
+        MusicServiceImpl.addDurationShow(resList);
+        return resList;
     }
 }

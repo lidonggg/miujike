@@ -13,6 +13,14 @@ import java.util.Map;
 public interface IVideoService extends IService<Video> {
 
     /**
+     * 添加新视频
+     *
+     * @param video
+     * @return
+     */
+    Video saveNewVideo(Video video);
+
+    /**
      * 添加点赞人数
      *
      * @param videoId videoId
@@ -30,23 +38,34 @@ public interface IVideoService extends IService<Video> {
 
     /**
      * 获取某条视频的信息
+     *
      * @param videoId videoId
      * @return map
      */
-    Map<String,Object> getVideoInfo(long videoId);
+    Map<String, Object> getVideoInfo(long videoId);
 
     /**
      * 拉取用户video列表（分页）
      *
-     * @param userId   userId
-     * @param lastId   结束位置
+     * @param userId userId
+     * @param lastId 结束位置
      * @return list
      */
     List<Map<String, Object>> getUserVideoList(long userId, Long lastId);
 
     /**
      * 获取最新的五个视频
-     * @return  List<Map<String,Object>>
+     *
+     * @return List<Map   <   String   ,   Object>>
      */
-    List<Map<String,Object>> getNewVideoList();
+    List<Map<String, Object>> getNewVideoList();
+
+    /**
+     * 随机n条数据，作为推荐
+     *
+     * @param curVideoId
+     * @param n
+     * @return list
+     */
+    List<Map<String, Object>> getRecommendVideoList(long curVideoId, int n);
 }

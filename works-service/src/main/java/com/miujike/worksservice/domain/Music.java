@@ -46,6 +46,8 @@ public class Music extends Model<Music> {
 
     private int duration;
 
+    private String durationShow;
+
     private short status;
 
     /**
@@ -58,7 +60,7 @@ public class Music extends Model<Music> {
     /**
      * 发布时间
      */
-    @TableField("create_time")
+    @TableField("release_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date releaseTime;
 
@@ -153,6 +155,14 @@ public class Music extends Model<Music> {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getDurationShow() {
+        return durationShow;
+    }
+
+    public void setDurationShow(String durationShow) {
+        this.durationShow = durationShow;
     }
 
     public short getStatus() {

@@ -48,6 +48,9 @@ public class Video extends Model<Video> {
 
     private short status;
 
+    @TableField(exist = false)
+    private String durationShow;
+
     /**
      * 创建时间
      */
@@ -58,7 +61,7 @@ public class Video extends Model<Video> {
     /**
      * 发布时间
      */
-    @TableField("create_time")
+    @TableField("release_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date releaseTime;
 
@@ -225,6 +228,14 @@ public class Video extends Model<Video> {
 
     public void setShares(int shares) {
         this.shares = shares;
+    }
+
+    public String getDurationShow() {
+        return durationShow;
+    }
+
+    public void setDurationShow(String durationShow) {
+        this.durationShow = durationShow;
     }
 
     @Override

@@ -18,62 +18,7 @@ Page({
     loading: false,
     tipShow: false,
     commentTip: "暂时没有更多评论了哦～",
-    videoRecommended: [{
-      videoId: 1,
-      userId: 10000000000,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      playTimes: 100,
-      duration: 235,
-      durationShow: "03:55",
-      cover: "../../resources/imgs/worksUploader/add_cover.png",
-      videoUrl: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }, {
-      videoId: 2,
-      userId: 10000000000,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      playTimes: 130,
-      duration: 235,
-      durationShow: "03:55",
-      cover: "../../resources/imgs/worksUploader/add_cover.png",
-      videoUrl: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }, {
-      videoId: 3,
-      userId: 10000000000,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      playTimes: 120,
-      duration: 235,
-      durationShow: "03:55",
-      cover: "../../resources/imgs/worksUploader/add_cover.png",
-      videoUrl: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }, {
-      videoId: 4,
-      userId: 10000000000,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      playTimes: 110,
-      duration: 235,
-      durationShow: "03:55",
-      cover: "../../resources/imgs/worksUploader/add_cover.png",
-      videoUrl: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }, {
-      videoId: 5,
-      userId: 10000000000,
-      title: "圣诞节",
-      originalSinger: "陈奕迅",
-      singer: "聂家成",
-      playTimes: 200,
-      duration: 235,
-      durationShow: "03:55",
-      cover: "../../resources/imgs/worksUploader/add_cover.png",
-      videoUrl: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }],
+    videoRecommended: [],
     commentList: []
   },
   // start: 触摸开始
@@ -122,6 +67,7 @@ Page({
    */
   onLoad: function(options) {
     if(options.videoId){
+      this.getRecommendList(options.videoId);
       this.setData({
         curVideoId: options.videoId
       });
@@ -134,11 +80,11 @@ Page({
             curVideoInfo:res.data.data
           })
           app.globalData.mediaPlay = {};
-          this.videoContext = wx.createVideoContext('the-video');
-          this.videoContext.play();
-          this.fetchCommentList(0);
+          that.videoContext = wx.createVideoContext('the-video');
+          that.videoContext.play();
         }
       })
+      this.fetchCommentList(0);
     }
   },
 
@@ -190,14 +136,40 @@ Page({
   onShareAppMessage: function() {
 
   },
+  doWaiting(){
+    wx.showToast({
+      title: '加载中',
+    })
+  },
+  doError() {
+    wx.showToast({
+      title: '出错了',
+    })
+  },
+  getRecommendList(curVideoId){
+    let that = this;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/video/recommend/"+curVideoId,
+      data:{
+        n:5
+      }
+    }).then(res => {
+      if(res.data.code == 200){
+        that.setData({
+          videoRecommended:res.data.data
+        })
+      }
+    })
+  },
   changeVideo(e) {
     let index = e.currentTarget.dataset.index;
     console.log(index);
     let that = this;
-    if (this.data.videoRecommended[index].videoId != this.data.curVideoInfo.videoId) {
+    if (this.data.videoRecommended[index].videoId != this.data.curVideoId) {
       // this.videoContext.stop();
       this.setData({
-        curVideoInfo: that.data.videoRecommended[index]
+        curVideoInfo: that.data.videoRecommended[index],
+        curVideoId: this.data.videoRecommended[index].videoId
       })
       this.videoContext.play();
       this.fetchCommentList(0);
@@ -214,7 +186,7 @@ Page({
     if (!this.data.loading) {
       this.data.loading = true;
       api.fetch({
-        url: "apigateway-behavior/api/v1/behavior/comment/list/" + that.data.curVideoInfo.videoId,
+        url: "apigateway-behavior/api/v1/behavior/comment/list/" + that.data.curVideoId,
         data: {
           targetType: 2,
           lastId: lastId

@@ -61,6 +61,7 @@ Page({
         let haveSigned = false;
         if (resInfo.lastSignTime) {
           if (util.judgeTime(resInfo.lastSignTime.replace(/-|T|:/g, '')) == 0) {
+            console.log("签到过了")
             haveSigned = true
           }
         }
@@ -161,8 +162,6 @@ Page({
           });
           let cKey = 'userInfo.eggs';
           that.setData({
-            haveSigned: true,
-            signing: false,
             ['userInfo.eggs']: parseInt(that.data.userInfo.eggs) + res.data.data
           })
         } else if (res.data.code == -1) {
@@ -170,6 +169,10 @@ Page({
             title: "请不要重复签到",
           });
         }
+        that.setData({
+          haveSigned: true,
+          signing: false,
+        })
       })
     }
   },

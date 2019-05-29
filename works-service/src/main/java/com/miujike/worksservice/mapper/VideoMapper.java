@@ -31,4 +31,11 @@ public interface VideoMapper extends BaseMapper<Video> {
      * @return  List<Map<String,Object>>
      */
     List<Map<String,Object>> getNewVideoList();
+
+    /**
+     * 随机n条数据，作为推荐
+     * @param map
+     * @return list
+     */
+    List<Map<String,Object>> getRecommendVideoList(Map<String,Object> map);
 }

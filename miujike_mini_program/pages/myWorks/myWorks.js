@@ -234,7 +234,7 @@ Page({
    */
   uploadMusic() {
     wx.navigateTo({
-      url: '../../pages/musicUploader/musciUploader',
+      url: '../../pages/musicUploader/musicUploader',
     })
   }
 })

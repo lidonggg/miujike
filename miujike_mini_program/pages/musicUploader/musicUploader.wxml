@@ -1,26 +1,50 @@
 <!--pages/musicUploader/musicUploader.wxml-->
-<view class="music-uploader-container"></view>
-<view class="flex-center-layout-row">
-  <image bindtap='doUpload' class="add-cover-img" src='{{coverImgPath}}'></image>
+<view class="music-uploader-container flex-center-layout-col">
+  <view class="flex-center-layout-row">
+    <view bindtap='doRecord' class="audio-recorder yellow-color-bg flex-center-layout-row">{{recording?'结束录制':'开始录制'}}</view>
+    <view wx:if="{{recorded}}" bindtap='doListen' class="audio-listen yellow-color-bg flex-center-layout-row">试听</view>
+    <view wx:if="{{recorded}}" bindtap='doUpload' class="audio-upload yellow-color-bg flex-center-layout-row">上传</view>
+  </view>
+  <view wx:if="{{uploading}}" style='width:100%'>
+    <progress stroke-width="12" active show-info border-radius="12" color="#F9E351" percent="{{percent}}" active-mode="forwards" />
+  </view>
+  
 </view>
-<form>
+<view class="flex-center-layout-row">
+  <cover-uploader-component bind:addcover='onAddCover'></cover-uploader-component>
+</view>
+<form bindsubmit="submitMusic">
   <view style='display:none'>
-    <input placeholder='请输入标题' value="{{coverImgUrl}}" maxlength="10" />
+    <input name="userId" value="{{userId}}" maxlength="20" />
+  </view>
+  <view style='display:none'>
+    <input name="cover" disabled="{{true}}" value="{{coverImgUrl}}" maxlength="255" />
+  </view>
+  <view style='display:none'>
+    <input name="musicUrl" disabled="{{true}}" value="{{musicUrl}}" maxlength="255" />
+  </view>
+  <view style='display:none'>
+    <input name="duration" class="the-input" type="number" placeholder='{{duration}}' value="{{duration}}" disabled="{{true}}" />
   </view>
   <view class="one-input-item flex-left-layout-row">
     <label class="the-laber">标题
       <text class="deep-red-color-text">*</text>：</label>
-    <input class="the-input" placeholder='请输入标题' maxlength="10"></input>
+    <input name="title" class="the-input" type='text' confirm-type="next" placeholder='请输入标题' maxlength="10"></input>
   </view>
   <view class="one-input-item flex-left-layout-row">
     <label class="the-laber">演唱者
       <text class="deep-red-color-text">*</text>：</label>
-    <input class="the-input" placeholder='请输入演唱者' maxlength="10"></input>
+    <input name="singer" class="the-input" type='text' confirm-type="next" placeholder='请输入演唱者' maxlength="10"></input>
   </view>
   <view class="one-input-item flex-left-layout-row">
     <label class="the-laber">原唱
+      <text class="deep-red-color-text"></text>：</label>
+    <input name="originalSinger" class="the-input" type='text' confirm-type="next" placeholder='请输入原唱' maxlength="10"></input>
+  </view>
+  <view class="one-textarea-item">
+    <label class="the-laber">简介
       <text class="deep-red-color-text">*</text>：</label>
-    <input class="the-input" placeholder='请输入原唱' maxlength="10"></input>
+    <textarea name="detail" confirm-type="done" class="the-textarea" placeholder='请输入简介'></textarea>
   </view>
   <button class="submit-buttom yellow-color-bg" form-type='submit'>发布</button>
 </form>

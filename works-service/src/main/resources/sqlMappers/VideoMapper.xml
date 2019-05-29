@@ -68,4 +68,15 @@
         or original_singer like #{param}
         or detail like #{param}
     </select>
+
+    <!--随机最多五条数据，作为推荐-->
+    <select id="getRecommendVideoList" parameterType="map" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration
+        from miu_video
+        where video_id >= ((select MAX(video_id) from miu_video)-(select MIN(video_id) from miu_video)) * RAND() + (select MIN(video_id) from miu_video)
+        and video_id != #{curVideoId}
+        limit #{n};
+    </select>
 </mapper>

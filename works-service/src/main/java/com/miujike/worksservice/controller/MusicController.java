@@ -1,13 +1,11 @@
 package com.miujike.worksservice.controller;
 
 import com.miujike.common.dto.ResponseData;
+import com.miujike.worksservice.domain.Music;
 import com.miujike.worksservice.service.IMusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Ls J
@@ -20,8 +18,14 @@ public class MusicController {
     @Autowired
     private IMusicService musicService;
 
+    @PostMapping("upload")
+    public ResponseData upload(Music music) {
+        Music musicAdded = musicService.saveNewMusic(music);
+        return 0L != musicAdded.getMusicId() ? new ResponseData<>(musicAdded) : new ResponseData();
+    }
+
     @RequestMapping("/list/{userId}")
-    public ResponseData listVideo(@PathVariable long userId, Long lastId) {
+    public ResponseData listMusic(@PathVariable long userId, Long lastId) {
         if(null == lastId){
             lastId = 0L;
         }
