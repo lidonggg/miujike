@@ -18,7 +18,8 @@ Page({
     curPlayId: "",
     curPlayIndex: "",
     percents: [],
-    loaded:false
+    loaded:false,
+    keyword:""
   },
 
   /**
@@ -126,6 +127,15 @@ Page({
       }
     }
   },
+  doSearch() {
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/searchPage/searchPage?target=music&keyword=' + that.data.keyword,
+    })
+  },
+  doInput(e) {
+    this.data.keyword = e.detail.value;
+  },
   /**
    * Lifecycle function--Called when page is initially rendered
    */
@@ -221,21 +231,4 @@ Page({
       })
     }
   },
-  /**
-   * 输入
-   */
-  doInput(e) {
-    this.setData({
-      searchValue: e.detail.value
-    })
-  },
-  /**
-   * 搜索
-   */
-  doSearch(e) {
-    let that = this;
-    wx.showToast({
-      title: that.data.searchValue
-    })
-  }
 })

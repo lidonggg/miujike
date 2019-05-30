@@ -77,4 +77,13 @@ public interface IVideoService extends IService<Video> {
      * @return list
      */
     List<Map<String, Object>> getRecommendVideoList(long curVideoId, int n);
+
+    /**
+     * 关键词搜索
+     *
+     * @param keyword
+     * @param lastId
+     * @return
+     */
+    List<Map<String, Object>> searchByKeyword(String keyword,long lastId);
 }

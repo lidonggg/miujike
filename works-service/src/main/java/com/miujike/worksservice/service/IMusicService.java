@@ -62,4 +62,13 @@ public interface IMusicService extends IService<Music> {
      * @return List<Map<String,Object>>
      */
     List<Map<String,Object>> getNewMusicList();
+
+    /**
+     * 关键词搜索
+     *
+     * @param keyword
+     * @param lastId
+     * @return
+     */
+    List<Map<String, Object>> searchByKeyword(String keyword,long lastId);
 }

@@ -14,7 +14,8 @@ Page({
     newVideoList: [],
     videoList: [],
     worksTip: "已经划到底了哦~",
-    tipShow: false
+    tipShow: false,
+    keyword:""
   },
   onPullDownRefresh() {
     this.fetchNewVideos();
@@ -104,7 +105,13 @@ Page({
     })
   },
   doSearch() {
-    this.getInfo();
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/searchPage/searchPage?target=video&keyword=' + that.data.keyword,
+    })
+  },
+  doInput(e){
+    this.data.keyword = e.detail.value;
   },
   onUnload() {
     this.setData({

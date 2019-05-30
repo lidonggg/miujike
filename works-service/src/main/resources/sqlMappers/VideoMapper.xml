@@ -62,15 +62,6 @@
         order by release_time desc
         limit 5
     </select>
-    <select id="getVideoListByKey" parameterType="java.lang.String" resultType="map">
-        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
-        original_singer as originalSinger,play_times as playTimes,cover,
-        title,duration
-        from miu_video
-        where nickname like #{param} or title like #{param}
-        or original_singer like #{param}
-        or detail like #{param}
-    </select>
 
     <!--随机最多五条数据，作为推荐-->
     <select id="getRecommendVideoList" parameterType="map" resultType="map">
@@ -95,6 +86,23 @@
             ]]>
         </if>
         order by mt.thumb_id desc
+        limit #{fetchNum}
+    </select>
+    <!--关键词搜索-->
+    <select id="listByKeyword" parameterType="map" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration,shares
+        from miu_video
+        where singer like #{searchMode} or title like #{searchMode}
+        or original_singer like #{searchMode}
+        or detail like #{searchMode}
+        <if test='lastId != 0'>
+            <![CDATA[
+                and video_id < #{lastId}
+            ]]>
+        </if>
+        order by video_id desc
         limit #{fetchNum}
     </select>
 </mapper>

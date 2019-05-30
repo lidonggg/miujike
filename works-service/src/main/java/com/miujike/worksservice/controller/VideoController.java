@@ -113,4 +113,17 @@ public class VideoController extends BaseController {
         boolean success = videoService.updateById(video);
         return success ? new ResponseData<>(1) : new ResponseData();
     }
+
+    /**
+     * 关键词搜索
+     *
+     * @param keyword
+     * @param lastId
+     * @return
+     */
+    @PostMapping("search")
+    public ResponseData search(String keyword, long lastId) {
+
+        return new ResponseData<>(videoService.searchByKeyword(keyword, lastId));
+    }
 }

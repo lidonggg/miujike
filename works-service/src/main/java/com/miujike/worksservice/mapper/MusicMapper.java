@@ -41,4 +41,12 @@ public interface MusicMapper extends BaseMapper<Music> {
      * @return list
      */
     List<Map<String, Object>> getNewMusicList();
+
+    /**
+     * 关键词搜索
+     *
+     * @param map
+     * @return
+     */
+    List<Map<String, Object>> listByKeyword(Map<String, Object> map);
 }

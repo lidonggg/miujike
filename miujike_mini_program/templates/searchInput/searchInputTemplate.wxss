@@ -11,6 +11,7 @@
 .search-arr input {
   margin-left: 60rpx;
   height: 60rpx;
+  font-size: 30rpx;
   border-radius: 5px;
 }
 

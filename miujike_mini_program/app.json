@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/searchPage/searchPage",
+    
     "pages/test/test",
     
     "pages/authorize/authorize",

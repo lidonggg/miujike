@@ -93,4 +93,16 @@ public class MusicController {
         boolean success = musicService.updateById(music);
         return success ? new ResponseData<>(1) : new ResponseData();
     }
+
+    /**
+     * 关键词搜索
+     *
+     * @param keyword
+     * @param lastId
+     * @return
+     */
+    @PostMapping("search")
+    public ResponseData search(String keyword, long lastId) {
+        return new ResponseData<>(musicService.searchByKeyword(keyword, lastId));
+    }
 }

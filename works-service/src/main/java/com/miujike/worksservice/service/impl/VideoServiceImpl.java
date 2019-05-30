@@ -73,7 +73,8 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public List<Map<String, Object>> getUserVideoList(long userId, Long lastId) {
-        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);;
+        Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
+        ;
         List<Map<String, Object>> resList = videoMapper.getUserVideoList(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
@@ -81,7 +82,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public List<Map<String, Object>> getUserVideoListLike(long userId, Long lastId) {
-        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
+        Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
         List<Map<String, Object>> resList = videoMapper.getUserVideoListLike(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
@@ -94,10 +95,22 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
     @Override
     public List<Map<String, Object>> getRecommendVideoList(long curVideoId, int n) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("curVideoId",curVideoId);
-        map.put("n",n);
+        Map<String, Object> map = new HashMap<>();
+        map.put("curVideoId", curVideoId);
+        map.put("n", n);
         List<Map<String, Object>> resList = videoMapper.getRecommendVideoList(map);
+        MusicServiceImpl.addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> searchByKeyword(String keyword, long lastId) {
+        String searchMode = "%" + keyword + "%";
+        Map<String, Object> map = new HashMap<>();
+        map.put("fetchNum", fetchNum);
+        map.put("searchMode", searchMode);
+        map.put("lastId", lastId);
+        List<Map<String, Object>> resList = videoMapper.listByKeyword(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
     }

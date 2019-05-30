@@ -50,4 +50,12 @@ public interface VideoMapper extends BaseMapper<Video> {
      * @return list
      */
     List<Map<String, Object>> getRecommendVideoList(Map<String, Object> map);
+
+    /**
+     * 关键词搜索
+     *
+     * @param map
+     * @return
+     */
+    List<Map<String, Object>> listByKeyword(Map<String, Object> map);
 }

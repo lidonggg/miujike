@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,8 +61,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     }
 
     @Override
-    public List<Map<String,Object>> getUserMusicList(long userId,  Long lastId) {
-        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
+    public List<Map<String, Object>> getUserMusicList(long userId, Long lastId) {
+        Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
         List<Map<String, Object>> resList = musicMapper.getUserMusicList(map);
         addDurationShow(resList);
         return resList;
@@ -69,23 +70,33 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
 
     @Override
     public List<Map<String, Object>> getPopularMusicList() {
-        List<Map<String,Object>> resList = musicMapper.getPopularMusicList();
+        List<Map<String, Object>> resList = musicMapper.getPopularMusicList();
         addDurationShow(resList);
         return resList;
     }
 
     @Override
     public List<Map<String, Object>> getUserMusicListLike(long userId, Long lastId) {
-        Map<String, Object> map = MapCreator.createParamMap(userId,fetchNum,lastId);
+        Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
         List<Map<String, Object>> resList = musicMapper.getUserMusicListLike(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
     }
 
     @Override
-    public List<Map<String,Object>> getNewMusicList() {
-        List<Map<String,Object>> resList = musicMapper.getNewMusicList();
+    public List<Map<String, Object>> getNewMusicList() {
+        List<Map<String, Object>> resList = musicMapper.getNewMusicList();
         addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> searchByKeyword(String keyword, long lastId) {
+        String searchMode = "%" + keyword + "%";
+        Map<String, Object> map = new HashMap<>();
+        map.put("searchMode", searchMode);
+        List<Map<String, Object>> resList = musicMapper.listByKeyword(map);
+        MusicServiceImpl.addDurationShow(resList);
         return resList;
     }
 
@@ -95,7 +106,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         }
     }
 
-    static void addDurationShowOfOne(Map<String, Object> one){
+    static void addDurationShowOfOne(Map<String, Object> one) {
         if (one.containsKey("duration")) {
             int duration = (int) one.get("duration");
             int hour = (duration / 1000) / 3600;
