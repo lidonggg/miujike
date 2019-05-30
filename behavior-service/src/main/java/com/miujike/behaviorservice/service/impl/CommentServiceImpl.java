@@ -45,14 +45,12 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     public Comment addComment(Comment comment) {
         comment.setCreateTime(new Date());
 
-        boolean success = save(comment);
-        if (success) {
+        commentMapper.addComment(comment);
+//        if (commentAdded.getCommentId() != 0L) {
             //TODO 添加评论数
             boolean s = worksClient.addCommentNum(comment.getTargetId(), comment.getTargetType());
             return s ? comment : null;
-        }
-        return null;
+//        }
+//        return null;
     }
-
-
 }

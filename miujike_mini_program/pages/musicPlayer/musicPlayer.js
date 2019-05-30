@@ -4,7 +4,12 @@ let innerAudioContext = wx.createInnerAudioContext();
 
 // pages/musicPlayer/musicPlayer.js
 Page({
-
+  dataScroll: {
+    scrollTop: 0, //滚动到的位置
+    startScroll: 0, // 滚动前的位置
+    touchDown: 0, // 触摸时候的 Y 的位置
+    innerHeight: 0,
+  },
   /**
    * Page initial data
    */
@@ -12,11 +17,80 @@ Page({
     curMusicInfo: {
 
     },
+    toTop:false,
     curIndex: -1,
-    percent: 50,
+    percent: 0,
     playMode: "circulate", // 播放模式，循环(circulate)，单曲循环(singleCirculate)，乱序(random)等等，这里功能上还没用到,默认为循环
     playing: true, //0 -- 暂停，1 -- 播放
-    commentList:[]
+    commentList: [],
+    tipShow: false,
+    commentTip: "暂时没有更多评论了哦～"
+  },
+  // start: 触摸开始
+  startFn: function(e) {
+    let that = this;
+    let touchDown = e.touches[0].clientY;
+    this.dataScroll.touchDown = touchDown;
+    // 获取 inner-wrap 的高度
+    wx.createSelectorQuery().select('#the-inner').boundingClientRect(function(rect) {
+      that.dataScroll.innerHeight = rect.height;
+    }).exec();
+
+    // 获取 scroll-wrap 的高度和当前的 scrollTop 位置
+    wx.createSelectorQuery().select('#the-scroll').fields({
+      scrollOffset: true,
+      size: true
+    }, function(rect) {
+      that.dataScroll.startScroll = rect.scrollTop;
+      that.dataScroll.height = rect.height;
+    }).exec();
+  },
+  endFn: function(e) {
+    let currentY = e.changedTouches[0].clientY;
+    let that = this;
+    let {
+      startScroll,
+      innerHeight,
+      height,
+      touchDown
+    } = this.dataScroll;
+    console.log(currentY, touchDown, startScroll, innerHeight, height)
+    if (currentY > touchDown && currentY - touchDown > 20 && startScroll == 0) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      this.fetchCommentList(0);
+    } else if (currentY < touchDown && touchDown - currentY > 20 && innerHeight - height == 0) {
+      if (!this.data.loading && !this.data.tipShow) {
+        console.log("上拉刷新着中")
+        this.fetchCommentList(this.data.commentList[this.data.commentList.length - 1].commentId);
+      }
+    }
+  },
+
+  /**
+   * 监听滑动过程
+   */
+  onScrolling(e){
+    let scrollDetails = e.detail;
+    let that = this;
+    wx.createSelectorQuery().select('#the-operations').boundingClientRect(function (rect) {
+      let curTop = rect.top;
+      // 上滑
+      if(curTop<5 && scrollDetails.deltaY < 0){
+        that.setData({
+          toTop:true
+        })
+      } else if (scrollDetails.deltaY > 0 && scrollDetails.scrollTop > 375){
+        that.setData({
+          toTop: true
+        })
+      } else{
+        that.setData({
+          toTop: false
+        })
+      }
+    }).exec();
   },
 
   /**
@@ -124,7 +198,8 @@ Page({
     let curMusicInfo = app.globalData.musicPlayList[index];
     this.setData({
       curMusicInfo: curMusicInfo
-    })
+    });
+    this.fetchCommentList(0);
     innerAudioContext.src = curMusicInfo.musicUrl;
     innerAudioContext.play();
   },
@@ -149,7 +224,7 @@ Page({
         }
       }).then(res => {
         wx.hideLoading();
-
+        console.log(res.data.data);
         that.setData({
           loading: false,
         });
@@ -192,14 +267,22 @@ Page({
    * Lifecycle function--Called when page hide
    */
   onHide: function() {
-
+    this.setData({
+      playing: false
+    })
+    innerAudioContext.pause();
   },
 
   /**
    * Lifecycle function--Called when page unload
    */
   onUnload: function() {
-
+    this.setData({
+      playing: false,
+      curIndex: -1,
+      percent: 0
+    })
+    innerAudioContext.stop();
   },
 
   /**

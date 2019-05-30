@@ -19,4 +19,11 @@ public interface CommentMapper extends BaseMapper<Comment> {
      * @return list
      */
     List<Map<String, Object>> getCommentList(Map<String, Object> map);
+
+    /**
+     * 插入评论，返回主键
+     *
+     * @param comment comment
+     */
+    void addComment(Comment comment);
 }

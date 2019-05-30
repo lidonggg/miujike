@@ -32,4 +32,8 @@
         order by mc.comment_id desc
         limit #{fetchNum}
     </select>
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="commentId" parameterType="com.miujike.behaviorservice.domain.Comment">
+        insert into miu_comment(from_user_id,create_time,target_type,target_id,content)
+        values(#{fromUserId},#{createTime},#{targetType},#{targetId},#{content})
+    </insert>
 </mapper>
