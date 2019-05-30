@@ -13,9 +13,9 @@
       </view>
       <view class="controller-container flex-center-layout-row">
         <text class="duration-show-text">{{curMusicInfo.durationShow}}</text>
-        <image hover-class="target-hover" class="target-contoller" src='../../resources/imgs/musicPlayer/pre_btn.png'></image>
+        <image bindtap='onPre' hover-class="target-hover" class="target-contoller" src='../../resources/imgs/musicPlayer/pre_btn.png'></image>
         <image class="status-contoller" src="../../resources/imgs/musicPlayer/{{playing?'stop_btn.png':'start_btn.png'}}" bindtap='onPauseOrPlay'></image>
-        <image class="target-contoller" src='../../resources/imgs/musicPlayer/next_btn.png'></image>
+        <image bindtap='onNext' class="target-contoller" src='../../resources/imgs/musicPlayer/next_btn.png'></image>
       </view>
     </view>
     <view class="comment-container">

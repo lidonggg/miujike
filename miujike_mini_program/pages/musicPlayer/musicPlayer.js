@@ -54,7 +54,6 @@ Page({
       height,
       touchDown
     } = this.dataScroll;
-    console.log(currentY, touchDown, startScroll, innerHeight, height)
     if (currentY > touchDown && currentY - touchDown > 20 && startScroll == 0) {
       wx.showLoading({
         title: '加载中',
@@ -100,7 +99,8 @@ Page({
     let that = this;
     if (options.index) {
       this.setData({
-        curMusicInfo: app.globalData.musicPlayList[options.index]
+        curMusicInfo: app.globalData.musicPlayList[options.index],
+        curIndex: options.index
       })
       innerAudioContext.src = this.data.curMusicInfo.musicUrl;
       innerAudioContext.play();
@@ -182,8 +182,10 @@ Page({
    */
   onPre(e) {
     let curIndex = this.data.curIndex;
+    console.log("cur",curIndex);
     // 第一首且是循环模式则去到最后一首
-    if (this.data.playMode === "circulate" && curIndex == 0) {
+    if (this.data.playMode == "circulate" && curIndex == 0) {
+      console.log("第一首")
       this.data.curIndex = app.globalData.musicPlayList.length - 1;
     } else {
       this.data.curIndex--;
@@ -195,6 +197,7 @@ Page({
    */
   changeView() {
     let index = this.data.curIndex;
+    console.log(app.globalData.musicPlayList.length,index);
     let curMusicInfo = app.globalData.musicPlayList[index];
     this.setData({
       curMusicInfo: curMusicInfo
