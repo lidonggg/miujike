@@ -1,6 +1,3 @@
-server:
-  port: 8781
-
 #指定注册中心地址
 eureka:
   client:

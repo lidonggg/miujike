@@ -1,3 +1,6 @@
+server:
+  port: 8781
+
 spring:
   profiles:
     active: dev
@@ -6,6 +9,15 @@ spring:
     name: works-service
   jackson:
     time-zone: GMT+8 #处理时区不一致问题
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:static/
+  mvc:
+    static-path-pattern: /resources/static/**
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
 
 mybatis-plus:
   type-aliases-package: com.miujike.worksservice.domain

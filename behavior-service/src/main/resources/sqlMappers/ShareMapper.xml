@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="com.miujike.behaviorservice.domain.Share">
         <id column="share_id" property="shareId"/>
-        <result column="from_user_id" property="from_user_Id"/>
+        <result column="from_user_id" property="fromUserId"/>
         <result column="create_time" property="createTime"/>
         <result column="target_type" property="targetType"/>
         <result column="target_id" property="targetId"/>

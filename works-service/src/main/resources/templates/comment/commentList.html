@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+    <script type="text/javascript" src="/static/js/hello.js"></script>
+    <script type="text/javascript" src="/static/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/static/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/static/js/navbar.js"></script>
+    <script type="text/javascript" src="/static/datas/nav.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/global.css">
+</head>
+<body>
+
+</body>
+<script>
+    let table = layui.table;
+
+    table.render({
+        elem: '#test'
+        ,url:'/demo/table/user/'
+        ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+            //,curr: 5 //设定初始在第 5 页
+            ,groups: 1 //只显示 1 个连续页码
+            ,first: false //不显示首页
+            ,last: false //不显示尾页
+
+        }
+        ,cols: [[
+            {field:'videoId', width:80, title: 'ID', sort: true}
+            ,{field:'title', width:100, title: '用户名'}
+            ,{field:'singer', width:80, title: '性别', sort: true}
+            ,{field:'originalSinger', width:80, title: '城市'}
+            ,{field:'detail', title: '签名', minWidth: 150}
+            ,{field:'createTime', width:80, title: '积分', sort: true}
+            ,{field:'score', width:80, title: '评分', sort: true}
+            ,{field:'classify', width:80, title: '职业'}
+            ,{field:'wealth', width:135, title: '财富', sort: true}
+        ]]
+
+    });
+</script>
+</html>

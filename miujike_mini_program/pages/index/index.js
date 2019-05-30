@@ -37,7 +37,7 @@ Page({
     })
   },
   /**
-   * 获取新视频
+   * 获取官方视频
    */
   fetchNewVideos() {
     let that = this;

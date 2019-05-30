@@ -25,6 +25,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
@@ -54,8 +64,8 @@
         </dependency>
         <!--配置中心客户端-->
         <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-config-client</artifactId>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-config-client</artifactId>-->
         <!--</dependency>-->
         <dependency>
             <groupId>mysql</groupId>
@@ -97,6 +107,8 @@
                     <!-- 指定该Main Class为全局的唯一入口 -->
                     <mainClass>com.miujike.worksservice.WorksServiceApplication</mainClass>
                     <layout>ZIP</layout>
+                    <executable>true</executable>
+                    <fork>true</fork>
                 </configuration>
                 <executions>
                     <execution>

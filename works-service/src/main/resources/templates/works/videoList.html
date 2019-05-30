@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>视频列表</title>
+    <script type="text/javascript" src="/static/js/hello.js"></script>
+    <script src="/static/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/static/js/navbar.js"></script>
+    <script type="text/javascript" src="/static/datas/nav.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/global.css">
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/ui.jqgrid.css">
+    <link rel="stylesheet" href="/static/assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="/static/assets/css/ace-fonts.css" />
+    <link rel="stylesheet" href="/static/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <script src="/static/lib/jqgrid/jquery.jqGrid.js"></script>
+    <script src="/static/lib/jqgrid/grid.locale-cn.js"></script>
+    <script src="/static/assets/js/bootstrap.js"></script>
+    <script src="/static/js/app.js"></script>
+</head>
+<body>
+<div class="main-container">
+    <div class="page-container">
+
+        <div class="layui-row" style="margin-left: 10px;margin-right: 10px">
+            <div class="layui-col-lg12">
+                <table id="grid-table"></table>
+
+                <div id="grid-pager"></div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function ListVideo() {
+        app.call(this);
+
+
+        this.initPage();
+
+        this.form = layui.form;
+        this.layer = layui.layer;
+
+        let that = this;
+
+        this.resize(100);
+
+
+        $(window).triggerHandler('resize.jqGrid');
+    }
+
+    ListVideo.prototype.initPage = function () {
+        this.getTable();
+    };
+
+    ListVideo.prototype.getTable = function () {
+
+        let that = this;
+
+        jQuery(that.grid_selector).jqGrid({
+            subGrid: false,
+            url: "/api/v1/works/admin/video/getList",
+            datatype: "json",
+            shrinkToFit: true,
+            autowidth: true,
+            colModel: [
+                {
+                    name: 'videoId',
+                    index: 'videoId',
+                    key: true,
+                    label: '主键Id',
+                    hidden:true,
+                    editable: false,
+                }
+                , {
+                    name: 'title',
+                    index: 'title',
+                    label: '标题',
+                    width: 100,
+                    editable: false,
+                }
+                , {
+                    name: 'singer',
+                    index: 'singer',
+                    label: '演唱者',
+                    width: 100,
+                    align: 'center',
+                }
+                , {
+                    name: 'originalSinger',
+                    index: 'originalSinger',
+                    label: '原唱',
+                    width: 100,
+                    align: 'center',
+                }
+                , {
+                    name: 'detail',
+                    index: 'detail',
+                    label: '简介',
+                    width: 140,
+                }
+                , {
+                    name: 'videoUrl',
+                    index: 'videoUrl',
+                    label: '视频',
+                    width: 200,
+                    align:'center',
+                    formatter: function (val) {
+                        return "<video src='" + val + "' style='width: 200px;height: auto' controls='controls'></video>";
+                    }
+                }, {
+                    name: 'status',
+                    index: 'status',
+                    label: '状态',
+                    width: 60,
+                    align:'center',
+                    formatter: function (val) {
+                        if(val === 1){
+                            return "在线上";
+                        } else{
+                            return "未上线";
+                        }
+                    }
+                }
+                , {
+                    name: 'oper',
+                    index: 'oper',
+                    label: '操作',
+                    width: 140,
+                    editable: false,
+                    editoptions: {size: "20", maxlength: "50"},
+                    //searchoptions : {sopt : ['cn']},
+                    editrules: {required: false},
+                    formatter: function (val, options, rowObject) {
+                        var result =
+                            '<a class="layui-btn layui-btn-mini links_edit" style="background-color: #5ba4d5;color: white"  onclick="toChangeStatus(\''+ rowObject.videoId + '\',\'' + rowObject.status+'\')"><i class="layui-icon">&#xe642;</i> 下线/上线</a>';
+                        return result;
+                    }
+                }
+            ],
+            sortname: "videoId",
+            sortorder: "desc",
+            viewrecords: true,
+            mtype: "post", // 提交方式
+            rownumbers: true,
+            rowNum: 15,
+            rowList: [15, 20, 30, 50],
+            pager: that.pager_selector,
+            altRows: true,
+            jsonReader: {
+                root: "results", // 服务端保存数据的集合
+                //	records : "records", // 可以不要,因为我的服务端是record,不是默认的,才加上的
+                repeatitems: false
+                // 其它的全部默认就行
+            },
+            //toppager : true,
+            multiselect: true,
+
+            multiboxonly: false,
+            loadComplete: function () {
+                let table = this;
+                setTimeout(function () {
+                    that.updatePagerIcons();
+                    that.enableTooltips(table);
+                }, 0);
+                let grid_table_id = $.jgrid.jqID(table.p.id);
+                let grid = $("#" + grid_table_id);
+                let ids = grid.getDataIDs();
+                for (let i = 0; i < ids.length; i++) {
+                    grid.setRowData(ids[i], false, {height: 42});
+                }
+            }
+
+        });
+    };
+
+    new ListVideo();
+
+    function toChangeStatus(videoId,status){
+        // alert(status);
+        layer.open({
+            title: '提示'
+            ,content:'是否'+(status == '1'?'下线':'上线')+'所选视频'
+            ,btn: ['确定', '取消']
+            ,yes: function(){
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: '/api/v1/works/admin/video/changeStatus',
+                    data: {
+                        videoId:videoId
+                    },
+                    dataType:'json',
+                    success: function(res){
+                        layer.open({
+                            title:false,
+                            content:"操作成功",
+                            yes: function(){
+                                jQuery("#grid-table").jqGrid('setGridParam',
+                                    {}).trigger("reloadGrid");
+                                layer.closeAll();
+                            }
+                        });
+                    }
+                });
+            }
+
+            ,btn2: function(){
+                layer.closeAll();
+            }
+        });
+    }
+
+
+</script>
+</html>

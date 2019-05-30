@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
 /**
  * @author Ls J
  * @date 2019/4/13 1:06 PM
@@ -74,6 +72,17 @@ public class VideoController extends BaseController {
             lastId = 0L;
         }
         return new ResponseData<>(videoService.getUserVideoListLike(userId, lastId));
+    }
+
+    /**
+     * 拉取最新的n个官方视频
+     *
+     * @param num
+     * @return
+     */
+    @GetMapping("/newOfficial")
+    public ResponseData listNewOfficialVideo(int num) {
+        return new ResponseData<>(videoService.getOfficialNewVideoList(num));
     }
 
     /**

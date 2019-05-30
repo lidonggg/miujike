@@ -1,0 +1,52 @@
+/**覆盖容器padding内边距*/
+.page-content {
+    padding: 0px 12px 0px 12px;
+}
+
+/**覆盖jqgrid分页导航的背景颜色*/
+.ui-jqgrid .ui-jqgrid-pager {
+    background-color: #F4F4F4 !important;
+}
+
+/**覆盖jqgrid checkbox选中的样式*/
+input[type=checkbox].ace:checked + .lbl::before {
+    display: inline-block;
+    content: '\2713';
+    color: #FFF;
+    font-size: 12px;
+    background-color: #5FB878;
+    border-color: #5FB878;
+}
+
+.ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+    height: auto;
+    text-align: justify;
+    font-size:15px;
+}
+
+.ui-jqgrid .ui-pg-table {
+    position: relative;
+    padding-bottom: 2px;
+    margin: 0em;
+    font-size: 16px;
+}
+
+.flex-layout-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-layout-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.layui-form-label{
+    width: 110px;
+}
+

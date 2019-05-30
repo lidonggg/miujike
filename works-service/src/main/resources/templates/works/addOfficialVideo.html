@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增官方视频</title>
+    <script type="text/javascript" src="/static/js/hello.js"></script>
+    <script src="/static/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/static/js/navbar.js"></script>
+    <script type="text/javascript" src="/static/datas/nav.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <script type="text/javascript" src="/static/lib/qiniu/plupload.full.min.js"></script>
+    <script type="text/javascript" src="/static/lib/qiniu/qiniu.min.js"></script>
+    <script type="text/javascript" src="/static/js/upload.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/global.css">
+</head>
+<body>
+<form class="layui-form" action="" method="POST" style="padding-top: 20px;margin-left: 20px;margin-right: 20px" id="videoForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <input class="layui-input" name="title" style="width: 600px">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">演唱者</label>
+        <input class="layui-input" name="singer" style="width: 600px">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">原唱</label>
+        <input class="layui-input" name="originalSinger" style="width: 600px">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">时长/秒</label>
+        <input class="layui-input" type="number" name="duration" style="width: 600px">
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频上传</label>
+        <div class="layui-inline">
+            <input name="videoUrl" readonly class="layui-input" id="video-url" style="width: 600px">
+        </div>
+        <div class="layui-inline">
+            <button type="button" class="layui-btn" id="upload-btn"><i class="layui-icon">&#xe67c;</i>选择视频</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">封面上传</label>
+        <div class="layui-inline">
+            <input name="cover" readonly class="layui-input" id="poster-img" style="width: 600px">
+        </div>
+        <div class="layui-inline">
+            <button type="button" class="layui-btn" id="img-upload-btn"><i class="layui-icon">&#xe67c;</i>选择封面</button>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">详情</label>
+        <div class="layui-inline" style="width: 750px">
+            <textarea class="layui-textarea" id="detail" name="detail"
+            ></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="submitVideo" lay-submit="" lay-filter="submitVideo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+<script>
+    let flag = false;
+
+    let form = layui.form,
+        imgUpload = layui.upload;
+
+    imgUpload.render({
+        url: '/api/v1/upload/uploadLayuiFile',
+        elem: '#img-upload-btn' //指定原始元素，默认直接查找class="layui-upload-file"
+        ,
+        method: 'post' //上传接口的http类型
+        ,
+        accept: 'images',
+        title: '上传海报',
+        done: function (res) {
+            $("#poster-img").val(res.data.src);
+        }
+    });
+
+    (new upload()).initUpload("upload-btn", "video-url");
+
+    form.render();
+
+    form.on('submit(submitVideo)', function () {
+        let $videoForm = $("#videoForm");
+        console.log($videoForm.serialize());
+        $.ajax({
+            async: false,
+            type: 'POST',
+            url: '/api/v1/works/admin/official/addNewVideo',
+            data: $videoForm.serialize(),
+            dataType: 'json',
+            success: function () {
+                flag = true;
+            }
+        });
+        return true;
+    });
+
+
+    function saveVideo(){
+        $('#submitVideo').click();
+        return flag;
+    }
+</script>
+</html>

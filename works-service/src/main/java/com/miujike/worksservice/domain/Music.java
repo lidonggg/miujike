@@ -22,7 +22,7 @@ public class Music extends Model<Music> {
     private long musicId;
 
     @TableField("user_id")
-    private long userId;
+    private Long userId;
 
     /**
      * 演唱者
@@ -49,7 +49,7 @@ public class Music extends Model<Music> {
     @TableField(exist = false)
     private String durationShow;
 
-    private short status;
+    private Integer status;
 
     /**
      * 创建时间
@@ -102,11 +102,11 @@ public class Music extends Model<Music> {
         this.musicId = musicId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -166,11 +166,11 @@ public class Music extends Model<Music> {
         this.durationShow = durationShow;
     }
 
-    public short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

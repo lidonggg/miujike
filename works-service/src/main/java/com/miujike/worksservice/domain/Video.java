@@ -22,7 +22,7 @@ public class Video extends Model<Video> {
     private long videoId;
 
     @TableField("user_id")
-    private long userId;
+    private Long userId;
 
     /**
      * 演唱者
@@ -46,7 +46,7 @@ public class Video extends Model<Video> {
 
     private int duration;
 
-    private short status;
+    private Integer status;
 
     @TableField(exist = false)
     private String durationShow;
@@ -102,11 +102,11 @@ public class Video extends Model<Video> {
         this.videoId = videoId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -158,11 +158,11 @@ public class Video extends Model<Video> {
         this.duration = duration;
     }
 
-    public short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

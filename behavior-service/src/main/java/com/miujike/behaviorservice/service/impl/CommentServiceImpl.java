@@ -2,8 +2,10 @@ package com.miujike.behaviorservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.miujike.behaviorservice.domain.Comment;
+import com.miujike.behaviorservice.domain.Message;
 import com.miujike.behaviorservice.mapper.CommentMapper;
 import com.miujike.behaviorservice.service.ICommentService;
+import com.miujike.behaviorservice.service.IMessageService;
 import com.miujike.behaviorservice.service.IWorksClient;
 import com.miujike.common.dto.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Autowired
     private IWorksClient worksClient;
 
+    @Autowired
+    private IMessageService messageService;
+
     @Value("${fetchNum}")
     private int fetchNum;
 
@@ -43,14 +48,12 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
     @Override
     public Comment addComment(Comment comment) {
-        comment.setCreateTime(new Date());
+        Date now = new Date();
+        comment.setCreateTime(now);
 
         commentMapper.addComment(comment);
-//        if (commentAdded.getCommentId() != 0L) {
-            //TODO 添加评论数
-            boolean s = worksClient.addCommentNum(comment.getTargetId(), comment.getTargetType());
-            return s ? comment : null;
-//        }
-//        return null;
+        //TODO 添加评论数
+        boolean s = worksClient.addCommentNum(comment.getTargetId(), comment.getTargetType());
+        return s ? comment : null;
     }
 }

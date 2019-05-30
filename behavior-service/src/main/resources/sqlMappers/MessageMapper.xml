@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miujike.behaviorservice.mapper.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.miujike.behaviorservice.domain.Message">
+        <id column="message_id" property="messageId"/>
+        <result column="from_user_id" property="fromUserId"/>
+        <result column="to_user_id" property="toUserId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        message_id as messageId,from_user_id as fromUserId,to_user_id as toUserId,create_time as createTime,type,
+        content,status
+    </sql>
+</mapper>

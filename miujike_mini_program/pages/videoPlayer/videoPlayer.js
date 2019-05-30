@@ -166,7 +166,7 @@ Page({
     console.log(index);
     let that = this;
     if (this.data.videoRecommended[index].videoId != this.data.curVideoId) {
-      // this.videoContext.stop();
+      this.videoContext.stop();
       this.setData({
         curVideoInfo: that.data.videoRecommended[index],
         curVideoId: this.data.videoRecommended[index].videoId
