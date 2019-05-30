@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.6.6",
 	"appid": "wxa71eb2257a0ef099",
 	"projectname": "miujike_mini_program",
 	"debugOptions": {

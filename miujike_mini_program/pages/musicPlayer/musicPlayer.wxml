@@ -1,4 +1,16 @@
 <!--pages/musicPlayer/musicPlayer.wxml-->
 <view class="cover-container">
   <image src="{{curMusicInfo.cover}}"></image>
+  <text class="info-text title-info">{{curMusicInfo.title}}</text>
+  <text class="info-text singer-info">{{curMusicInfo.singer}}</text>
 </view>
+<view class="progress-container">
+  <progress percent="{{percent}}" color="#f9e351" />
+</view>
+<view class="controller-container flex-center-layout-row">
+  <text class="duration-show-text">{{curMusicInfo.durationShow}}</text>
+  <image hover-class="target-hover" class="target-contoller" src='../../resources/imgs/musicPlayer/pre_btn.png'></image>
+  <image class="status-contoller" src="../../resources/imgs/musicPlayer/{{playing?'stop_btn.png':'start_btn.png'}}" bindtap='onPauseOrPlay'></image>
+  <image class="target-contoller" src='../../resources/imgs/musicPlayer/next_btn.png'></image>
+</view>
+<comment-input-component target-type="1" target-id="{{curMusicInfo.musicId}}" bind:addcomment='onAddComment'></comment-input-component>

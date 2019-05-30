@@ -1,6 +1,6 @@
 const app = getApp();
 const api = require("../../utils/httpRequest.js");
-const innerAudioContext = wx.createInnerAudioContext();
+let innerAudioContext = wx.createInnerAudioContext();
 
 // pages/music/music.js
 Page({

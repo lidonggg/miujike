@@ -41,9 +41,9 @@ Component({
       let that = this;
       let index = e.currentTarget.dataset.index;
       let musicId = e.currentTarget.dataset.musicid;
-      console.log(musicId);
+      app.globalData.musicPlayList = this.data.musicList;
       wx.navigateTo({
-        url: '../../pages/musicPlayer/musicPlayer?musicId=' + musicId,
+        url: '../../pages/musicPlayer/musicPlayer?musicId=' + musicId+"&index="+index,
         success(){
           api.fetch({
             url: "apigateway-works/api/v1/works/music/addPlayTimes",

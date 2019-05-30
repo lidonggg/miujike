@@ -1,17 +1,27 @@
 //app.js
 App({
   onLaunch: function(options) {
-    console.log("options.path:",options.path);
     let path = options.path;
     let paths = path.split("/")
     let tpath = encodeURIComponent(options.path);
-
-    // for (let r = 1; r < paths.length; r++) {
-    //   tpath += "%" + paths[r];
-    // }
-    console.log("tpath:" + tpath);
     let opt = "";
     let that = this;
+    if (wx.setInnerAudioOption) {
+      console.log("设置全局微信播放声音")
+      // 设置全局微信播放声音
+      wx.setInnerAudioOption({
+        obeyMuteSwitch: false,
+        success() {
+          console.log("设置全局微信播放声音成功")
+        }
+      })
+    } else {
+      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -19,14 +29,12 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           if (wx.getStorageSync(that.globalData.tapp)) {
             that.globalData.userInfo = wx.getStorageSync(that.globalData.tapp);
-            console.log("store:" + that.globalData.userInfo.userId)
             that.globalData.load = 1
             // }
           } else {
             that.doLogin(opt, path);
           }
         } else {
-          console.log("未授权");
           wx.reLaunch({
             url: '../../pages/authorize/authorize?tpath=' + tpath ,
           })
@@ -35,6 +43,7 @@ App({
         wx.hideLoading();
       }
     })
+    console.log("caniuse" + (typeof wx.setInnerAudioOption === 'function'));
   },
   doLogin: function (opt, path) {
     let that = this;
@@ -43,10 +52,8 @@ App({
         var code = res.code;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
-          console.log("得到了code")
           wx.getUserInfo({
             success: function (result) {
-              console.log("得到了用户信息")
               wx.request({
                 url: that.globalData.requestUrl + '/apigateway-user/api/v1/user/login/doLogin',
                 method: 'post',
@@ -57,7 +64,6 @@ App({
                   tapp: that.globalData.tapp
                 },
                 success(res){
-                  console.log(res.data.data)
                   that.globalData.userInfo = res.data.data;
                   wx: wx.setStorageSync(that.globalData.tapp, res.data.data);
                 }
