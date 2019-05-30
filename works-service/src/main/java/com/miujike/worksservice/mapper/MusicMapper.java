@@ -38,9 +38,10 @@ public interface MusicMapper extends BaseMapper<Music> {
     /**
      * 获取最新的五首音乐
      *
+     * @param n
      * @return list
      */
-    List<Map<String, Object>> getNewMusicList();
+    List<Map<String, Object>> getNewMusicList(int n);
 
     /**
      * 关键词搜索

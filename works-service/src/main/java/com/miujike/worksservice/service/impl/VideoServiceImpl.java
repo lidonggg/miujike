@@ -89,8 +89,8 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     }
 
     @Override
-    public List<Map<String, Object>> getNewVideoList() {
-        return videoMapper.getNewVideoList();
+    public List<Map<String, Object>> getNewVideoList(int n) {
+        return videoMapper.getNewVideoList(n);
     }
 
     @Override

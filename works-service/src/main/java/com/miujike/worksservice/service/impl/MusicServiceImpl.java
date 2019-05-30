@@ -84,8 +84,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     }
 
     @Override
-    public List<Map<String, Object>> getNewMusicList() {
-        List<Map<String, Object>> resList = musicMapper.getNewMusicList();
+    public List<Map<String, Object>> getNewMusicList(int n) {
+        List<Map<String, Object>> resList = musicMapper.getNewMusicList(n);
         addDurationShow(resList);
         return resList;
     }

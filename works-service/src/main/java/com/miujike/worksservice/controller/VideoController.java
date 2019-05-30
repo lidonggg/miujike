@@ -77,13 +77,14 @@ public class VideoController extends BaseController {
     }
 
     /**
-     * 拉取最新的五个视频
+     * 拉取最新的n个视频
      *
+     * @param num
      * @return
      */
     @GetMapping("/new")
-    public ResponseData listNewVideo() {
-        return new ResponseData<>(videoService.getNewVideoList());
+    public ResponseData listNewVideo(int num) {
+        return new ResponseData<>(videoService.getNewVideoList(num));
     }
 
     /**

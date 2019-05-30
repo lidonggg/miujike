@@ -58,13 +58,13 @@
         limit 100
     </select>
 
-    <select id="getNewMusicList" resultType="map">
+    <select id="getNewMusicList" parameterType="int" resultType="map">
         select music_id as musicId,music_url as musicUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,shares,
         title,duration
         from miu_music
         order by release_time desc
-        limit 5
+        limit #{n}
     </select>
 
     <!--获取喜欢的音乐-->

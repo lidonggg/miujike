@@ -65,9 +65,15 @@ public class MusicController {
         return new ResponseData<>(musicService.getUserMusicListLike(userId, lastId));
     }
 
+    /**
+     * 获取最新的五条音乐
+     *
+     * @param num
+     * @return
+     */
     @GetMapping("/new")
-    public ResponseData listNewMusic() {
-        return new ResponseData<>(musicService.getNewMusicList());
+    public ResponseData listNewMusic(int num) {
+        return new ResponseData<>(musicService.getNewMusicList(num));
     }
 
     /**

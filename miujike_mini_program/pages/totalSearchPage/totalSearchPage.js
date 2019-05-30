@@ -116,7 +116,7 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function() {
-
+    this.fetchSearch(0)
   },
 
   /**

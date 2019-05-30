@@ -15,7 +15,7 @@ Page({
     videoList: [],
     worksTip: "已经划到底了哦~",
     tipShow: false,
-    keyword:""
+    keyword: ""
   },
   onPullDownRefresh() {
     this.fetchNewVideos();
@@ -42,7 +42,10 @@ Page({
   fetchNewVideos() {
     let that = this;
     api.fetch({
-      url: "apigateway-works/api/v1/works/video/new"
+      url: "apigateway-works/api/v1/works/video/new",
+      data: {
+        num: 5
+      }
     }).then(res => {
       wx.stopPullDownRefresh();
       if (res.data.data && res.data.data.length > 0) {
@@ -64,7 +67,7 @@ Page({
       }
     }).then(res => {
       console.log(res.data);
-      if(lastId == 0){
+      if (lastId == 0) {
         that.data.videoList = [];
       }
       if (res.data.code == 200) {
@@ -86,7 +89,7 @@ Page({
     app.globalData.mediaPlay = this.data.newVideoList[index];
     wx.navigateTo({
       url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId,
-      success(){
+      success() {
         api.fetch({
           url: "apigateway-works/api/v1/works/video/addPlayTimes",
           data: {
@@ -110,7 +113,7 @@ Page({
       url: '../../pages/searchPage/searchPage?target=video&keyword=' + that.data.keyword,
     })
   },
-  doSearchInput(e){
+  doSearchInput(e) {
     this.data.keyword = e.detail.value;
   },
   onUnload() {
@@ -133,7 +136,7 @@ Page({
         path: '/pages/videoPlayer/videoPlayer?videoId=' + videoId,
         imageUrl: '', //用户分享出去的自定义图片大小为5:4,
         // 此回调不会被执行
-        success: function (res) {
+        success: function(res) {
           // 转发成功
           api.fetch({
             url: "apigateway-behavior/api/v1/behavior/share/doShare",
@@ -154,7 +157,7 @@ Page({
             }
           })
         },
-        fail: function (res) {
+        fail: function(res) {
           // 分享失败
         },
       }

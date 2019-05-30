@@ -39,9 +39,10 @@ public interface VideoMapper extends BaseMapper<Video> {
     /**
      * 获取最新的五个视频
      *
+     * @param n
      * @return list
      */
-    List<Map<String, Object>> getNewVideoList();
+    List<Map<String, Object>> getNewVideoList(int n);
 
     /**
      * 随机n条数据，作为推荐

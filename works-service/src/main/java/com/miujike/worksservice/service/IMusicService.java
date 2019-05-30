@@ -22,6 +22,7 @@ public interface IMusicService extends IService<Music> {
 
     /**
      * 点赞，添加点赞人数
+     *
      * @param musicId musicId
      * @return
      */
@@ -29,6 +30,7 @@ public interface IMusicService extends IService<Music> {
 
     /**
      * 添加评论
+     *
      * @param musicId musicId
      * @return
      */
@@ -36,11 +38,12 @@ public interface IMusicService extends IService<Music> {
 
     /**
      * 拉取用户music列表（分页）
+     *
      * @param userId userId
      * @param lastId lastId
      * @return list
      */
-    List<Map<String,Object>> getUserMusicList(long userId,  Long lastId);
+    List<Map<String, Object>> getUserMusicList(long userId, Long lastId);
 
     /**
      * 获取最流行的音乐列表
@@ -51,17 +54,20 @@ public interface IMusicService extends IService<Music> {
 
     /**
      * 拉取用户喜欢的music列表（分页）
+     *
      * @param userId userId
      * @param lastId lastId
      * @return list
      */
-    List<Map<String,Object>> getUserMusicListLike(long userId,  Long lastId);
+    List<Map<String, Object>> getUserMusicListLike(long userId, Long lastId);
 
     /**
      * 获取最新的五首音乐
-     * @return List<Map<String,Object>>
+     *
+     * @param n
+     * @return list
      */
-    List<Map<String,Object>> getNewMusicList();
+    List<Map<String, Object>> getNewMusicList(int n);
 
     /**
      * 关键词搜索
@@ -70,5 +76,5 @@ public interface IMusicService extends IService<Music> {
      * @param lastId
      * @return
      */
-    List<Map<String, Object>> searchByKeyword(String keyword,long lastId);
+    List<Map<String, Object>> searchByKeyword(String keyword, long lastId);
 }

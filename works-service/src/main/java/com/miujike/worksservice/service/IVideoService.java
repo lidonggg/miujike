@@ -65,9 +65,10 @@ public interface IVideoService extends IService<Video> {
     /**
      * 获取最新的五个视频
      *
-     * @return List<Map   <   String   ,   Object>>
+     * @param n
+     * @return List
      */
-    List<Map<String, Object>> getNewVideoList();
+    List<Map<String, Object>> getNewVideoList(int n);
 
     /**
      * 随机n条数据，作为推荐
@@ -85,5 +86,5 @@ public interface IVideoService extends IService<Video> {
      * @param lastId
      * @return
      */
-    List<Map<String, Object>> searchByKeyword(String keyword,long lastId);
+    List<Map<String, Object>> searchByKeyword(String keyword, long lastId);
 }

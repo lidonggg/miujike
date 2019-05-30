@@ -12,13 +12,58 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     keyword:"",
+    newMusicList:[],
+    newVideoList:[],
+    worksTip:"下拉获取最新的作品吧～",
+    tipShow:false
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
+    this.fetchNewMusics();
+    this.fetchNewVideos();
+  },
 
+  /**
+   * 拉取最新的音乐
+   */
+  fetchNewMusics() {
+    let that = this;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/music/new",
+      data: {
+        num: 20
+      }
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      that.setData({
+        newMusicList: res.data.data,
+        loaded: true
+      });
+    })
+  },
+
+  /**
+   * 获取新视频
+   */
+  fetchNewVideos() {
+    let that = this;
+    api.fetch({
+      url: "apigateway-works/api/v1/works/video/new",
+      data: {
+        num: 20
+      }
+    }).then(res => {
+      wx.stopPullDownRefresh();
+      if (res.data.data && res.data.data.length > 0) {
+        that.setData({
+          newVideoList: res.data.data,
+          tipShow:true
+        })
+      }
+    })
   },
 
   doSearch() {
@@ -83,7 +128,8 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function() {
-
+    this.fetchNewMusics();
+    this.fetchNewVideos();
   },
 
   /**

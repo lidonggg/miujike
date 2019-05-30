@@ -54,13 +54,13 @@
         limit #{fetchNum}
     </select>
 
-    <select id="getNewVideoList" resultType="map">
+    <select id="getNewVideoList" parameterType="int" resultType="map">
         select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
         original_singer as originalSinger,play_times as playTimes,cover,
         title,duration,shares
         from miu_video
         order by release_time desc
-        limit 5
+        limit #{n}
     </select>
 
     <!--随机最多五条数据，作为推荐-->

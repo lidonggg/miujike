@@ -72,7 +72,9 @@ Page({
     let that = this;
     api.fetch({
       url: "apigateway-works/api/v1/works/music/new",
-
+      data: {
+        num: 5
+      }
     }).then(res => {
       wx.stopPullDownRefresh();
       for (let i = 0; i < res.data.data.length; i++) {
