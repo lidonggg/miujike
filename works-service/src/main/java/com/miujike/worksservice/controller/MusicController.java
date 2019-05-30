@@ -101,8 +101,8 @@ public class MusicController {
      * @param lastId
      * @return
      */
-    @PostMapping("search")
-    public ResponseData search(String keyword, long lastId) {
+    @PostMapping("searchByKeyword")
+    public ResponseData searchByKeyword(String keyword, long lastId) {
         return new ResponseData<>(musicService.searchByKeyword(keyword, lastId));
     }
 }

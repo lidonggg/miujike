@@ -11,7 +11,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    keyword:"",
   },
 
   /**
@@ -19,6 +19,16 @@ Page({
    */
   onLoad: function(options) {
 
+  },
+
+  doSearch() {
+    let that = this;
+    wx.navigateTo({
+      url: '../../pages/totalSearchPage/totalSearchPage?target=all&keyword=' + that.data.keyword,
+    })
+  },
+  doSearchInput(e) {
+    this.data.keyword = e.detail.value;
   },
 
   /**

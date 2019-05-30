@@ -1,6 +1,10 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/totalSearchPage/totalSearchPage",
+
+    
     "pages/searchPage/searchPage",
     
     "pages/test/test",

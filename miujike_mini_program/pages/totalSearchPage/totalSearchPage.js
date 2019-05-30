@@ -1,18 +1,19 @@
 const app = getApp();
 const api = require("../../utils/httpRequest.js");
 
-// pages/searchPage/searchPage.js
+// pages/totalSearchPage/totalSearchPage.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    target: "", //1 -- music 2 -- video 0 -- both
+    musicList: [],
+    videoList: [],
     keyword: "",
-    resultList: [],
-    worksTip: "目前就只有这么多了哦～",
-    tipShow: false
+    videoTipShow: false,
+    musictipShow: false,
+    worksTip: ""
   },
 
   /**
@@ -22,12 +23,10 @@ Page({
     if (options.keyword) {
       this.setData({
         keyword: options.keyword,
-        target: options.target
       })
     }
     this.fetchSearch(0);
   },
-
   fetchSearch(lastId) {
     if (this.data.keyword.length == 0) {
       wx.showToast({
@@ -38,8 +37,11 @@ Page({
       let keyword = this.data.keyword;
       let target = this.data.target;
       let that = this;
+      that.setData({
+        keyword: that.data.keyword
+      })
       api.fetch({
-        url: "apigateway-works/api/v1/works/" + target + "/searchByKeyword",
+        url: "apigateway-works/api/v1/works/both/searchByKeyword",
         data: {
           keyword: keyword,
           lastId: lastId
@@ -52,18 +54,20 @@ Page({
         }
         console.log(res.data);
         that.setData({
-          resultList: that.data.resultList.concat(res.data.data)
+          videoList: res.data.data.videoList,
+          musicList: res.data.data.musicList
         });
-        if (res.data.data.length == 0) {
+        if (res.data.data.musicList.length == 0 && res.data.data.videoList == 0) {
           that.setData({
             worksTip: "暂时没有所要查找的作品哦～"
           })
         } else {
-          worksTip: "目前就只有这么多了哦～"
+          that.setData({
+            worksTip: "目前就只有这么多了哦～"
+          })
         }
         that.setData({
-          tipShow: true,
-          keyword: that.data.keyword
+          videoTipShow: true
         })
       });
     }
@@ -112,7 +116,7 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function() {
-    this.fetchSearch(0)
+
   },
 
   /**

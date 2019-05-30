@@ -1,0 +1,17 @@
+/* pages/totalSearchPage/totalSearchPage.wxss */
+@import "../../templates/searchInput/searchInputTemplate.wxss";
+.search-tip{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  height: 60rpx;
+  color: #8d8d8d;
+  /* width: 132rpx; */
+  display: inline-block;
+  border-bottom: 6rpx solid #F9E351
+}
+
+.search-tip text{
+  color: red;
+  font-size: 34rpx;
+}

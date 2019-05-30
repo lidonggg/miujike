@@ -118,11 +118,11 @@ public class VideoController extends BaseController {
      * 关键词搜索
      *
      * @param keyword
-     * @param lastId
+     * @param lastId  暂时没有用到
      * @return
      */
-    @PostMapping("search")
-    public ResponseData search(String keyword, long lastId) {
+    @PostMapping("searchByKeyword")
+    public ResponseData searchByKeyword(String keyword, long lastId) {
 
         return new ResponseData<>(videoService.searchByKeyword(keyword, lastId));
     }

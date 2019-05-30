@@ -1,6 +1,9 @@
 const api = require("../../utils/httpRequest.js")
 const app = getApp()
-
+/**
+ * 其实musicId和videoId可以统一命名为id，
+ * 这样在搜索的时候会方便很多
+ */
 Component({
   behaviors: [],
 

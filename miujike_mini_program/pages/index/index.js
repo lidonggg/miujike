@@ -110,7 +110,7 @@ Page({
       url: '../../pages/searchPage/searchPage?target=video&keyword=' + that.data.keyword,
     })
   },
-  doInput(e){
+  doSearchInput(e){
     this.data.keyword = e.detail.value;
   },
   onUnload() {

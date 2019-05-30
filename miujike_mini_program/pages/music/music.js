@@ -133,7 +133,7 @@ Page({
       url: '../../pages/searchPage/searchPage?target=music&keyword=' + that.data.keyword,
     })
   },
-  doInput(e) {
+  doSearchInput(e) {
     this.data.keyword = e.detail.value;
   },
   /**
