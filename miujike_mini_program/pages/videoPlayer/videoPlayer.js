@@ -85,8 +85,8 @@ Page({
             curVideoInfo: res.data.data
           })
           app.globalData.mediaPlay = {};
-          // that.videoContext = wx.createVideoContext('the-video');
-          // that.videoContext.play();
+          that.videoContext = wx.createVideoContext('the-video');
+          that.videoContext.play();
         }
       })
       this.fetchCommentList(0);

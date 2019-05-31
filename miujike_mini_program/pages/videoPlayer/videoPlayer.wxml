@@ -2,7 +2,7 @@
 <import src="../../templates/comment/commentTemplate.wxml" />
 
 <view class="video-container">
-  <video wx:if="{{curVideoInfo.videoUrl}}" autoplay enable-play-gesture bindwaiting="doWaiting" binderror="doError" id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}" controls poster="{{curVideoInfo.cover}}"></video>
+  <video wx:if="{{curVideoInfo.videoUrl}}" autoplay enable-play-gesture id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}" custom-cache="{{false}}" controls poster="{{curVideoInfo.cover}}"></video>
   <view class="video-detail-container">
     <view class="first-line">
       <view class="duration gray-color-bg">{{curVideoInfo.durationShow}}</view>

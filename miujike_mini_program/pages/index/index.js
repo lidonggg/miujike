@@ -42,7 +42,7 @@ Page({
   fetchNewVideos() {
     let that = this;
     api.fetch({
-      url: "apigateway-works/api/v1/works/video/new",
+      url: "apigateway-works/api/v1/works/video/newOfficial",
       data: {
         num: 5
       }

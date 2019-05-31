@@ -96,6 +96,7 @@ Page({
         qiniuUploader.upload(filePath, (res) => {
           that.setData({
             videoUrl: res.fileUrl,
+            percent: 100
           });
           wx.showToast({
             title: '上传成功',
