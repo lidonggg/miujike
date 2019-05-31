@@ -45,7 +45,7 @@ Component({
       app.globalData.mediaPlay = this.properties.videoList[index];
       console.log(app.globalData.mediaPlay)
       wx.navigateTo({
-        url: '../../pages/videoPlayer/videoPlayer?videoId=' + this.properties.videoList[index].videoId,
+        url: '../../pages/videoPlayer/videoPlayer?videoId=' + this.properties.videoList[index].videoId + "&userId=" + this.properties.videoList[index].userId,
         success() {
           api.fetch({
             url: "apigateway-works/api/v1/works/video/addPlayTimes",

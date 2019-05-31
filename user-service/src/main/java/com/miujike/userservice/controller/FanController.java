@@ -29,6 +29,21 @@ public class FanController extends BaseController {
     private IFanService fanService;
 
     /**
+     *
+     * @param fromUserId
+     * @param toUserId
+     * @return
+     */
+    @GetMapping("follow/getIfFollowed")
+    public ResponseData getIfFollowed(long fromUserId, long toUserId) {
+        QueryWrapper<Fan> fanWrapper = new QueryWrapper<>();
+        fanWrapper.eq("from_user_id", fromUserId)
+                .eq("to_user_id", toUserId);
+        Fan fan = fanService.getOne(fanWrapper);
+        return null == fan ? new ResponseData<>() : new ResponseData<>(1);
+    }
+
+    /**
      * 获取粉丝数
      *
      * @param userId userId

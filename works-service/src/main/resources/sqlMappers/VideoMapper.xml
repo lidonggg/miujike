@@ -51,6 +51,7 @@
             ]]>
         </if>
         and status = 1
+        and user_id != 11111111111
         order by video_id desc
         limit #{fetchNum}
     </select>
@@ -61,6 +62,7 @@
         title,duration,shares
         from miu_video
         where status = 1
+        and user_id != 11111111111
         order by release_time desc
         limit #{n}
     </select>

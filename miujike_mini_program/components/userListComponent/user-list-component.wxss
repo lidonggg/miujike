@@ -72,7 +72,7 @@
   z-index: 1
 }
 
-.unsubmit-icon{
+.unsubscribe-icon{
   width: 80rpx;
   height: 38rpx;
 }

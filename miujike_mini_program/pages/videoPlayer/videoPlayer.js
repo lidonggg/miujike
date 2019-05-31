@@ -14,12 +14,15 @@ Page({
    */
   data: {
     curVideoInfo: {},
-    curVideoId:"",
+    curVideoId: "",
+    curUserId: "",
     loading: false,
     tipShow: false,
     commentTip: "暂时没有更多评论了哦～",
     videoRecommended: [],
-    commentList: []
+    commentList: [],
+    myFollow: true,
+    subscribeShow: false
   },
   // start: 触摸开始
   startFn: function(e) {
@@ -66,33 +69,59 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function(options) {
-    if(options.videoId){
+    if (options.videoId) {
       this.getRecommendList(options.videoId);
       this.setData({
-        curVideoId: options.videoId
+        curVideoId: options.videoId,
+        curUserId: options.userId
       });
+      this.fetchRelationship();
       let that = this;
       api.fetch({
-        url:"apigateway-works/api/v1/works/video/info/"+options.videoId
+        url: "apigateway-works/api/v1/works/video/info/" + options.videoId
       }).then(res => {
-        if(res.data.code == 200){
+        if (res.data.code == 200) {
           that.setData({
-            curVideoInfo:res.data.data
+            curVideoInfo: res.data.data
           })
           app.globalData.mediaPlay = {};
-          that.videoContext = wx.createVideoContext('the-video');
-          that.videoContext.play();
+          // that.videoContext = wx.createVideoContext('the-video');
+          // that.videoContext.play();
         }
       })
       this.fetchCommentList(0);
     }
   },
 
+  fetchRelationship() {
+    let that = this;
+    api.fetch({
+      url: "apigateway-user/api/v1/user/follow/getIfFollowed",
+      data: {
+        fromUserId: app.globalData.userInfo.userId,
+        toUserId: that.data.curUserId
+      }
+    }).then(res => {
+      that.setData({
+        subscribeShow: true
+      })
+      if (res.data.code == -1) {
+        that.setData({
+          myFollow: false
+        })
+      } else if(res.data.code == 200){
+        that.setData({
+          myFollow: true
+        })
+      }
+    })
+  },
+
   /**
    * Lifecycle function--Called when page is initially rendered
    */
   onReady: function() {
-    
+
   },
 
   /**
@@ -136,7 +165,7 @@ Page({
   onShareAppMessage: function() {
 
   },
-  doWaiting(){
+  doWaiting() {
     wx.showToast({
       title: '加载中',
     })
@@ -146,17 +175,17 @@ Page({
       title: '出错了',
     })
   },
-  getRecommendList(curVideoId){
+  getRecommendList(curVideoId) {
     let that = this;
     api.fetch({
-      url: "apigateway-works/api/v1/works/video/recommend/"+curVideoId,
-      data:{
-        n:5
+      url: "apigateway-works/api/v1/works/video/recommend/" + curVideoId,
+      data: {
+        n: 5
       }
     }).then(res => {
-      if(res.data.code == 200){
+      if (res.data.code == 200) {
         that.setData({
-          videoRecommended:res.data.data
+          videoRecommended: res.data.data
         })
       }
     })
@@ -177,7 +206,7 @@ Page({
   },
   fetchCommentList(lastId) {
     this.setData({
-      tipShow:false
+      tipShow: false
     })
     if (lastId === 0) {
       this.data.commentList = [];
@@ -199,9 +228,9 @@ Page({
         });
         if (res.data.data) {
           // if (that.data.commentList.length != 0) {
-            that.setData({
-              commentList: that.data.commentList.concat(res.data.data)
-            })
+          that.setData({
+            commentList: that.data.commentList.concat(res.data.data)
+          })
           // }else{
           //   that.setData({
           //     commentList: res.data.data
@@ -217,7 +246,7 @@ Page({
       })
     }
   },
-  onAddComment(e){
+  onAddComment(e) {
     let that = this;
     console.log(e.detail);
     let newComment = e.detail;
@@ -226,6 +255,26 @@ Page({
     this.data.commentList.unshift(newComment)
     this.setData({
       commentList: that.data.commentList
+    })
+  },
+  changeRelationship(e) {
+    let that = this;
+    let url = "apigateway-user/api/v1/user/fan/" + (that.data.myFollow ? 'unfollow' : 'follow');
+    api.fetch({
+      url: url,
+      data: {
+        fromUserId: app.globalData.userInfo.userId,
+        toUserId: that.data.curUserId
+      }
+    }).then(res => {
+      if (res.data.data) {
+        that.setData({
+          myFollow: !that.data.myFollow
+        })
+        wx.showToast({
+          title: that.data.myFollow?'已关注':'已取关',
+        })
+      }
     })
   }
 })

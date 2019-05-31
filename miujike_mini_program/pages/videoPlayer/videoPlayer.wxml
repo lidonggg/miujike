@@ -2,12 +2,16 @@
 <import src="../../templates/comment/commentTemplate.wxml" />
 
 <view class="video-container">
-  <video wx:if="{{curVideoInfo.videoUrl}}" enable-play-gesture bindwaiting="doWaiting" binderror="doError" id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}" controls poster="{{curVideoInfo.cover}}"></video>
+  <video wx:if="{{curVideoInfo.videoUrl}}" autoplay enable-play-gesture bindwaiting="doWaiting" binderror="doError" id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}" controls poster="{{curVideoInfo.cover}}"></video>
   <view class="video-detail-container">
     <view class="first-line">
       <view class="duration gray-color-bg">{{curVideoInfo.durationShow}}</view>
       <view class="play-times">
-        <text class="gray-color-text">{{curVideoInfo.playTimes}}</text> 次播放</view>
+        <text class="gray-color-text">{{curVideoInfo.playTimes}}</text> 次播放
+      </view>
+      <!-- <view class="subscribe-container {{hasFollowed?'':''}}"> -->
+        <image wx:if="{{subscribeShow}}" data-index="{{index}}" bindtap='changeRelationship' class="unsubscribe-icon" src="{{myFollow?'../../resources/imgs/mine/myFans/unsubscribe.png':'../../resources/imgs/mine/myFans/subscribe.png'}}"></image>
+      <!-- </view> -->
     </view>
     <view class="second-line">
       <text>{{curVideoInfo.title}}-{{curVideoInfo.singer}}</text> (原唱：{{curVideoInfo.originalSinger}})

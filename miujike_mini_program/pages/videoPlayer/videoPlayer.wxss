@@ -20,6 +20,7 @@
 
 .video-container .video-detail-container .first-line {
   display: flex;
+  position: relative;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center
@@ -46,6 +47,12 @@
   font-size: 26rpx;
 }
 
+.unsubscribe-icon{
+  width: 80rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 20rpx;
+}
 .video-container .video-detail-container .second-line text{
   font-size: 30rpx;
 }

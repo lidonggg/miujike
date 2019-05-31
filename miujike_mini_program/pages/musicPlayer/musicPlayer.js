@@ -17,7 +17,7 @@ Page({
     curMusicInfo: {
 
     },
-    toTop:false,
+    toTop: false,
     curIndex: -1,
     percent: 0,
     playMode: "circulate", // 播放模式，循环(circulate)，单曲循环(singleCirculate)，乱序(random)等等，这里功能上还没用到,默认为循环
@@ -70,21 +70,21 @@ Page({
   /**
    * 监听滑动过程
    */
-  onScrolling(e){
+  onScrolling(e) {
     let scrollDetails = e.detail;
     let that = this;
-    wx.createSelectorQuery().select('#the-operations').boundingClientRect(function (rect) {
+    wx.createSelectorQuery().select('#the-operations').boundingClientRect(function(rect) {
       let curTop = rect.top;
       // 上滑
-      if(curTop<5 && scrollDetails.deltaY < 0){
-        that.setData({
-          toTop:true
-        })
-      } else if (scrollDetails.deltaY > 0 && scrollDetails.scrollTop > 375){
+      if (curTop < 5 && scrollDetails.deltaY < 0) {
         that.setData({
           toTop: true
         })
-      } else{
+      } else if (scrollDetails.deltaY > 0 && scrollDetails.scrollTop > 375) {
+        that.setData({
+          toTop: true
+        })
+      } else {
         that.setData({
           toTop: false
         })
@@ -182,7 +182,7 @@ Page({
    */
   onPre(e) {
     let curIndex = this.data.curIndex;
-    console.log("cur",curIndex);
+    console.log("cur", curIndex);
     // 第一首且是循环模式则去到最后一首
     if (this.data.playMode == "circulate" && curIndex == 0) {
       console.log("第一首")
@@ -197,7 +197,7 @@ Page({
    */
   changeView() {
     let index = this.data.curIndex;
-    console.log(app.globalData.musicPlayList.length,index);
+    console.log(app.globalData.musicPlayList.length, index);
     let curMusicInfo = app.globalData.musicPlayList[index];
     this.setData({
       curMusicInfo: curMusicInfo

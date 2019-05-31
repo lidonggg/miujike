@@ -26,7 +26,8 @@ public class UploadController {
     /**
      * 七牛域名
      */
-    private final String QINIU_BASE_PATH = "http://ps8xnh0n1.bkt.clouddn.com/";
+//    private final String QINIU_BASE_PATH = "http://ps8xnh0n1.bkt.clouddn.com/";
+    private final String QINIU_BASE_PATH = "http://file.yfjiaoyu.com/";
 
     /**
      * 上传文件

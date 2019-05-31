@@ -56,7 +56,7 @@ Page({
     })
   },
   /**
-   * 拉取音乐
+   * 拉取视频
    */
   fetchVideos(lastId) {
     let that = this;
@@ -122,8 +122,9 @@ Page({
     })
   },
   onReachBottom() {
+    let that = this;
     if (!this.data.tipShow) {
-      this.fetchVideos(this.data.videoList[this.data.videoList.length].videoId)
+      this.fetchVideos(that.data.videoList[that.data.videoList.length].videoId)
     }
   },
   onShareAppMessage: function(res) {
