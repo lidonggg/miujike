@@ -11,6 +11,7 @@ App({
       // 设置全局微信播放声音
       wx.setInnerAudioOption({
         obeyMuteSwitch: false,
+        mixWithOther:false,
         success() {
           console.log("设置全局微信播放声音成功")
         }

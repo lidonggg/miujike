@@ -178,6 +178,9 @@ Page({
       that.setData({
         musicUrl: res.fileUrl,
       });
+      that.setData({
+        percent: 100
+      })
       wx.showToast({
         title: '上传成功',
         duration: 1500,

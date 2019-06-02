@@ -6,6 +6,11 @@
       </view>
     </view>
     <image class="the-img add-eggs-icon" src='../../resources/imgs/videoPlayer/add_eggs.png' catchtap='doThumb'></image>
-    <image class="the-img share-icon" src='../../resources/imgs/videoPlayer/share.png'></image>
+    <!-- <image class="the-img share-icon" src='../../resources/imgs/videoPlayer/share.png'></image> -->
+    <view class="behavior-icon share-icon">
+      <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}' catchtap='doShare'>
+      </button>
+      <image class="share-image-show" src="../../resources/imgs/videoPlayer/share.png" data-videoid="{{item.videoId}}" catchtap='doShare'></image>
+    </view>
   </view>
 </comment-input-conponent>
