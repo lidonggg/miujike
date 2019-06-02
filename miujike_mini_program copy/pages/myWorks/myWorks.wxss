@@ -1,0 +1,22 @@
+/* pages/myWorks/myWorks.wxss */
+@import "../../templates/videoMusicBar/videoMusicBarTemplate.wxss";
+@import "../../templates/uploadedTip/uploadedTipTemplate.wxss";
+
+.upload-container {
+  height: 360rpx;
+  border-radius: 0;
+  border-bottom: 1rpx solid #D8D8D8
+}
+
+.upload-container image {
+  width: 502rpx;
+  height: 345rpx;
+}
+
+.works-scroll-view-container {
+  height: calc(100% - 450rpx);
+}
+
+.music-template {
+  height: calc(100% - 360rpx);
+}

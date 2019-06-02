@@ -1,0 +1,6 @@
+@import "../../app.wxss";
+
+.add-cover-img {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}

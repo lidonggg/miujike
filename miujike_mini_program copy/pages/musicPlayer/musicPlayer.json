@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "comment-input-component": "/components/commentInputComponent/comment-input-component"
+  },
+  "navigationBarTitleText": "音乐播放",
+  "disableScroll": true
+}

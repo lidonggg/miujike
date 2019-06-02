@@ -1,0 +1,42 @@
+<video-list-component>
+  <view style='height:20rpx'></view>
+  <block wx:for="{{videoList}}" wx:key="{{videoId}}">
+    <view class="one-video-item" data-index="{{index}}" data-videoid="{{item.videoId}}" catchtap='goPlayPage'>
+      <image src='{{item.cover}}' lazy-load class="cover-img"></image>
+      <view class="model-btn">
+        <view class="play-icon"></view>
+      </view>
+      <view class="info-container flex-center-layout-row">
+        <view class="left-part">
+          <view class="top-part flex-left-layout-row">
+            <view class="duration-container">
+              {{item.durationShow}}
+            </view>
+            <view class="play-times-container">
+              {{item.playTimes}} 次播放
+            </view>
+          </view>
+          <view class="bottom-part flex-left-layout-row text-overflow-hidden">
+            <view class="title-singer">
+              {{item.title}}-{{item.singer}}
+            </view>
+            <view wx:if="{{item.originalSinger && item.originalSinger!=''}}" class="original-singer">
+              （原唱：{{item.originalSinger}}）
+            </view>
+          </view>
+        </view>
+        <view class="right-part">
+          <image class="behavior-icon add-eggs-icon" src="../../resources/imgs/video/add_eggs.png" data-videoid="{{item.videoId}}" catchtap='doThumb'></image>
+          <view class="behavior-icon share-icon">
+            <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}' catchtap='doShare'>
+            </button>
+            <image class="share-image-show" src="../../resources/imgs/video/share.png" data-videoid="{{item.videoId}}" catchtap='doShare'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{tipShow}}" class="gray-color-text" style='font-size:30rpx;text-align:center;margin-bottom:20rpx'>
+    {{worksTip}}
+  </view>
+</video-list-component>

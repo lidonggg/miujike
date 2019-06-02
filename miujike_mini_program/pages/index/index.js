@@ -61,9 +61,9 @@ Page({
   fetchVideos(lastId) {
     let that = this;
     api.fetch({
-      url: "apigateway-works/api/v1/works/video/list/0",
+      url: "apigateway-works/api/v1/works/video/listNewOfficial",
       data: {
-        lastId: lastId
+        lastId:lastId
       }
     }).then(res => {
       console.log(res.data);
@@ -88,7 +88,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     app.globalData.mediaPlay = this.data.newVideoList[index];
     wx.navigateTo({
-      url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId,
+      url: '../../pages/videoPlayer/videoPlayer?videoId=' + that.data.newVideoList[index].videoId + "&userId=" + that.data.newVideoList[index].userId,
       success() {
         api.fetch({
           url: "apigateway-works/api/v1/works/video/addPlayTimes",
@@ -124,7 +124,7 @@ Page({
   onReachBottom() {
     let that = this;
     if (!this.data.tipShow) {
-      this.fetchVideos(that.data.videoList[that.data.videoList.length].videoId)
+      this.fetchVideos(that.data.videoList[that.data.videoList.length-1].videoId)
     }
   },
   onShareAppMessage: function(res) {

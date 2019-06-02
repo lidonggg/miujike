@@ -1,0 +1,11 @@
+<comment-input-conponent>
+  <view class='comment-input-row' style="bottom:{{bottom}}px">
+    <view class="comment-input-container">
+      <view class="comment-input-arr">
+        <input adjust-position="{{false}}" style='' cursor-spacing="20" placeholder="评论～" maxlength="30" value="{{commentValue}}" bindconfirm="doComment" confirm-type="done" bindfocus="foucus" bindblur="blur" />
+      </view>
+    </view>
+    <image class="the-img add-eggs-icon" src='../../resources/imgs/videoPlayer/add_eggs.png' catchtap='doThumb'></image>
+    <image class="the-img share-icon" src='../../resources/imgs/videoPlayer/share.png'></image>
+  </view>
+</comment-input-conponent>

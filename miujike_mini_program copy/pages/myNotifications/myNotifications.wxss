@@ -1,0 +1,6 @@
+/* pages/myNotifications/myNotifications.wxss */
+
+.tip-container {
+  height: 100vh;
+  font-size: 34rpx;
+}

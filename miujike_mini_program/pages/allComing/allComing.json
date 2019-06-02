@@ -3,7 +3,7 @@
     "video-list-component": "/components/videoListComponent/video-list-component",
     "music-list-component": "/components/musicListComponent/music-list-component"
   },
-  "navigationBarTitleText": "搜索结果",
+  "navigationBarTitleText": "全民来稿",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
 }

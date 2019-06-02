@@ -57,6 +57,24 @@ public class VideoController extends BaseController {
     }
 
     /**
+     * 拉取视频
+     *
+     * @param userId
+     * @param lastId
+     * @return
+     */
+    @RequestMapping("listHis/{userId}")
+    public ResponseData listHisVideo(@PathVariable Long userId, Long lastId) {
+        if (null == userId) {
+            userId = 0L;
+        }
+        if (null == lastId) {
+            lastId = 0L;
+        }
+        return new ResponseData<>(videoService.getHisVideoList(userId, lastId));
+    }
+
+    /**
      * 拉取喜欢的视频
      *
      * @param userId
@@ -81,8 +99,22 @@ public class VideoController extends BaseController {
      * @return
      */
     @GetMapping("/newOfficial")
-    public ResponseData listNewOfficialVideo(int num) {
+    public ResponseData listNewOfficialVideo(int num,Integer official) {
+        if(null != official && official == 1){
+            return new ResponseData<>(videoService.getOfficialNewVideoList(Integer.MAX_VALUE));
+        }
         return new ResponseData<>(videoService.getOfficialNewVideoList(num));
+    }
+
+    /**
+     * 分页拉取官方视频
+     *
+     * @param lastId
+     * @return
+     */
+    @GetMapping("/listNewOfficial")
+    public ResponseData listNewOfficialVideoByPage(long lastId) {
+        return new ResponseData<>(videoService.getOfficialNewVideoListByPage(lastId));
     }
 
     /**

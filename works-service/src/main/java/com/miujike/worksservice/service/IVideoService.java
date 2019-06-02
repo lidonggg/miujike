@@ -54,6 +54,13 @@ public interface IVideoService extends IService<Video> {
     List<Map<String, Object>> getUserVideoList(long userId, Long lastId);
 
     /**
+     * 获取他的
+     * @param map
+     * @return
+     */
+    List<Map<String,Object>> getHisVideoList(long userId,long lastId);
+
+    /**
      * 拉取用户喜欢的video列表（分页）
      *
      * @param userId userId
@@ -77,6 +84,13 @@ public interface IVideoService extends IService<Video> {
      * @return List
      */
     List<Map<String, Object>> getOfficialNewVideoList(int n);
+
+    /**
+     * 分页官方视频
+     * @param lastId
+     * @return
+     */
+    List<Map<String,Object>> getOfficialNewVideoListByPage(long lastId);
 
     /**
      * 随机n条数据，作为推荐

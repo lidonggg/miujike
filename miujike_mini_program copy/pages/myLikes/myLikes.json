@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "music-list-component": "/components/musicListComponent/music-list-component",
+    "video-list-component": "/components/videoListComponent/video-list-component"
+  },
+  "navigationBarTitleText": "我的喜欢",
+  "disableScroll": true
+}

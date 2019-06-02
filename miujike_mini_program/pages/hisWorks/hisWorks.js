@@ -124,7 +124,7 @@ Page({
     let that = this;
     this.data.loading = true;
     api.fetch({
-      url: "apigateway-works/api/v1/works/video/list/" + that.data.userId,
+      url: "apigateway-works/api/v1/works/video/listHis/" + that.data.userId,
       data: {
         lastId: lastId
       },

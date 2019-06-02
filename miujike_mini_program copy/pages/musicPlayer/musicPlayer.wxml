@@ -1,0 +1,30 @@
+<!--pages/musicPlayer/musicPlayer.wxml-->
+<import src="../../templates/comment/commentTemplate.wxml" />
+<scroll-view bindscroll="onScrolling" id="the-scroll" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" scroll-y class="outer-scroll">
+  <view id="the-inner" style="height:100%">
+    <view id="the-cover" class="cover-container">
+      <image src="{{curMusicInfo.cover}}"></image>
+      <text class="info-text title-info">{{curMusicInfo.title}}</text>
+      <text class="info-text singer-info">{{curMusicInfo.singer}}</text>
+    </view>
+    <view id="the-operations" class="{{toTop?'to-top':'no-to-top'}}">
+      <view class="progress-container">
+        <progress percent="{{percent}}" color="#f9e351" />
+      </view>
+      <view class="controller-container flex-center-layout-row">
+        <text class="duration-show-text">{{curMusicInfo.durationShow}}</text>
+        <image bindtap='onPre' hover-class="target-hover" class="target-contoller" src='../../resources/imgs/musicPlayer/pre_btn.png'></image>
+        <image class="status-contoller" src="../../resources/imgs/musicPlayer/{{playing?'stop_btn.png':'start_btn.png'}}" bindtap='onPauseOrPlay'></image>
+        <image bindtap='onNext' class="target-contoller" src='../../resources/imgs/musicPlayer/next_btn.png'></image>
+      </view>
+    </view>
+    <view class="comment-container">
+      <view class="comment-tip flex-center-layout-row gray-color-bg">评论</view>
+      <block wx:for="{{commentList}}" wx:key="commentId">
+        <template is="comment-item" data="{{item,curMusicInfo}}" />
+      </block>
+      <view class="flex-center-layout-row gray-color-text" style='font-size:30rpx;padding-bottom:20rpx;padding-top:20rpx' wx:if="{{tipShow}}">{{commentTip}}</view>
+    </view>
+  </view>
+</scroll-view>
+<comment-input-component target-type="1" target-id="{{curMusicInfo.musicId}}" bind:addcomment='onAddComment'></comment-input-component>

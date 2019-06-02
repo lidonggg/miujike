@@ -1,0 +1,53 @@
+<!--pages/music/music.wxml-->
+<import src="../../templates/searchInput/searchInputTemplate.wxml" />
+<import src="../../templates/musicList/musicListTemplate.wxml" />
+
+<template is="search-input" data="{{searchValue}}" />
+<view class="main-scroll-container" scroll-y>
+    <scroll-view class="new-scroll-container" scroll-x>
+      <block wx:for="{{newMusicList}}" wx:key="musicId">
+        <view class="one-new-item inline-flex-center-layout-col">
+          <view class="palyer-container">
+            <image src="{{item.cover}}" class="cover-img"></image>
+            <view class="new-tip light-gray-color-text">NEW</view>
+            <view class="play-info-container">
+              <view class="title-progress-container">
+                <view class="title-singer-info">
+                  <text style='font-size:26rpx;color:white'>{{item.title}}-{{item.singer}}</text>
+                  <text style='font-size:22rpx;color:white'>(原唱：{{item.originalSinger}})</text>
+                </view>
+                <view class="progress-container" style='margin-top:10rpx'>
+                  <progress percent="{{percents[index]}}" border-radius="6" stroke-width="4" color="#f9e351" />
+                </view>
+              </view>
+              <image data-index="{{index}}" data-musicid="{{item.musicId}}"  src='../../resources/imgs/mine/myLikes/music_start_icon.png' class="music-start-icon" catchtap='doPlayNewMusic'></image>
+            </view>
+          </view>
+          <view class="info-container flex-center-layout-row">
+            <view class="left-part">
+              <view style="height:50%" class="flex-center-layout-row">
+                <view class="duration-container">
+                  {{item.durationShow}}
+                </view>
+                <view class="top-part flex-center-layout-row">
+                  <image class="play-times-icon" src='../../resources/imgs/mine/myLikes/listen_times_icon.png'></image>
+                  <text class="gray-color-text" style='font-size:24rpx'>{{item.playTimes}}</text>
+                </view>
+              </view>
+              <view class="light-gray-color-text" style="font-size:26rpx">Music only</view>
+            </view>
+            <view class="right-part">
+              <image class="the-option" data-musicid='{{item.musicId}}' catchtap='doThumb' src='../../resources/imgs/music/add_eggs_group.png'></image>
+              <view class="the-option share-icon">
+              <button class="share-button" style="opacity:0" open-type="share" data-videoid='{{item.videoId}}'></button>
+              <image src='../../resources/imgs/music/share_group.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{loaded && newMusicList.length == 0}}" class="no-new-tip light-gray-color-text flex-center-layout-row">暂时没有新歌曲哦~</view>
+    </scroll-view>
+    <view class="popular-tip">Popular</view>
+    <music-list-component music-list="{{popularMusicList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />
+</view>

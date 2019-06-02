@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+<import src="../../templates/searchInput/searchInputTemplate.wxml" />
+
+<template is="search-input" data="{{searchValue}}" />
+<view class="main-scroll-container">
+  <swiper class="new-video-swiper" 
+          indicator-dots="true" 
+          autoplay="{{autoplay}}" 
+          interval="3000" 
+          duration="1000" 
+          circular="true" 
+          previous-margin="100rpx" 
+          next-margin="100rpx" 
+          indicator-active-color="#F9E351"
+          bindchange='onSwiper'>
+    <block wx:for="{{newVideoList}}" wx:key="videoId">
+      <swiper-item class="flex-center-layout-row" data-videoid="{{item.videoId}}" data-index="{{index}}" bindtap='goPlayPage'>
+        <view class="one-new-item {{index == curSwiperItemIndex ? 'cur-show':''}}">
+          <image class="new-video-cover" src="{{item.cover}}" />
+          <view class="info-container">
+            <view class="title-singer-info" style='font-size:28rpx;color:#929291'>{{item.title}}--{{item.singer}}</view>
+            <view class="original-singer-info" style='font-size:24rpx;color:#929291'>原唱：{{item.originalSinger}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
+</view>

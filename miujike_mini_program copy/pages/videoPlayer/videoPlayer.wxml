@@ -1,0 +1,43 @@
+<!--pages/videoPlayer/videoPlayer.wxml-->
+<import src="../../templates/comment/commentTemplate.wxml" />
+
+<view class="video-container">
+  <video wx:if="{{curVideoInfo.videoUrl}}" autoplay enable-play-gesture id="the-video" class="the-video" src="{{curVideoInfo.videoUrl}}" custom-cache="{{false}}" controls poster="{{curVideoInfo.cover}}"></video>
+  <view class="video-detail-container">
+    <view class="first-line">
+      <view class="duration gray-color-bg">{{curVideoInfo.durationShow}}</view>
+      <view class="play-times">
+        <text class="gray-color-text">{{curVideoInfo.playTimes}}</text> 次播放
+      </view>
+      <!-- <view class="subscribe-container {{hasFollowed?'':''}}"> -->
+        <image wx:if="{{subscribeShow}}" data-index="{{index}}" bindtap='changeRelationship' class="unsubscribe-icon" src="{{myFollow?'../../resources/imgs/mine/myFans/unsubscribe.png':'../../resources/imgs/mine/myFans/subscribe.png'}}"></image>
+      <!-- </view> -->
+    </view>
+    <view class="second-line">
+      <text>{{curVideoInfo.title}}-{{curVideoInfo.singer}}</text> (原唱：{{curVideoInfo.originalSinger}})
+    </view>
+  </view>
+</view>
+<scroll-view id="the-scroll" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" scroll-y class="others-scroll-container">
+  <view id="the-inner" style="height:100%">
+    <view class="recommend-videos-container">
+      <view style="height:20rpx"></view>
+      <view class="recommend-tip flex-center-layout-row gray-color-bg">推荐视频</view>
+      <scroll-view scroll-x class="recommend-scroll-container">
+        <block wx:for="{{videoRecommended}}" wx:key="videoId">
+          <view class="one-video {{curVideoInfo.videoId==item.videoId?'yellow-color-border':''}}">
+            <image data-index="{{index}}" bindtap='changeVideo' src='{{item.cover}}'></image>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="comment-container">
+      <view class="comment-tip flex-center-layout-row gray-color-bg">评论</view>
+      <block wx:for="{{commentList}}" wx:key="commentId">
+        <template is="comment-item" data="{{item,curVideoInfo}}" />
+      </block>
+      <view class="flex-center-layout-row gray-color-text" style='font-size:30rpx;padding-bottom:20rpx;padding-top:20rpx' wx:if="{{tipShow}}">{{commentTip}}</view>
+    </view>
+  </view>
+</scroll-view>
+<comment-input-component target-type="2" target-id="{{curVideoInfo.videoId}}" bind:addcomment='onAddComment'></comment-input-component>

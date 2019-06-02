@@ -1,0 +1,165 @@
+/* pages/music/music.wxss */
+@import "../../templates/searchInput/searchInputTemplate.wxss";
+/* @import "../../templates/musicList/musicListTemplate.wxss"; */
+
+page {
+  height: 100vh;
+}
+
+.main-scroll-container {
+  height: calc(100vh - 80rpx);
+}
+
+.no-new-tip{
+  height: 100%;
+  font-size: 30rpx;
+}
+
+.new-scroll-container {
+  width: 750rpx;
+  height: 540rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap
+}
+
+.one-new-item {
+  display: inline-flex;
+  position: relative;
+  width: 500rpx;
+  height: 500rpx;
+  margin: 20rpx;
+  background-color: #ededed;
+}
+
+.one-new-item .palyer-container {
+  width: 460rpx;
+  height: 340rpx;
+  position: relative;
+  border-radius: 12rpx;
+}
+
+.one-new-item .palyer-container .play-info-container{
+  position: absolute;
+  bottom: 0;
+  left:20rpx;
+  right: 20rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between
+}
+
+.the-audio{
+  width: 300rpx;
+}
+
+.one-new-item .palyer-container .play-info-container .title-progress-container{
+  display: inline-block;
+  width: 320rpx;
+  height: 100%;
+}
+
+.title-progress-container .title-singer-info{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  align-content: center;
+}
+
+.one-new-item .palyer-container .play-info-container .music-start-icon{
+  width: 60rpx;
+  height: 60rpx;
+
+}
+
+.one-new-item .palyer-container .cover-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.one-new-item .palyer-container .new-tip {
+  background-color: #fff;
+  position: absolute;
+  display: inline-block;
+  height: 36rpx;
+  width: 66rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 6rpx;
+  top: 10rpx;
+  left: 10rpx;
+}
+
+.one-new-item .info-container {
+  width: 460rpx;
+  height: 130rpx;
+}
+
+.one-new-item .info-container .left-part,.one-new-item .info-container .right-part{
+  width: 50%;
+  height: 100%;
+}
+
+.one-new-item .info-container .left-part{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start
+}
+
+.one-new-item .info-container .left-part .play-times-icon{
+  width: 40rpx;
+  height: 38rpx;
+  margin-right: 10rpx;
+}
+
+.one-new-item .info-container .right-part{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.one-new-item .info-container .right-part .the-option{
+  width: 60rpx;
+  height: 94rpx;
+  margin-left: 20rpx;
+}
+
+.share-icon{
+  position: relative;
+}
+
+.share-icon image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1
+}
+
+.duration-container{
+  color: white;
+  background-color: #c5c5c5;
+  font-size:30rpx;
+  border-radius: 6rpx;
+  margin-right: 20rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.popular-tip{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  font-size: 36rpx;
+  height: 60rpx;
+  width: 132rpx;
+  display: inline-block;
+  border-bottom: 6rpx solid #F9E351
+}

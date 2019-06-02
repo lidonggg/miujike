@@ -29,6 +29,13 @@ public interface VideoMapper extends BaseMapper<Video> {
     List<Map<String, Object>> getUserVideoList(Map<String, Object> map);
 
     /**
+     * 获取他的
+     * @param map
+     * @return
+     */
+    List<Map<String,Object>> getHisVideoList(Map<String,Object> map);
+
+    /**
      * 拉取用户喜欢的video列表（分页）
      *
      * @param map userId, start, end
@@ -51,6 +58,13 @@ public interface VideoMapper extends BaseMapper<Video> {
      * @return list
      */
     List<Map<String, Object>> getOfficialNewVideoList(int n);
+
+    /**
+     * 分页官方视频
+     * @param map
+     * @return
+     */
+    List<Map<String,Object>> getOfficialNewVideoListByPage(Map<String,Object> map);
 
 
     /**

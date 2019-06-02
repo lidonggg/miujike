@@ -1,0 +1,30 @@
+<!--pages/myWorks/myWorks.wxml-->
+<import src="../../templates/videoMusicBar/videoMusicBarTemplate.wxml" />
+<import src="../../templates/uploadedTip/uploadedTipTemplate.wxml" />
+
+<swiper class="works-swiper" bindchange='switchTab' current="{{curTab}}" duration="300">
+  <swiper-item class="video-swiper-item">
+    <view class="upload-container flex-center-layout-row">
+      <image bindtap='uploadVideo' src='../../resources/imgs/mine/myWorks/upload_btn.png'></image>
+    </view>
+    <template is="uploaded-tip"></template>
+    <scroll-view id="the-scroll" bindtouchstart='startFn' bindtouchend='endFn' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{videoList.length!=0}}" scroll-y>
+      <view id="the-inner" style="height:100%">
+        <video-list-component video-list="{{videoList}}" works-tip="{{worksTip}}" tip-show="{{videoTipShow}}" />
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item class="music-swiper-item">
+    <view class="upload-container flex-center-layout-row">
+      <image bindtap='uploadMusic' src='../../resources/imgs/mine/myWorks/upload_btn.png'></image>
+    </view>
+    <template is="uploaded-tip"></template>
+    <scroll-view id="the-scroll-2" bindtouchstart='startFn2' bindtouchend='endFn2' scroll-top="{{scrollTop}}" class="works-scroll-view-container" wx:if="{{musicList.length!=0}}" scroll-y>
+      <view id="the-inner-2" style="height:100%">
+        <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}" tip-show="{{musicTipShow}}" />
+      </view>
+      <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+<template is="video-music-bar" data="{{navtabs,curTab}}"></template>

@@ -53,7 +53,7 @@ Page({
       touchDown
     } = this.dataScroll;
     console.log(currentY, touchDown, startScroll, innerHeight, height)
-    if (currentY > touchDown && currentY - touchDown > 20 && startScroll == 0) {
+    if (currentY > touchDown && currentY - touchDown > 50 && startScroll == 0) {
       wx.showLoading({
         title: '加载中',
       })

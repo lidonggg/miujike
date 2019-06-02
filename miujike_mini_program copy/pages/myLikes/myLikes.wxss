@@ -1,0 +1,23 @@
+/* pages/myLikes/myLikes.wxss */
+@import "../../templates/videoMusicBar/videoMusicBarTemplate.wxss";
+
+page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.works-swiper {
+  height: calc(100vh - 110rpx);
+}
+
+.works-swiper swiper-item {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.works-swiper swiper-item scroll-view{
+  width:100%;
+  height:100%;
+  
+}

@@ -1,0 +1,39 @@
+.navtab-container {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  flex: none;
+  display: flex;
+  text-align: center;
+  background: #fff;
+  height: 110rpx;
+  background-size: 100% 100%;
+}
+
+.navtab-container .item {
+  font-size: 32rpx;
+  font-weight: 500;
+  position: relative;
+  flex: auto;
+  width: auto;
+  text-align: center;
+  line-height: 100rpx;
+  /* color: #c2c2c2; */
+}
+
+.nav-container .item.active {
+  color: #f9e351;
+  font-weight: 600;
+}
+
+.nav-container .item.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+}

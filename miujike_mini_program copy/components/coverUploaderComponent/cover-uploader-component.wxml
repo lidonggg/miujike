@@ -1,0 +1,1 @@
+<image bindtap='doUpload' style="height:{{coverHeight}}rpx;width:{{coverWidth}}rpx" class="add-cover-img" src='{{coverImgPath}}'></image>

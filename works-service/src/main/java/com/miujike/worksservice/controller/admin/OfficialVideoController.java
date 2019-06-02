@@ -31,7 +31,7 @@ public class OfficialVideoController {
         Page<Video> page = new Page<>(jqgridParam.getPage(), jqgridParam.getRows());
         page.setSearchCount(true);
         QueryWrapper<Video> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("video_id").eq("user_id",11111111111L);
+        wrapper.orderByDesc("video_id").eq("user_id",10000000000L);
         int records = videoService.count();
         IPage<Video> selectMapsPage = videoService.page(page, wrapper);
         pageResults.setPage(jqgridParam.getPage());
@@ -64,7 +64,7 @@ public class OfficialVideoController {
         Date now = new Date();
         video.setReleaseTime(now);
         video.setCreateTime(now);
-        video.setUserId(11111111111L);
+        video.setUserId(10000000000L);
         video.setDuration(video.getDuration() * 1000);
         videoService.save(video);
         return new ResponseData("success");

@@ -1,0 +1,11 @@
+<template name="search-input">
+  <view class='search-row'>
+    <view class="search-container">
+      <view class="search-arr">
+        <icon class="search-icon" size='20' type='search'></icon>
+        <input placeholder="请输入标题/歌手名称" value="{{keyword}}" bindinput="doSearchInput" bindconfirm="doSearch" />
+      </view>
+    </view>
+    <view class='search-btn flex-center-layout-row' hover-class="button-hover" bindtap='doSearch'>搜索</view>
+  </view>
+</template>

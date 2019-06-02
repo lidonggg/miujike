@@ -51,7 +51,28 @@
             ]]>
         </if>
         and status = 1
-        and user_id != 11111111111
+        and user_id != 10000000000
+        order by video_id desc
+        limit #{fetchNum}
+    </select>
+
+    <select id="getHisVideoList" parameterType="map" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration,shares
+        from miu_video
+        <if test='userId == 0'>
+            where user_id != 0
+        </if>
+        <if test='userId != 0'>
+            where user_id = #{userId}
+        </if>
+        <if test='lastId != 0'>
+            <![CDATA[
+                and video_id < #{lastId}
+            ]]>
+        </if>
+        and status = 1
         order by video_id desc
         limit #{fetchNum}
     </select>
@@ -62,7 +83,7 @@
         title,duration,shares
         from miu_video
         where status = 1
-        and user_id != 11111111111
+        and user_id != 10000000000
         order by release_time desc
         limit #{n}
     </select>
@@ -73,9 +94,21 @@
         title,duration,shares
         from miu_video
         where status = 1
-        and user_id = 11111111111
+        and user_id = 10000000000
         order by release_time desc
         limit #{n}
+    </select>
+
+    <select id="getOfficialNewVideoListByPage" parameterType="map" resultType="map">
+        select video_id as videoId,video_url as videoUrl,singer ,user_id as userId,
+        original_singer as originalSinger,play_times as playTimes,cover,
+        title,duration,shares
+        from miu_video
+        where status = 1
+        and user_id = 10000000000
+        and video_id > #{lastId}
+        order by video_id desc
+        limit #{fetchNum}
     </select>
 
     <!--随机最多五条数据，作为推荐-->

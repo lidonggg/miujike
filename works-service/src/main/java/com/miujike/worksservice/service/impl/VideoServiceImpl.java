@@ -74,8 +74,15 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     @Override
     public List<Map<String, Object>> getUserVideoList(long userId, Long lastId) {
         Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
-        ;
         List<Map<String, Object>> resList = videoMapper.getUserVideoList(map);
+        MusicServiceImpl.addDurationShow(resList);
+        return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> getHisVideoList(long userId,long lastId) {
+        Map<String, Object> map = MapCreator.createParamMap(userId, fetchNum, lastId);
+        List<Map<String, Object>> resList = videoMapper.getHisVideoList(map);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
     }
@@ -98,6 +105,14 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         List<Map<String, Object>> resList = videoMapper.getOfficialNewVideoList(n);
         MusicServiceImpl.addDurationShow(resList);
         return resList;
+    }
+
+    @Override
+    public List<Map<String, Object>> getOfficialNewVideoListByPage(long lastId) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("lastId",lastId);
+        map.put("fetchNum",fetchNum);
+        return videoMapper.getOfficialNewVideoListByPage(map);
     }
 
     @Override

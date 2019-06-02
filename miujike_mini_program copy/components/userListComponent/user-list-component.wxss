@@ -1,0 +1,91 @@
+@import "../../app.wxss";
+
+.one-user-item {
+  height: 80rpx;
+  width: 710rpx;
+  margin-left: 20rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  padding-bottom: 10rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: nowrap;
+  align-items: center
+}
+
+.avatar-img {
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 35rpx;
+}
+
+.nickname-text{
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  width: 220rpx;
+}
+
+.fans-icon{
+  width: 48rpx;
+  height: 72rpx;
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+}
+
+.fans-text{
+  width: 80rpx;
+  font-size: 24rpx;
+}
+
+.works-icon{
+  width: 66rpx;
+  height: 72rpx;
+}
+
+.behavior-icon {
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+}
+
+.share-icon{
+  height: 72rpx;
+  width: 50rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  position: relative;
+  margin-bottom: 16rpx;
+}
+
+.share-button {
+  /* background-color: rgba(255, 255, 255, 0); */
+  border: 0rpx solid rgba(255, 255, 255, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2
+}
+
+.share-image-show{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1
+}
+
+.unsubscribe-icon{
+  width: 80rpx;
+  height: 38rpx;
+}
+
+.no-user{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 46vh;
+}
+
+.the-tip{
+  text-align: center;
+  padding-bottom: 20rpx;
+  font-size: 26rpx;
+}

@@ -29,10 +29,12 @@ public class WxUtil {
 
     static {
         APP_ID_MAP = new HashMap<>();
-        APP_ID_MAP.put("miujike-app", "wxa71eb2257a0ef099");
-
+//        APP_ID_MAP.put("miujike-app", "wxa71eb2257a0ef099");
+        // miujike
+        APP_ID_MAP.put("miujike-app","wx35ccb6eb53958fcf");
         APP_SECRET_MAP = new HashMap<>();
-        APP_SECRET_MAP.put("miujike-app", "29109ca5d1400d92db856fe0ea975e4b");
+//        APP_SECRET_MAP.put("miujike-app", "29109ca5d1400d92db856fe0ea975e4b");
+        APP_SECRET_MAP.put("miujike-app", "57a32fbd9b944a177a6a965c9c709993");
     }
 
     public static String getSessionKey(String jsCode, String tapp) {

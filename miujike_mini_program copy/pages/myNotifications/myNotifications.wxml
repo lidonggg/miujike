@@ -1,0 +1,2 @@
+<!--pages/myNotifications/myNotifications.wxml-->
+<view class="tip-container flex-center-layout-row">暂时没有系统消息哦～</view>

@@ -1,0 +1,2 @@
+<!--pages/myFollows/myFollows.wxml-->
+<user-list-component user-list="{{userList}}" the-tip="{{theTip}}" tip-show="{{tipShow}}" from-where="{{fromWhere}}"></user-list-component>

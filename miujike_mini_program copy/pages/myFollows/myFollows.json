@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "user-list-component": "/components/userListComponent/user-list-component"
+  },
+  "navigationBarTitleText": "我的关注",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle":"dark"
+}

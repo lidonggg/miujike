@@ -30,9 +30,6 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Autowired
     private IWorksClient worksClient;
 
-    @Autowired
-    private IMessageService messageService;
-
     @Value("${fetchNum}")
     private int fetchNum;
 

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "video-list-component": "/components/videoListComponent/video-list-component"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}
