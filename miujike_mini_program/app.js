@@ -81,7 +81,7 @@ App({
   globalData: {
     load: 0,
     userInfo: {},
-    requestUrl: "http://192.168.1.73:9000",
+    requestUrl: "http://172.20.10.4:9000",
     tapp: "miujike-app",
     fetchNum: 15,
     qiniuDomain:"http://ps8xnh0n1.bkt.clouddn.com",

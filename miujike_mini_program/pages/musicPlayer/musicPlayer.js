@@ -175,6 +175,9 @@ Page({
     } else {
       this.data.curIndex++;
     }
+    this.setData({
+      percent: 0
+    })
     this.changeView();
   },
   /**

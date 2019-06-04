@@ -23,7 +23,7 @@
       <view id="the-inner-2" style="height:100%">
         <music-list-component music-list="{{musicList}}" works-tip="{{worksTip}}" tip-show="{{musicTipShow}}" />
       </view>
-      <view wx:if="{{musicList.length==0 && loaded}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
+      <view wx:if="{{musicList.length==0 && !loading}}" class="no-music-tip" style='height:100%;font-size:30rpx' class="flex-center-layout-col gray-color-text">暂时没有音乐作品哦～</view>
     </scroll-view>
   </swiper-item>
 </swiper>
