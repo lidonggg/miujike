@@ -1,7 +1,0 @@
-<!--pages/searchPage/searchPage.wxml-->
-<import src="../../templates/searchInput/searchInputTemplate.wxml" />
-
-<template is="search-input" data="{{keyword}}" />
-<view class="search-tip"><text>{{keyword}}</text> 的搜索结果如下</view>
-<video-list-component wx:if="{{target == 'video'}}" video-list="{{resultList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>
-<music-list-component wx:elif="{{target == 'music'}}" music-list="{{resultList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}" />

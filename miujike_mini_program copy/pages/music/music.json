@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "music-list-component": "/components/musicListComponent/music-list-component"
-  },
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
-}

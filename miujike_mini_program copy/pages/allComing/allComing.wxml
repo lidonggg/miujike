@@ -1,6 +1,0 @@
-<!--pages/allComing/allComing.wxml-->
-<import src="../../templates/searchInput/searchInputTemplate.wxml" />
-
-<template is="search-input" data="{{searchValue}}" />
-<music-list-component wx:if="{{musicList.length != 0}}" music-list="{{newMusicList}}" works-tip="{{worksTip}}" tip-show="{{false}}" />
-<video-list-component video-list="{{newVideoList}}" works-tip="{{worksTip}}" tip-show="{{tipShow}}"/>

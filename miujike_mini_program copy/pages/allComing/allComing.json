@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "video-list-component": "/components/videoListComponent/video-list-component",
-    "music-list-component": "/components/musicListComponent/music-list-component"
-  },
-  "navigationBarTitleText": "搜索结果",
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
-}

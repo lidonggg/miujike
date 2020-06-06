@@ -1,5 +1,0 @@
-<template name="uploaded-tip">
-  <view class="uploaded-tip gray-color-bg flex-center-layout-row">
-    已上传
-  </view>
-</template>
